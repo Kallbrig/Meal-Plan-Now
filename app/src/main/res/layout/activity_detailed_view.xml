@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailedView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@drawable/drawablebgheader"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:onClick="backButtonPress"
+            android:padding="15sp"
+            app:srcCompat="@drawable/backarrow" />
+
+        <TextView
+            android:id="@+id/titleBar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30sp"
+            android:layout_weight="2"
+            android:paddingTop="10sp"
+            android:text="TitleBar"
+            android:textColor="@color/red"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/bgImg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50sp"
+        android:alpha=".45"
+        android:background="@drawable/chickenstirfry"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/drawablebg" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50sp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/drawablebg2" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/mealPreview"
+                            android:layout_width="@dimen/FullViewWidth"
+                            android:layout_height="@dimen/FullViewHeight"
+                            android:layout_gravity="clip_horizontal|center"
+                            android:layout_marginLeft="5sp"
+                            android:layout_marginTop="40sp"
+                            android:layout_marginRight="5sp"
+                            android:layout_marginBottom="25sp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/chickenstirfry" />
+
+                        <TextView
+                            android:id="@+id/mealName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            android:text="MealName"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/mealCat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20sp"
+                            android:layout_weight="1"
+                            android:text="MealCategory"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25sp"
+                            android:layout_marginRight="25sp"
+                            android:layout_marginBottom="15sp"
+                            android:minHeight="40sp"
+                            android:text="@string/chickenStirFryRec"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="5sp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25sp"
+                            android:layout_marginRight="25sp"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/imageButton5"
+                                android:layout_width="40sp"
+                                android:layout_height="30sp"
+                                android:layout_marginLeft="5sp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="1"
+                                android:background="#C1444242"
+                                android:cropToPadding="false"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@android:drawable/btn_star" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton4"
+                                android:layout_width="40sp"
+                                android:layout_height="30sp"
+                                android:layout_marginLeft="5sp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="1"
+                                android:background="#C1444242"
+                                android:cropToPadding="false"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/sevendayicon" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton3"
+                                android:layout_width="40sp"
+                                android:layout_height="30sp"
+                                android:layout_marginLeft="5sp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="1"
+                                android:background="#C1444242"
+                                android:cropToPadding="false"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/shareicon" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton2"
+                                android:layout_width="40sp"
+                                android:layout_height="30sp"
+                                android:layout_marginLeft="5sp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="1"
+                                android:background="#C1444242"
+                                android:cropToPadding="false"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/downloadicon" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25sp"
+                            android:layout_marginRight="25sp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView9"
+                                android:layout_width="50sp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="1"
+                                android:background="#C1444242"
+                                android:gravity="center"
+                                android:text="Favorites"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="50sp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="1"
+                                android:background="#C1444242"
+                                android:gravity="center"
+                                android:text="7 Day Plan"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:id="@+id/textView11"
+                                android:layout_width="50sp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="1"
+                                android:background="#C1444242"
+                                android:gravity="center"
+                                android:text="Share"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:id="@+id/textView8"
+                                android:layout_width="50sp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="1"
+                                android:background="#C1444242"
+                                android:gravity="center"
+                                android:text="Download"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

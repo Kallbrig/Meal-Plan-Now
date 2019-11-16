@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/drawablebgheader"
+    tools:context=".favs_view">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:padding="15sp"
+            app:srcCompat="@drawable/backarrow" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30sp"
+            android:layout_weight="2"
+            android:paddingTop="10sp"
+            android:text="Favorites List"
+            android:textColor="@color/red"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
+        android:background="@drawable/drawablebg"
+        android:minHeight="2000sp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Card1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="4sp"
+                android:layout_marginBottom="8sp"
+                android:layout_weight="0"
+                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardCornerRadius="8sp"
+                app:cardElevation="15sp"
+                app:cardMaxElevation="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img1Favs"
+                            android:layout_width="match_parent"
+                            android:layout_height="175sp"
+                            android:contentDescription="@string/brownStewChicken"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/brownstewchicken" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mealName1"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:maxLines="1"
+                                android:paddingLeft="3sp"
+                                android:text="@string/brownStewChicken"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+
+                            <TextView
+                                android:id="@+id/mealCat1"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:paddingRight="3sp"
+                                android:text="Chicken"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Card2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="4sp"
+                android:layout_marginBottom="8sp"
+                android:layout_weight="0"
+                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardCornerRadius="8sp"
+                app:cardElevation="15sp"
+                app:cardMaxElevation="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img2Favs"
+                            android:layout_width="match_parent"
+                            android:layout_height="175sp"
+                            android:contentDescription="@string/brownStewChicken"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/bakewelltart" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mealName2"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:maxLines="1"
+                                android:paddingLeft="3sp"
+                                android:text="@string/bakewellTart"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+
+                            <TextView
+                                android:id="@+id/mealCat2"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:paddingRight="3sp"
+                                android:text="Dessert"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Card4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="4sp"
+                android:layout_marginBottom="8sp"
+                android:layout_weight="0"
+                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardCornerRadius="8sp"
+                app:cardElevation="15sp"
+                app:cardMaxElevation="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img4Favs"
+                            android:layout_width="match_parent"
+                            android:layout_height="175sp"
+                            android:contentDescription="@string/brownStewChicken"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/chickenandmushroom" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mealName4"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:maxLines="1"
+                                android:paddingLeft="3sp"
+                                android:text="@string/chickenAndMushrooms"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+
+                            <TextView
+                                android:id="@+id/mealCat4"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:paddingRight="3sp"
+                                android:text="Chicken"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Card5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="4sp"
+                android:layout_marginBottom="8sp"
+                android:layout_weight="0"
+                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardCornerRadius="8sp"
+                app:cardElevation="15sp"
+                app:cardMaxElevation="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img5Favs"
+                            android:layout_width="match_parent"
+                            android:layout_height="175sp"
+                            android:contentDescription="@string/bakedSalmon"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/bakedsalmon" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mealName5"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:maxLines="1"
+                                android:paddingLeft="3sp"
+                                android:text="@string/bakedSalmon"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+
+                            <TextView
+                                android:id="@+id/mealCat5"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:paddingRight="3sp"
+                                android:text="Seafood"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Card6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="4sp"
+                android:layout_marginBottom="8sp"
+                android:layout_weight="0"
+                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardCornerRadius="8sp"
+                app:cardElevation="15sp"
+                app:cardMaxElevation="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img6Favs"
+                            android:layout_width="match_parent"
+                            android:layout_height="175sp"
+                            android:contentDescription="@string/brownStewChicken"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/fishpie" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mealName6"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:maxLines="1"
+                                android:paddingLeft="3sp"
+                                android:text="@string/fishPie"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+
+                            <TextView
+                                android:id="@+id/mealCat6"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:paddingRight="3sp"
+                                android:text="Seafood"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Card3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="4sp"
+                android:layout_marginBottom="8sp"
+                android:layout_weight="0"
+                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardCornerRadius="8sp"
+                app:cardElevation="15sp"
+                app:cardMaxElevation="5sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img3Favs"
+                            android:layout_width="match_parent"
+                            android:layout_height="175sp"
+                            android:contentDescription="@string/brownStewChicken"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/fishstewrouille" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/mealName3"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:maxLines="1"
+                                android:paddingLeft="3sp"
+                                android:text="@string/fishStewRouille"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+
+                            <TextView
+                                android:id="@+id/mealCat3"
+                                android:layout_width="0dp"
+                                android:layout_height="25sp"
+                                android:layout_margin="3sp"
+                                android:layout_weight="1"
+                                android:background="#BE3F3F3F"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:paddingRight="3sp"
+                                android:text="Seafood"
+                                android:textColor="@color/white"
+                                app:autoSizeTextType="uniform" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15sp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButton6"
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawablebg"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/chevleft" />
+
+                <ImageButton
+                    android:id="@+id/imageButton7"
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawablebg"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/chevright" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

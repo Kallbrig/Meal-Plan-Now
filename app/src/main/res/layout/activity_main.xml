@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@drawable/drawablebgheader"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <Button
+            android:id="@+id/sevenDayButton"
+            android:layout_width="20sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sevendayicon" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="60sp"
+            android:layout_weight="2"
+            android:paddingTop="10sp"
+            android:text="@string/AppName"
+            android:textColor="@color/red"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/favsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:padding="15sp"
+            app:srcCompat="@android:drawable/btn_star" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50sp"
+        android:background="@color/grey">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:isScrollContainer="true"
+                android:paddingLeft="6sp"
+                android:paddingTop="4sp"
+                android:paddingRight="6sp"
+                android:persistentDrawingCache="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4sp"
+                            android:text="Chicken"
+                            android:textColor="#D7FFFFFF" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card11"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card11Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card11img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:contentDescription="@string/brownStewChicken"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/brownstewchicken" />
+
+                                    <TextView
+                                        android:id="@+id/Card11desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/brownStewChicken"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card12"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card12Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card12img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:contentDescription="@string/chickenAlfredoPrimavera"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/chickenalfredoprimavera" />
+
+                                    <TextView
+                                        android:id="@+id/Card12desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/chickenAlfredoPrimavera"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card13"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card13Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card13img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/chickenandmushroom" />
+
+                                    <TextView
+                                        android:id="@+id/Card13desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/chickenAndMushrooms"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card14"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card14Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card14img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/chickenstirfry" />
+
+                                    <TextView
+                                        android:id="@+id/Card14desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/brownStewChicken"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card15"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card15Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card15img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/brownstewchicken" />
+
+                                    <TextView
+                                        android:id="@+id/Card15desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/brownStewChicken"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card16"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card16Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card16img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/chickenalfredoprimavera" />
+
+                                    <TextView
+                                        android:id="@+id/Card16desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/brownStewChicken"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:isScrollContainer="true"
+                android:paddingLeft="6sp"
+                android:paddingTop="4sp"
+                android:paddingRight="6sp"
+                android:persistentDrawingCache="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4sp"
+                            android:text="Seafood"
+                            android:textColor="#D7FFFFFF" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card21"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card11Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card21img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:contentDescription="@string/brownStewChicken"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/fishpie" />
+
+                                    <TextView
+                                        android:id="@+id/Card21desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/fishPie"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card22"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card12Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card22img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:contentDescription="@string/chickenAlfredoPrimavera"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/cajfishtacos" />
+
+                                    <TextView
+                                        android:id="@+id/Card22desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/cajunFishTacos"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card23"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card13Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card23img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/fishstewrouille" />
+
+                                    <TextView
+                                        android:id="@+id/Card23desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/fishStewRouille"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card24"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card14Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card24img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/bakedsalmon" />
+
+                                    <TextView
+                                        android:id="@+id/Card24desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/bakedSalmon"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card25"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card15Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card25img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/honeyteriyakisalmon" />
+
+                                    <TextView
+                                        android:id="@+id/Card25desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/honeyTeriyakiSalmon"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card26"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card16Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card26img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/garidessaganaki" />
+
+                                    <TextView
+                                        android:id="@+id/Card26desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/garidesSaganaki"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:isScrollContainer="true"
+                android:paddingLeft="6sp"
+                android:paddingTop="4sp"
+                android:paddingRight="6sp"
+                android:persistentDrawingCache="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4sp"
+                            android:text="Dessert"
+                            android:textColor="#D7FFFFFF" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card31"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card11Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card31img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:contentDescription="@string/brownStewChicken"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/appleblackberrycrumble" />
+
+                                    <TextView
+                                        android:id="@+id/Card31desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/appleblackberrycrumble"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card32"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card12Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card32img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:contentDescription="@string/chickenAlfredoPrimavera"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/applefrangipantart" />
+
+                                    <TextView
+                                        android:id="@+id/Card32desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/appleFrangipanTart"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card33"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card13Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card33img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/bakewelltart" />
+
+                                    <TextView
+                                        android:id="@+id/Card33desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/bakewellTart"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card34"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card14Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card34img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/bananapancakes" />
+
+                                    <TextView
+                                        android:id="@+id/Card34desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/bananaPancakes"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card35"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card15Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card35img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/battenbergcake" />
+
+                                    <TextView
+                                        android:id="@+id/Card35desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/battenbergCake"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/Card36"
+                                android:layout_width="135sp"
+                                android:layout_height="200sp"
+                                android:layout_marginLeft="4sp"
+                                android:layout_marginRight="4sp"
+                                android:layout_marginBottom="8sp"
+                                android:layout_weight="0"
+                                app:cardCornerRadius="8sp"
+                                app:cardElevation="5sp"
+                                app:cardMaxElevation="5sp">
+
+                                <LinearLayout
+                                    android:id="@+id/Card16Ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/Card36img"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="175sp"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/beavertails" />
+
+                                    <TextView
+                                        android:id="@+id/Card36desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="25sp"
+                                        android:background="@color/black"
+                                        android:gravity="center|center_horizontal|center_vertical"
+                                        android:maxLines="1"
+                                        android:text="@string/beaverTails"
+                                        android:textColor="@color/white"
+                                        app:autoSizeTextType="uniform" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
