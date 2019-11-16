@@ -4,40 +4,35 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
 import java.util.concurrent.Executors
-import Prototype.Design.MainActivity
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.media.Image
-import android.system.Os.shutdown
-import android.text.Html
-import java.net.HttpURLConnection
-import java.net.URLConnection
-import android.os.AsyncTask
-import java.util.concurrent.CompletableFuture
-import android.os.Bundle
-import android.app.Activity
-
-
 
 
 class apiConnection {
 
-     protected var jsonA:JSONArray = JSONArray()
-     protected var parsedArray:ArrayList<ArrayList<String>> = ArrayList<ArrayList<String>>()
+    protected var jsonA: JSONArray = JSONArray()
+    protected var parsedArray: ArrayList<ArrayList<String>> = ArrayList<ArrayList<String>>()
 
 
-
-/*  public  fun getMealById(mealId:String){
+  fun getMealById(mealId:String):ArrayList<String>{
+      var mealInfo = ArrayList<String>()
         Executors.newSingleThreadExecutor().execute{
             var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
-            var mealInfo =  parseIndMeal(jsonO)
+             mealInfo =  parseIndMeal(jsonO)
+            return@execute
         }
-    }*/
+      if (!mealInfo.isNullOrEmpty()) {
+          return mealInfo
 
-  fun getMealByName(mealName:String){
+          //THIS NEEDS TO BE FIXED BECAUSE I DONT KNOW WHAT IT DOES ELSE BLOCK
+      } else { return ArrayList<String>()}
+    }
+
+    fun getMealByName(mealName: String) {
 
         //This is the Json Object containing the meal information
-        var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray("meals").getJSONObject(0)
+        var jsonO =
+            JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
+                "meals"
+            ).getJSONObject(0)
 
 
         parseIndMeal(jsonO)
@@ -46,7 +41,7 @@ class apiConnection {
     }
 
     //Fetches Categories from API
-        fun getCat(catName:String) {
+    fun getCat(catName: String) {
         jsonA =
             JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray(
                 "meals"
@@ -54,36 +49,12 @@ class apiConnection {
     }
 
 
-
-    private fun setparsedArray(parsedArray:ArrayList<ArrayList<String>>){
-        // For Debugging //println("ParsedArray[0] = " + parsedArray.get(0))
-        if (!parsedArray.isNullOrEmpty()){
-            this.parsedArray = parsedArray
-            println("setparsedArray() has succeeded  -  Size = " + this.parsedArray.size)
-
-        } else {
-            println("!!!!!!setparsedArray() was passed a null or empty argument!!!!!!")
-        }
-    }
-
-    fun setjsonA(jsonA:JSONArray){
-        if (jsonA.toString(0) != ""){
-            this.jsonA = jsonA
-            println("setJsondA() has succeeded  -  length = " + jsonA.length())
-
-        } else {
-            println("!!!!!!setjsonA() was passed an empty argument!!!!!!")
-        }
-    }
-
-   //  public fun getImg(imgURLStr:String):Drawable{
-   //  }
+    //  public fun getImg(imgURLStr:String):Drawable{
+    //  }
 
 
-
-
-   private fun parseIndMeal(jsonO: JSONObject):ArrayList<String>{
-        lateinit var mealInfo:ArrayList<String>
+    private fun parseIndMeal(jsonO: JSONObject): ArrayList<String> {
+        lateinit var mealInfo: ArrayList<String>
 
 
         mealInfo.add(jsonO.getString("strMeal") as String)
@@ -97,30 +68,52 @@ class apiConnection {
         return mealInfo
     }
 
-}
 
-
-//Function to parse a category search. takes the Json Array produced by the getCat() function as an argument.
-    private fun parseCategory(jsonA: JSONArray):ArrayList<ArrayList<String>>{
+    //Function to parse a category search. takes the Json Array produced by the getCat() function as an argument.
+    private fun parseCategory(jsonA: JSONArray): ArrayList<ArrayList<String>> {
         var oneMealInfo = ArrayList<String>(3)
         var fullMealInfo = ArrayList<ArrayList<String>>(6)
 
 
-
 //            for(i in 0 until 5) {
-    var i = 0
-    while (i<5){
-                oneMealInfo.add(jsonA.getJSONObject(i).getString("strMeal"))
-                oneMealInfo.add(jsonA.getJSONObject(i).getString("idMeal"))
-                oneMealInfo.add(jsonA.getJSONObject(i).getString("strMealThumb"))
-                fullMealInfo.add(i, oneMealInfo)
+        var i = 0
+        while (i < 5) {
+            oneMealInfo.add(jsonA.getJSONObject(i).getString("strMeal"))
+            oneMealInfo.add(jsonA.getJSONObject(i).getString("idMeal"))
+            oneMealInfo.add(jsonA.getJSONObject(i).getString("strMealThumb"))
+            fullMealInfo.add(i, oneMealInfo)
 
 
-               // println(oneMealInfo)
+            // println(oneMealInfo)
 
             i++
 
-            }
+        }
 
-    return fullMealInfo
+        return fullMealInfo
     }
+
+
+    //Setters for internal use only
+
+    private fun setparsedArray(parsedArray: ArrayList<ArrayList<String>>) {
+        // For Debugging //println("ParsedArray[0] = " + parsedArray.get(0))
+        if (!parsedArray.isNullOrEmpty()) {
+            this.parsedArray = parsedArray
+            println("setparsedArray() has succeeded  -  Size = " + this.parsedArray.size)
+
+        } else {
+            println("!!!!!!setparsedArray() was passed a null or empty argument!!!!!!")
+        }
+    }
+
+    private fun setjsonA(jsonA: JSONArray) {
+        if (jsonA.toString(0) != "") {
+            this.jsonA = jsonA
+            println("setJsondA() has succeeded  -  length = " + jsonA.length())
+
+        } else {
+            println("!!!!!!setjsonA() was passed an empty argument!!!!!!")
+        }
+    }
+}
