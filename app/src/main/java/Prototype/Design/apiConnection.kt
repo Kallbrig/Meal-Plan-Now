@@ -1,29 +1,41 @@
 package Prototype.Design
 
+import android.os.AsyncTask
+import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
+import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 
 
 class apiConnection {
 
     protected var jsonA: JSONArray = JSONArray()
-    protected var parsedArray: ArrayList<ArrayList<String>> = ArrayList<ArrayList<String>>()
+    protected var parsedArray: ArrayList<ArrayList<String>> = ArrayList()
 
 
-  fun getMealById(mealId:String):ArrayList<String>{
-      var mealInfo = ArrayList<String>()
-        Executors.newSingleThreadExecutor().execute{
-            var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
-             mealInfo =  parseIndMeal(jsonO)
+    fun getMealById(mealId: String): ArrayList<String> {
+        var mealInfo = ArrayList<String>()
+
+
+
+/*        AsyncTask.execute {
+            var jsonO =
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=" + mealId).readText()).getJSONArray(
+                    "meals"
+                ).getJSONObject(0)
+            mealInfo = parseIndMeal(jsonO)
             return@execute
-        }
-      if (!mealInfo.isNullOrEmpty()) {
-          return mealInfo
+        }*/
 
-          //THIS NEEDS TO BE FIXED BECAUSE I DONT KNOW WHAT IT DOES ELSE BLOCK
-      } else { return ArrayList<String>()}
+        println("GetMealById() -" + mealInfo)
+
+        when (mealInfo.isNullOrEmpty()) {
+            true -> return ArrayList()
+            false -> return mealInfo
+
+        }
     }
 
     fun getMealByName(mealName: String) {
@@ -54,17 +66,41 @@ class apiConnection {
 
 
     private fun parseIndMeal(jsonO: JSONObject): ArrayList<String> {
-        lateinit var mealInfo: ArrayList<String>
+        var mealInfo: ArrayList<String> = ArrayList()
+        //println("JsonO in parseIndMeal() - ")
 
 
-        mealInfo.add(jsonO.getString("strMeal") as String)
-        mealInfo.add(jsonO.getString("strMealThumb"))
-        mealInfo.add(jsonO.getString("idmeal"))
+        if (jsonO.has("strMeal")) {
+            mealInfo.add(jsonO.getString("strMeal"))
+        } else {
+            println("JsonO is incomplete")
+        }
+        if (jsonO.has("strMealThumb")) {
+            mealInfo.add(jsonO.getString("strMealThumb"))
+        } else {
+            println("JsonO is incomplete")
+        }
+        if (jsonO.has("idMeal")) {
+            mealInfo.add(jsonO.getString("idMeal"))
+        } else {
+            println("JsonO is incomplete")
+        }
+        if (jsonO.has("strArea")) {
+            mealInfo.add(jsonO.getString("strArea"))
+        } else {
+            println("JsonO is incomplete")
+        }
+        if (jsonO.has("strInstructions")) {
+            mealInfo.add(jsonO.getString("strInstructions"))
+        } else {
+            println("JsonO is incomplete")
+        }
+
         mealInfo.add(jsonO.getString("strArea"))
         mealInfo.add(jsonO.getString("strInstructions"))
 
         //Still need ingredients fetched and stored
-
+        //println("mealInfo in parseIndMeal() - " + mealInfo)
         return mealInfo
     }
 

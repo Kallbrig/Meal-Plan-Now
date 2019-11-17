@@ -19,9 +19,6 @@ class DetailedView : AppCompatActivity() {
         setContentView(R.layout.activity_detailed_view)
 
 
-
-
-
         var bgImg = findViewById<ImageView>(R.id.bgImg)
 
         var mealPreview = findViewById<ImageView>(R.id.mealPreview)
@@ -41,37 +38,36 @@ class DetailedView : AppCompatActivity() {
 
         var backBut = findViewById<ImageButton>(R.id.backButton)
 
-        backBut.setOnClickListener{
+        backBut.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
 
         }
-        
-    }
-
-
-
-   /* fun backButtonPress(backbut:ImageButton){
-
-
-            var prevA = intent.getStringExtra("prevIntent") as String
-            val i:Intent
-            if (prevA == "MainActivity::class.java"){
-                i = Intent(this, MainActivity::class.java)
-            } else if(prevA == "DetailedView::class.java") {
-                i = Intent(this, DetailedView::class.java)
-            } else if(prevA == "favs_view::class.java"){
-                i = Intent(this, favs_view::class.java)
-            } else if(prevA == "sevenDay::class.java"){
-                i = Intent(this, sevenDay::class.java)
-            }
-            else{
-                i = Intent(this, MainActivity::class.java)
-            }
-            startActivity(i)
 
     }
 
-    */
+
+    /* fun backButtonPress(backbut:ImageButton){
+
+
+             var prevA = intent.getStringExtra("prevIntent") as String
+             val i:Intent
+             if (prevA == "MainActivity::class.java"){
+                 i = Intent(this, MainActivity::class.java)
+             } else if(prevA == "DetailedView::class.java") {
+                 i = Intent(this, DetailedView::class.java)
+             } else if(prevA == "favs_view::class.java"){
+                 i = Intent(this, favs_view::class.java)
+             } else if(prevA == "sevenDay::class.java"){
+                 i = Intent(this, sevenDay::class.java)
+             }
+             else{
+                 i = Intent(this, MainActivity::class.java)
+             }
+             startActivity(i)
+
+     }
+
+     */
 
 
 }

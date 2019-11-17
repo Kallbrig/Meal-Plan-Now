@@ -15,20 +15,20 @@ class sevenDay : AppCompatActivity() {
 
 
         var favsBut = findViewById<ImageButton>(R.id.favsButSevenDay)
-        favsBut.setOnClickListener{
+        favsBut.setOnClickListener {
 
             var i = Intent(this, favs_view::class.java)
             startActivity(i)
 
         }
         var backBut = findViewById<ImageButton>(R.id.backButSevenDay)
-        backBut.setOnClickListener{
+        backBut.setOnClickListener {
             var i = Intent(this, MainActivity::class.java)
             startActivity(i)
         }
 
-        if(intent.extras?.get("addrem") == "AddSevenDay"){
-            var add =   intent.extras?.get("addrem") as String
+        if (intent.extras?.get("addrem") == "AddSevenDay") {
+            var add = intent.extras?.get("addrem") as String
 
             var mealToAdd = api.getMealById(intent.extras?.get("id") as String)
 

@@ -25,48 +25,47 @@ class favs_view : AppCompatActivity() {
         var Card6 = findViewById<CardView>(R.id.Card6)
 
 
-
         //Back Button takes you back to Homepage always. I'd like to change this soon.
         var backBut = findViewById<ImageButton>(R.id.backButton)
 
-        backBut.setOnClickListener{
+        backBut.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
 
         }
 
-        Card1.setOnClickListener{
-            var Img = findViewById<ImageView>(R.id.img1Favs).drawable.toBitmap(300,400)
+        Card1.setOnClickListener {
+            var Img = findViewById<ImageView>(R.id.img1Favs).drawable.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.mealName1).text as String
             var cardCat = findViewById<TextView>(R.id.mealCat1).text as String
             createDetailIntent(Carddesc, Img, cardCat)
 
         }
-        Card2.setOnClickListener{
-            var Img = findViewById<ImageView>(R.id.img2Favs).drawable.toBitmap(300,400)
+        Card2.setOnClickListener {
+            var Img = findViewById<ImageView>(R.id.img2Favs).drawable.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.mealName2).text as String
             var cardCat = findViewById<TextView>(R.id.mealCat2).text as String
             createDetailIntent(Carddesc, Img, cardCat)
         }
-        Card3.setOnClickListener{
-            var Img = findViewById<ImageView>(R.id.img3Favs).drawable.toBitmap(300,400)
+        Card3.setOnClickListener {
+            var Img = findViewById<ImageView>(R.id.img3Favs).drawable.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.mealName3).text as String
             var cardCat = findViewById<TextView>(R.id.mealCat3).text as String
             createDetailIntent(Carddesc, Img, cardCat)
         }
-        Card4.setOnClickListener{
-            var Img = findViewById<ImageView>(R.id.img4Favs).drawable.toBitmap(300,400)
+        Card4.setOnClickListener {
+            var Img = findViewById<ImageView>(R.id.img4Favs).drawable.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.mealName4).text as String
             var cardCat = findViewById<TextView>(R.id.mealCat4).text as String
             createDetailIntent(Carddesc, Img, cardCat)
         }
-        Card5.setOnClickListener{
-            var Img = findViewById<ImageView>(R.id.img5Favs).drawable.toBitmap(300,400)
+        Card5.setOnClickListener {
+            var Img = findViewById<ImageView>(R.id.img5Favs).drawable.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.mealName5).text as String
             var cardCat = findViewById<TextView>(R.id.mealCat5).text as String
             createDetailIntent(Carddesc, Img, cardCat)
         }
-        Card6.setOnClickListener{
-            var Img = findViewById<ImageView>(R.id.img6Favs).drawable.toBitmap(300,400)
+        Card6.setOnClickListener {
+            var Img = findViewById<ImageView>(R.id.img6Favs).drawable.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.mealName6).text as String
             var cardCat = findViewById<TextView>(R.id.mealCat6).text as String
             createDetailIntent(Carddesc, Img, cardCat)
@@ -75,10 +74,10 @@ class favs_view : AppCompatActivity() {
     }
 
 
-    fun createDetailIntent(id:String,img:Bitmap,cat:String){
+    fun createDetailIntent(id: String, img: Bitmap, cat: String) {
         println("Intent Created")
         val intent = Intent(this, DetailedView::class.java)
-        intent.putExtra("img", img )
+        intent.putExtra("img", img)
         intent.putExtra("id", id)
         intent.putExtra("cat", cat)
         println("Put Extras!")
@@ -86,7 +85,7 @@ class favs_view : AppCompatActivity() {
         startActivity(intent)
 
     }
-    }
+}
 
 
 

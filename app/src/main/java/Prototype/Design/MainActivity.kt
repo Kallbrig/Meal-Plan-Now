@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity() {
 
         //Fetches a category from the API. This will be used in the Search/browse functions.
 
-
+        println("MEAL MAIN &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + api.getMealById("52772"))
 
     }
 
