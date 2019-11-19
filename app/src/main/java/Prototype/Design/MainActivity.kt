@@ -15,7 +15,22 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.concurrent.Executors
 import Prototype.Design.apiConnection
+import android.content.AsyncQueryHandler
+import android.graphics.drawable.Drawable
+import android.media.Image
+import android.net.Uri
 import kotlinx.android.synthetic.main.activity_main.*
+import com.squareup.picasso.Picasso
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import org.jetbrains.anko.image
+import org.jetbrains.anko.imageResource
+
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Looper
 
 
 class MainActivity : AppCompatActivity() {
@@ -72,9 +87,11 @@ class MainActivity : AppCompatActivity() {
 
         // Row 1 OnClickListeners
 
+        //var card23345 = findViewById<ImageView>(R.id.Card11img).image.toBitmap(300400)
+
 
         Card11.setOnClickListener {
-            var Img = findViewById<ImageView>(R.id.Card11img).drawable.toBitmap(300, 400)
+            var Img = findViewById<ImageView>(R.id.Card11img).image!!.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.Card11desc).text as String
             createDetailIntent(Carddesc, Img, "Chicken")
 
@@ -180,6 +197,11 @@ class MainActivity : AppCompatActivity() {
         //Fetches a category from the API. This will be used in the Search/browse functions.
 
         println("MEAL MAIN &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + api.getMealById("52772"))
+
+        val internetUrl = "http://i.imgur.com/DvpvklR.png"
+
+        
+        Card11img.setImageBitmap(Picasso.with(this).load(Uri.parse(internetUrl)).get())
 
     }
 

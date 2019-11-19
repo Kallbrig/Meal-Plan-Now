@@ -109,8 +109,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="175sp"
                                         android:contentDescription="@string/brownStewChicken"
-                                        android:scaleType="centerCrop"
-                                        app:srcCompat="@drawable/brownstewchicken" />
+                                        android:scaleType="centerCrop" />
 
                                     <TextView
                                         android:id="@+id/Card11desc"
