@@ -15,10 +15,19 @@ import java.util.concurrent.Executors
 
 class apiConnection {
 
+
+    // GLOBAL VARIABLES
+    //
+
     protected var jsonA: JSONArray = JSONArray()
     protected var parsedArray: ArrayList<ArrayList<String>> = ArrayList()
     private val TAG = "APICONNECTION"
 
+
+
+
+    // THIS HASN'T BEEN STARTED. NEEDS WORK NOW THAT API CALLS WORK
+    //
 
     fun getMealById(mealId: String) {
         var mealInfo = ArrayList<String>()
@@ -27,6 +36,14 @@ class apiConnection {
 
         }
     }
+
+
+
+
+
+
+    // THIS DOES NOT WORK
+    // IT RETURNS A EMPTY ARRAY INSTEAD OF ONE FULL OF THE MEAL INFORMATION
 
     fun getMealByName(mealName: String): ArrayList<String> {
         //This is the Json Object containing the meal information
@@ -42,11 +59,13 @@ class apiConnection {
 
 
         return parsedArray
-
-
     }
 
-    //Fetches Categories from API
+
+
+    // UNSURE IF THIS WORKS
+    // TESTING AND CHECKING WILL BE REQUIRED
+
     fun getCat(catName: String): ArrayList<ArrayList<String>> {
         doAsync {
             var jsonA =
@@ -62,9 +81,9 @@ class apiConnection {
     }
 
 
-    //  public fun getImg(imgURLStr:String):Drawable{
-    //  }
 
+    // SLOW DOWN COWBOY. FIX THE OTHER SHIT FIRST
+    //
 
     private fun parseIndMeal(jsonO: JSONObject): ArrayList<String> {
         var mealInfo: ArrayList<String> = ArrayList()
@@ -106,7 +125,12 @@ class apiConnection {
     }
 
 
+
+
     //Function to parse a category search. takes the Json Array produced by the getCat() function as an argument.
+    // UNLESS I'M WRONG, THIS DOES FUNCTION PROPERLY
+    // CHECK IT ANYWAY
+
     private fun parseCategory(jsonACategory: JSONArray): ArrayList<ArrayList<String>> {
         var oneMealInfo = ArrayList<String>(3)
         var fullMealInfo = ArrayList<ArrayList<String>>(6)
@@ -129,6 +153,7 @@ class apiConnection {
 
 
     //Setters for internal use only
+    //THESE ARE BASIC SETTERS. THEY DEFINITELY FUNCTION.
 
     private fun setparsedArray(parsedArray: ArrayList<ArrayList<String>>) {
         // For Debugging //println("ParsedArray[0] = " + parsedArray.get(0))
