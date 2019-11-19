@@ -16,6 +16,7 @@ import java.net.URL
 import java.util.concurrent.Executors
 import Prototype.Design.apiConnection
 import android.content.AsyncQueryHandler
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.media.Image
 import android.net.Uri
@@ -25,12 +26,13 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import org.jetbrains.anko.image
-import org.jetbrains.anko.imageResource
 
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.net.UrlQuerySanitizer
 import android.os.Looper
+import android.util.Log
+import org.jetbrains.anko.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -201,8 +203,8 @@ class MainActivity : AppCompatActivity() {
         val internetUrl = "http://i.imgur.com/DvpvklR.png"
 
         
-        Card11img.setImageBitmap(Picasso.with(this).load(Uri.parse(internetUrl)).get())
-
+        //Card11img.setImageBitmap(Picasso.with(this).load(Uri.parse(internetUrl)).get())
+        downloadData()
     }
 
 
@@ -221,6 +223,19 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intent)
 
+    }
+
+
+    fun downloadData() {
+
+        doAsync {
+            var result:String = URL("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata").readText()
+            uiThread {
+                println("about to Toast")
+                longToast(result)
+                println("toasted")
+            }
+        }
     }
 
 
