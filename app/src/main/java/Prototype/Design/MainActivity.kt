@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity() {
     var api = apiConnection()
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -202,9 +200,10 @@ class MainActivity : AppCompatActivity() {
 
         val internetUrl = "http://i.imgur.com/DvpvklR.png"
 
-        
+
         //Card11img.setImageBitmap(Picasso.with(this).load(Uri.parse(internetUrl)).get())
-        downloadData()
+        var test: String = api.getCat("Chicken").toString()
+        println(test)
     }
 
 
@@ -223,19 +222,6 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intent)
 
-    }
-
-
-    fun downloadData() {
-
-        doAsync {
-            var result:String = URL("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata").readText()
-            uiThread {
-                println("about to Toast")
-                longToast(result)
-                println("toasted")
-            }
-        }
     }
 
 

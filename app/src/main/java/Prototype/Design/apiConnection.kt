@@ -1,7 +1,11 @@
 package Prototype.Design
 
 import android.os.AsyncTask
+import android.util.Log
+import android.widget.Toast
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
+import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
@@ -13,51 +17,48 @@ class apiConnection {
 
     protected var jsonA: JSONArray = JSONArray()
     protected var parsedArray: ArrayList<ArrayList<String>> = ArrayList()
+    private val TAG = "APICONNECTION"
 
 
-    fun getMealById(mealId: String): ArrayList<String> {
+    fun getMealById(mealId: String) {
         var mealInfo = ArrayList<String>()
 
-
-
-/*        AsyncTask.execute {
-            var jsonO =
-                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=" + mealId).readText()).getJSONArray(
-                    "meals"
-                ).getJSONObject(0)
-            mealInfo = parseIndMeal(jsonO)
-            return@execute
-        }*/
-
-        println("GetMealById() -" + mealInfo)
-
-        when (mealInfo.isNullOrEmpty()) {
-            true -> return ArrayList()
-            false -> return mealInfo
+        doAsync {
 
         }
     }
 
-    fun getMealByName(mealName: String) {
-
+    fun getMealByName(mealName: String): ArrayList<String> {
         //This is the Json Object containing the meal information
-        var jsonO =
-            JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
-                "meals"
-            ).getJSONObject(0)
+        var parsedArray = ArrayList<String>()
+
+        doAsync {
+            var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray("meals").getJSONObject(0)
+
+            parsedArray = parseIndMeal(jsonO)
+        }
+
+        println("????????????????!!!!!!!!!!!!!!!!!!!!!" + parsedArray)
 
 
-        parseIndMeal(jsonO)
+        return parsedArray
 
 
     }
 
     //Fetches Categories from API
-    fun getCat(catName: String) {
-        jsonA =
-            JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray(
-                "meals"
-            )
+    fun getCat(catName: String): ArrayList<ArrayList<String>> {
+        doAsync {
+            var jsonA =
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray(
+                    "meals"
+                )
+
+            setjsonA(jsonA)
+
+        }
+        Log.i(TAG, jsonA.toString())
+        return parseCategory(jsonA)
     }
 
 
@@ -106,7 +107,7 @@ class apiConnection {
 
 
     //Function to parse a category search. takes the Json Array produced by the getCat() function as an argument.
-    private fun parseCategory(jsonA: JSONArray): ArrayList<ArrayList<String>> {
+    private fun parseCategory(jsonACategory: JSONArray): ArrayList<ArrayList<String>> {
         var oneMealInfo = ArrayList<String>(3)
         var fullMealInfo = ArrayList<ArrayList<String>>(6)
 
@@ -114,13 +115,10 @@ class apiConnection {
 //            for(i in 0 until 5) {
         var i = 0
         while (i < 5) {
-            oneMealInfo.add(jsonA.getJSONObject(i).getString("strMeal"))
-            oneMealInfo.add(jsonA.getJSONObject(i).getString("idMeal"))
-            oneMealInfo.add(jsonA.getJSONObject(i).getString("strMealThumb"))
+            oneMealInfo.add(jsonACategory.getJSONObject(i).getString("strMeal"))
+            oneMealInfo.add(jsonACategory.getJSONObject(i).getString("idMeal"))
+            oneMealInfo.add(jsonACategory.getJSONObject(i).getString("strMealThumb"))
             fullMealInfo.add(i, oneMealInfo)
-
-
-            // println(oneMealInfo)
 
             i++
 
@@ -136,20 +134,22 @@ class apiConnection {
         // For Debugging //println("ParsedArray[0] = " + parsedArray.get(0))
         if (!parsedArray.isNullOrEmpty()) {
             this.parsedArray = parsedArray
-            println("setparsedArray() has succeeded  -  Size = " + this.parsedArray.size)
+            Log.i(TAG, "GOOD: setparsedArray() has succeeded  -  Size = " + this.parsedArray)
 
         } else {
-            println("!!!!!!setparsedArray() was passed a null or empty argument!!!!!!")
+            Log.e(TAG, "BAD: setparsedArray() was passed a null or empty argument")
         }
     }
 
     private fun setjsonA(jsonA: JSONArray) {
-        if (jsonA.toString(0) != "") {
+        if (jsonA.toString() != "") {
             this.jsonA = jsonA
-            println("setJsondA() has succeeded  -  length = " + jsonA.length())
+
+            Log.i(TAG, "GOOD: setjsonA() was passed a nonempty JsonArray")
+
 
         } else {
-            println("!!!!!!setjsonA() was passed an empty argument!!!!!!")
+            Log.e(TAG, "BAD: setjsonA() was passed an empty argument")
         }
     }
 }
