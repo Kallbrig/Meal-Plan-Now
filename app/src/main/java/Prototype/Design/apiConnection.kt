@@ -20,9 +20,10 @@ class apiConnection {
     // GLOBAL VARIABLES
     //
 
-    protected var jsonA: JSONArray = JSONArray()
-    protected lateinit var mealInfo: ArrayList<String>
-    protected var parsedArray: ArrayList<ArrayList<String>> = ArrayList()
+    protected var jsonA: JSONArray? = null
+    protected var mealInfo2: JSONObject? = null
+    protected var parsedArray: ArrayList<ArrayList<String>>? = null
+    protected var mealInfo: ArrayList<String>? = null
     private val TAG = "APICONNECTION"
 
 
@@ -33,13 +34,19 @@ class apiConnection {
 
 
         doAsync {
-            var jsonO =
-                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray(
-                    "meals"
-                ).getJSONObject(0)
-                uiThread {
-                    this@apiConnection.mealInfo = parseIndMeal(jsonO)
 
+            //jsonO is a variable that will hold the api response until it is processed
+
+            var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
+
+
+                uiThread {
+
+                    this@apiConnection.mealInfo2 = jsonO
+
+                    this@apiConnection.parseIndMeal(jsonO)
+
+                    Log.i(TAG, this@apiConnection.mealInfo.toString())
 
                     Log.i(TAG, "GetMealById has finished")
 
@@ -64,7 +71,7 @@ class apiConnection {
                     "meals"
                 ).getJSONObject(0)
 
-            parsedArray = parseIndMeal(jsonO)
+            //parsedArray = parseIndMeal(jsonO)
         }
 
         println("????????????????!!!!!!!!!!!!!!!!!!!!!" + parsedArray)
@@ -88,49 +95,48 @@ class apiConnection {
 
         }
         Log.i(TAG, jsonA.toString())
-        return parseCategory(jsonA)
+        return parseCategory(jsonA!!)
     }
 
 
     // SLOW DOWN COWBOY. FIX THE OTHER SHIT FIRST
     //
 
-    private fun parseIndMeal(jsonO: JSONObject): ArrayList<String> {
-        var mealInfo: ArrayList<String> = ArrayList()
+    private fun parseIndMeal(jsonO: JSONObject): ArrayList<String>? {
+        var mealInfo: ArrayList<String>? = null
         //println("JsonO in parseIndMeal() - ")
 
 
         if (jsonO.has("strMeal")) {
-            mealInfo.add(jsonO.getString("strMeal"))
+            mealInfo?.add(jsonO.getString("strMeal"))
         } else {
             println("JsonO is incomplete")
         }
         if (jsonO.has("strMealThumb")) {
-            mealInfo.add(jsonO.getString("strMealThumb"))
+            mealInfo?.add(jsonO.getString("strMealThumb"))
         } else {
             println("JsonO is incomplete")
         }
         if (jsonO.has("idMeal")) {
-            mealInfo.add(jsonO.getString("idMeal"))
+            mealInfo?.add(jsonO.getString("idMeal"))
         } else {
             println("JsonO is incomplete")
         }
         if (jsonO.has("strArea")) {
-            mealInfo.add(jsonO.getString("strArea"))
+            mealInfo?.add(jsonO.getString("strArea"))
         } else {
             println("JsonO is incomplete")
         }
         if (jsonO.has("strInstructions")) {
-            mealInfo.add(jsonO.getString("strInstructions"))
+            mealInfo?.add(jsonO.getString("strInstructions"))
         } else {
             println("JsonO is incomplete")
         }
 
-        mealInfo.add(jsonO.getString("strArea"))
-        mealInfo.add(jsonO.getString("strInstructions"))
+        mealInfo?.add(jsonO.getString("strArea"))
+        mealInfo?.add(jsonO.getString("strInstructions"))
 
-        //Still need ingredients fetched and stored
-        //println("mealInfo in parseIndMeal() - " + mealInfo)
+
         return mealInfo
     }
 
@@ -185,4 +191,11 @@ class apiConnection {
             Log.e(TAG, "BAD: setjsonA() was passed an empty argument")
         }
     }
+
+    fun displayjsonO(){
+        Log.i(TAG, "mealInfo --- " + this.mealInfo.toString())
+    }
+
+
+
 }
