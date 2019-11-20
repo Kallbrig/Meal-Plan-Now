@@ -202,8 +202,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //Card11img.setImageBitmap(Picasso.with(this).load(Uri.parse(internetUrl)).get())
-        var test: String = api.getCat("Chicken").toString()
-        println(test)
+
     }
 
 

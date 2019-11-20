@@ -1,5 +1,6 @@
 package Prototype.Design
 
+import android.nfc.Tag
 import android.os.AsyncTask
 import android.util.Log
 import android.widget.Toast
@@ -20,26 +21,34 @@ class apiConnection {
     //
 
     protected var jsonA: JSONArray = JSONArray()
+    protected lateinit var mealInfo: ArrayList<String>
     protected var parsedArray: ArrayList<ArrayList<String>> = ArrayList()
     private val TAG = "APICONNECTION"
-
-
 
 
     // THIS HASN'T BEEN STARTED. NEEDS WORK NOW THAT API CALLS WORK
     //
 
     fun getMealById(mealId: String) {
-        var mealInfo = ArrayList<String>()
+
 
         doAsync {
+            var jsonO =
+                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray(
+                    "meals"
+                ).getJSONObject(0)
+                uiThread {
+                    this@apiConnection.mealInfo = parseIndMeal(jsonO)
+
+
+                    Log.i(TAG, "GetMealById has finished")
+
+
+                }
 
         }
+
     }
-
-
-
-
 
 
     // THIS DOES NOT WORK
@@ -50,7 +59,10 @@ class apiConnection {
         var parsedArray = ArrayList<String>()
 
         doAsync {
-            var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray("meals").getJSONObject(0)
+            var jsonO =
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
+                    "meals"
+                ).getJSONObject(0)
 
             parsedArray = parseIndMeal(jsonO)
         }
@@ -60,7 +72,6 @@ class apiConnection {
 
         return parsedArray
     }
-
 
 
     // UNSURE IF THIS WORKS
@@ -79,7 +90,6 @@ class apiConnection {
         Log.i(TAG, jsonA.toString())
         return parseCategory(jsonA)
     }
-
 
 
     // SLOW DOWN COWBOY. FIX THE OTHER SHIT FIRST
@@ -123,8 +133,6 @@ class apiConnection {
         //println("mealInfo in parseIndMeal() - " + mealInfo)
         return mealInfo
     }
-
-
 
 
     //Function to parse a category search. takes the Json Array produced by the getCat() function as an argument.
