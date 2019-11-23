@@ -38,8 +38,9 @@ import org.jetbrains.anko.*
 class MainActivity : AppCompatActivity() {
 
 
-    var api = apiConnection()
 
+    val TAG = "MAINACTIVITY"
+    val api = apiConnection()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,23 +74,16 @@ class MainActivity : AppCompatActivity() {
         var Card36 = findViewById<CardView>(R.id.Card36)
 
         var favsButton = findViewById<ImageButton>(R.id.favsButton)
-        var sevenDayButton =
-            findViewById<Button>(R.id.sevenDayButton)                //This is a button used for testing only that will be removed later - it currently leads you to the otherwise inaccessable seven day view
+        var sevenDayButton = findViewById<Button>(R.id.sevenDayButton)                //This is a button used for testing only that will be removed later - it currently leads you to the otherwise inaccessable seven day view
 
         sevenDayButton.setOnClickListener {
             var i = Intent(this, sevenDay::class.java)
             startActivity(i)
         }
-
         favsButton.setOnClickListener {
             createFavsIntent()
         }
-
         // Row 1 OnClickListeners
-
-        //var card23345 = findViewById<ImageView>(R.id.Card11img).image.toBitmap(300400)
-
-
         Card11.setOnClickListener {
             var Img = findViewById<ImageView>(R.id.Card11img).image!!.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.Card11desc).text as String
@@ -121,11 +115,7 @@ class MainActivity : AppCompatActivity() {
             var Carddesc = findViewById<TextView>(R.id.Card16desc).text as String
             createDetailIntent(Carddesc, Img, "Chicken")
         }
-
-
         // Row 2 OnclickListeners
-
-
         Card21.setOnClickListener {
             var Img = findViewById<ImageView>(R.id.Card21img).drawable.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.Card21desc).text as String
@@ -157,11 +147,7 @@ class MainActivity : AppCompatActivity() {
             var Carddesc = findViewById<TextView>(R.id.Card26desc).text as String
             createDetailIntent(Carddesc, Img, "Seafood")
         }
-
-
         // Row 3 OnclickListeners
-
-
         Card31.setOnClickListener {
             var Img = findViewById<ImageView>(R.id.Card31img).drawable.toBitmap(300, 400)
             var Carddesc = findViewById<TextView>(R.id.Card31desc).text as String
@@ -196,12 +182,10 @@ class MainActivity : AppCompatActivity() {
 
         //Fetches a category from the API. This will be used in the Search/browse functions.
 
-        println("MEAL MAIN &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + api.getMealById("52772"))
 
-        val internetUrl = "http://i.imgur.com/DvpvklR.png"
+        Log.i(TAG, "About to run testFun(args)")
+        testFun("52772")
 
-
-        //Card11img.setImageBitmap(Picasso.with(this).load(Uri.parse(internetUrl)).get())
 
     }
 
@@ -231,6 +215,13 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun testFun(args:String){
+        println("args = " + args)
+        var hello = api.getMealById(args)
+        //println(api.getMI().get(0))
+
+
+    }
 
 }
 

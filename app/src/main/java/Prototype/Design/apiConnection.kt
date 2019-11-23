@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
+import org.jetbrains.anko.onComplete
 import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
@@ -14,7 +15,7 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 
 
-class apiConnection {
+ class apiConnection {
 
 
     // GLOBAL VARIABLES
@@ -23,39 +24,31 @@ class apiConnection {
     protected var jsonA: JSONArray? = null
     protected var mealInfo2: JSONObject? = null
     protected var parsedArray: ArrayList<ArrayList<String>>? = null
-    protected var mealInfo: ArrayList<String>? = null
+    protected var mealInfo:ArrayList<String> = ArrayList(5)
     private val TAG = "APICONNECTION"
 
 
-    // THIS HASN'T BEEN STARTED. NEEDS WORK NOW THAT API CALLS WORK
     //
-
-    fun getMealById(mealId: String) {
-
-
+    //
+    fun getMealById(mealId: String):ArrayList<String> {
         doAsync {
-
-            //jsonO is a variable that will hold the api response until it is processed
-
             var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
+            var returnVal = parseIndMeal(jsonO)
+            onComplete {
 
+                mealInfo = returnVal!!
 
-                uiThread {
+                println(mealInfo)
+                //mealInfo contains the correct contents here
 
-                    this@apiConnection.mealInfo2 = jsonO
-
-                    this@apiConnection.parseIndMeal(jsonO)
-
-                    Log.i(TAG, this@apiConnection.mealInfo.toString())
-
-                    Log.i(TAG, "GetMealById has finished")
-
-
-                }
-
+                Log.i(TAG, "GetMealById has finished")
+            }
         }
-
+        println(mealInfo)
+        //mealInfo is empty here
+        return  mealInfo
     }
+
 
 
     // THIS DOES NOT WORK
@@ -91,10 +84,12 @@ class apiConnection {
                     "meals"
                 )
 
-            setjsonA(jsonA)
 
+            uiThread {
+                setjsonA(jsonA)
+            }
         }
-        Log.i(TAG, jsonA.toString())
+        Log.i(TAG,"AAAAAAAAAAAAAAAAA"  +this.jsonA.toString())
         return parseCategory(jsonA!!)
     }
 
@@ -103,39 +98,35 @@ class apiConnection {
     //
 
     private fun parseIndMeal(jsonO: JSONObject): ArrayList<String>? {
-        var mealInfo: ArrayList<String>? = null
+        var mealInfo: ArrayList<String> = ArrayList(5)
         //println("JsonO in parseIndMeal() - ")
 
 
         if (jsonO.has("strMeal")) {
-            mealInfo?.add(jsonO.getString("strMeal"))
+            mealInfo.add(jsonO.getString("strMeal"))
         } else {
             println("JsonO is incomplete")
         }
         if (jsonO.has("strMealThumb")) {
-            mealInfo?.add(jsonO.getString("strMealThumb"))
+            mealInfo.add(jsonO.getString("strMealThumb"))
         } else {
             println("JsonO is incomplete")
         }
         if (jsonO.has("idMeal")) {
-            mealInfo?.add(jsonO.getString("idMeal"))
+            mealInfo.add(jsonO.getString("idMeal"))
         } else {
             println("JsonO is incomplete")
         }
         if (jsonO.has("strArea")) {
-            mealInfo?.add(jsonO.getString("strArea"))
+            mealInfo.add(jsonO.getString("strArea"))
         } else {
             println("JsonO is incomplete")
         }
         if (jsonO.has("strInstructions")) {
-            mealInfo?.add(jsonO.getString("strInstructions"))
+            mealInfo.add(jsonO.getString("strInstructions"))
         } else {
             println("JsonO is incomplete")
         }
-
-        mealInfo?.add(jsonO.getString("strArea"))
-        mealInfo?.add(jsonO.getString("strInstructions"))
-
 
         return mealInfo
     }
@@ -194,6 +185,25 @@ class apiConnection {
 
     fun displayjsonO(){
         Log.i(TAG, "mealInfo --- " + this.mealInfo.toString())
+    }
+
+
+/*
+    fun setMI(jjj:ArrayList<String>){
+        for(i in jjj.toArray().indices){
+            mealInfo.set(i, jjj.get(i))
+
+
+            Log.i(TAG, mealInfo.get(i))
+
+        }
+
+    }
+*/
+
+
+    fun getMI():ArrayList<String> {
+        return this.mealInfo
     }
 
 
