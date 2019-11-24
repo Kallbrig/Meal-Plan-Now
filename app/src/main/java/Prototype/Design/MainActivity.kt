@@ -217,8 +217,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun testFun(args:String){
-        var mealInfo = doAsyncResult { api.getMealById(args) }
-        println(mealInfo)
+        var mealInfo = api.getMealById(args)
+        println("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv" + mealInfo)
 
     }
 

@@ -53,7 +53,8 @@ import java.util.concurrent.Executors
             var mealInfoLocal = parseIndMeal(jsonO)!!
             Log.i(TAG, "GetMealById has finished")
             return@doAsyncResult mealInfoLocal
-        }
+        }.get()
+
         return resultAL
     }
 
