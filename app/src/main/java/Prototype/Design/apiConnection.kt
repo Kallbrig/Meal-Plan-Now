@@ -30,25 +30,32 @@ import java.util.concurrent.Executors
 
     //
     //
+/*
     fun getMealById(mealId: String):ArrayList<String> {
-        doAsync {
+        doAsyncResult {
             var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
             var returnVal = parseIndMeal(jsonO)
-            onComplete {
+            uiThread {
 
                 mealInfo = returnVal!!
-
-                println(mealInfo)
-                //mealInfo contains the correct contents here
 
                 Log.i(TAG, "GetMealById has finished")
             }
         }
-        println(mealInfo)
-        //mealInfo is empty here
+
         return  mealInfo
     }
-
+*/
+    fun getMealById(mealId: String): ArrayList<String> {
+        var resultAL = doAsyncResult {
+            var jsonO =
+                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
+            var mealInfoLocal = parseIndMeal(jsonO)!!
+            Log.i(TAG, "GetMealById has finished")
+            return@doAsyncResult mealInfoLocal
+        }
+        return resultAL
+    }
 
 
     // THIS DOES NOT WORK

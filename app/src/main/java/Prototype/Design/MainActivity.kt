@@ -33,6 +33,7 @@ import android.net.UrlQuerySanitizer
 import android.os.Looper
 import android.util.Log
 import org.jetbrains.anko.*
+import java.util.concurrent.Future
 
 
 class MainActivity : AppCompatActivity() {
@@ -216,10 +217,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun testFun(args:String){
-        println("args = " + args)
-        var hello = api.getMealById(args)
-        //println(api.getMI().get(0))
-
+        var mealInfo = doAsyncResult { api.getMealById(args) }
+        println(mealInfo)
 
     }
 
