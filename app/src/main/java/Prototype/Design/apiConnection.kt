@@ -88,15 +88,19 @@ import java.util.concurrent.Executors
 
     fun getCat(catName: String): ArrayList<ArrayList<String>> {
 
-        var fullCat =  doAsyncResult {
+        return doAsyncResult {
 
             var jsonA = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray("meals")
+
+            //println("jsonA for TS" + jsonA)
             var fullMealInfo = ArrayList<ArrayList<String>>(jsonA.length())
+
+            //println("fullmenl info size" + fullMealInfo.size)
             var i = 0
             while (i < jsonA.length()){
 
                 fullMealInfo.add(parseCatIndMeal(jsonA.getJSONObject(i)))
-
+               // println(fullMealInfo)
                 i++
             }
 
@@ -105,7 +109,7 @@ import java.util.concurrent.Executors
             return@doAsyncResult fullMealInfo
         }.get()
 
-        return  fullCat
+
 
     }
 

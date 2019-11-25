@@ -74,7 +74,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView4"
+                            android:id="@+id/Row1Name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4sp"
@@ -109,7 +109,8 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="175sp"
                                         android:contentDescription="@string/brownStewChicken"
-                                        android:scaleType="centerCrop" />
+                                        android:scaleType="centerCrop"
+                                        tools:srcCompat="@drawable/brownstewchicken" />
 
                                     <TextView
                                         android:id="@+id/Card11desc"
@@ -342,7 +343,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView4"
+                            android:id="@+id/Row2Name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4sp"
@@ -611,7 +612,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView4"
+                            android:id="@+id/Row3Name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4sp"

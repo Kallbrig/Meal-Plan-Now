@@ -31,7 +31,9 @@ import android.net.UrlQuerySanitizer
 import android.os.Looper
 import android.util.Log
 import androidx.core.content.ContextCompat.*
+import kotlinx.android.synthetic.main.activity_detailed_view.*
 import org.jetbrains.anko.*
+import org.w3c.dom.Text
 import java.util.concurrent.Future
 
 
@@ -41,22 +43,28 @@ class MainActivity : AppCompatActivity() {
 
     val TAG = "MAINACTIVITY"
     val api = apiConnection()
-    val mealCat = arrayListOf<String>("chicken","beef",	"Dessert","Lamb","Miscellaneous","Pasta","Pork","Seafood","Side","Starter","Vegan","Vegetarian","Breakfast","Goat")
-    var cardRow1: ArrayList<CardView> = ArrayList<CardView>(6)
+    var mainMealCats = ArrayList<String>(4)
+    var cardRow1: ArrayList<CardView> = ArrayList<CardView>(7)
     var row1Cat: String = ""
-    var cardRow2: ArrayList<CardView> = ArrayList<CardView>(6)
+    var cardRow2: ArrayList<CardView> = ArrayList<CardView>(7)
     var row2Cat: String = ""
-    var cardRow3: ArrayList<CardView> = ArrayList<CardView>(6)
+    var cardRow3: ArrayList<CardView> = ArrayList<CardView>(7)
     var row3Cat: String = ""
-    var cardRow1Img = ArrayList<ImageView>(6)
-    var cardRow2Img = ArrayList<ImageView>(6)
-    var cardRow3Img = ArrayList<ImageView>(6)
-    var cardRow1Name = ArrayList<TextView>(6)
-    var cardRow2Name = ArrayList<TextView>(6)
-    var cardRow3Name = ArrayList<TextView>(6)
-    var cardRow1Id = ArrayList<String>(6)
-    var cardRow2Id = ArrayList<String>(6)
-    var cardRow3Id = ArrayList<String>(6)
+    var cardRow1Img = ArrayList<ImageView>(7)
+    var cardRow2Img = ArrayList<ImageView>(7)
+    var cardRow3Img = ArrayList<ImageView>(7)
+    var cardRow1Name = ArrayList<TextView>(7)
+    var cardRow2Name = ArrayList<TextView>(7)
+    var cardRow3Name = ArrayList<TextView>(7)
+    var cardRow1Id = ArrayList<String>(7)
+    var cardRow2Id = ArrayList<String>(7)
+    var cardRow3Id = ArrayList<String>(7)
+//    var favsButton = findViewById<Button>(R.id.favsButton)
+//    var sevenDayButton = findViewById<Button>(R.id.sevenDayButton)
+    lateinit var row1Name:TextView
+    lateinit var row2Name:TextView
+    lateinit var row3Name :TextView
+
 
 
 
@@ -64,76 +72,122 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+         row1Name = findViewById<TextView>(R.id.Row1Name)
+         row2Name = findViewById<TextView>(R.id.Row2Name)
+         row3Name = findViewById<TextView>(R.id.Row3Name)
 
+        Log.i(TAG, "onCreateActivities")
         onCreateActivities()
 
 
 
+        val mealCat = arrayListOf<String>("Chicken","Beef","Dessert","Lamb","Miscellaneous","Pasta","Pork","Seafood","Side","Starter","Vegan","Vegetarian","Breakfast","Goat")
 
 
 
 
 
 
-        Card11.setOnClickListener {
-            var Img = findViewById<ImageView>(R.id.Card11img).image!!.toBitmap(300, 400)
-            var Carddesc = findViewById<TextView>(R.id.Card11desc).text as String
-            createDetailIntent(Carddesc, Img, "Chicken")
-        }
-
-            var favsButton = findViewById<ImageButton>(R.id.favsButton)
-            var sevenDayButton = findViewById<Button>(R.id.sevenDayButton)
 
 
-            sevenDayButton.setOnClickListener {
+
+            for (i in 0..2) {
+
+                var new = mealCat.random()
+                while (new == "Goat" || new == "Vegan") {
+                    new = mealCat.random()
+                }
+                if (!mainMealCats.contains(new)) {
+                    mainMealCats.add(new)
+                    if (row1Cat == ""){
+                        row1Cat = new
+                    } else if (row2Cat == ""){
+                        row2Cat = new
+                    } else if (row3Cat == ""){
+                        row3Cat = new
+                    }
+                }
+            }
+
+
+            var mainCats = ArrayList<ArrayList<ArrayList<String>>>(4)
+            for (i in 0..3) {
+                mainCats.add(api.getCat(mainMealCats[i]))
+            }
+
+
+
+
+
+                for (i in 0..4) {
+
+                    cardRow1Name[i].text = mainCats[0][i][0].toString()
+                    row1Name.text = row1Cat
+                    println(1)
+                    cardRow2Name[i].text = mainCats[1][i][0].toString()
+                    row2Name.text = row2Cat
+                    println(2)
+                    cardRow3Name[i].text = mainCats[2][i][0].toString()
+                    row3Name.text = row3Cat
+                    println(3)
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+         /*   sevenDayButton.setOnClickListener {
                 var i = Intent(this, sevenDay::class.java)
                 startActivity(i)
             }
             favsButton.setOnClickListener {
                 createFavsIntent()
-            }
+            }*/
             // Row 1 OnClickListeners
-            Card11.setOnClickListener {
-                var Img = findViewById<ImageView>(R.id.Card11img).image!!.toBitmap(300, 400)
-                var Carddesc = findViewById<TextView>(R.id.Card11desc).text as String
-                createDetailIntent(Carddesc, Img, "Chicken")
-            }
-
-            var i = 0
-                while (i < cardRow1.size){
-                    cardRow1.get(i).setOnClickListener(){
-                        createDetailIntent(cardRow1Name.get(i).text.toString(),cardRow1Img.get(i).drawable.toBitmap(300,400), row1Cat)
-                    }
-                }
 
 
-            Card12.setOnClickListener {
-                var Img = findViewById<ImageView>(R.id.Card12img).drawable.toBitmap(300, 400)
-                var Carddesc = findViewById<TextView>(R.id.Card12desc).text as String
-                createDetailIntent(Carddesc, Img, "Chicken")
-            }
-            Card13.setOnClickListener {
-                var Img = findViewById<ImageView>(R.id.Card13img).drawable.toBitmap(300, 400)
-                var Carddesc = findViewById<TextView>(R.id.Card13desc).text as String
-                createDetailIntent(Carddesc, Img, "Chicken")
-            }
-            Card14.setOnClickListener {
-                var Img = findViewById<ImageView>(R.id.Card14img).drawable.toBitmap(300, 400)
-                var Carddesc = findViewById<TextView>(R.id.Card14desc).text as String
-                createDetailIntent(Carddesc, Img, "Chicken")
-            }
-            Card15.setOnClickListener {
-                var Img = findViewById<ImageView>(R.id.Card15img).drawable.toBitmap(300, 400)
-                var Carddesc = findViewById<TextView>(R.id.Card15desc).text as String
-                createDetailIntent(Carddesc, Img, "Chicken")
-            }
-            Card16.setOnClickListener {
-                var Img = findViewById<ImageView>(R.id.Card16img).drawable.toBitmap(300, 400)
-                var Carddesc = findViewById<TextView>(R.id.Card16desc).text as String
-                createDetailIntent(Carddesc, Img, "Chicken")
-            }
+
+        /*         Card11.setOnClickListener {
+                     var Img = findViewById<ImageView>(R.id.Card11img).image!!.toBitmap(300, 400)
+                     var Carddesc = findViewById<TextView>(R.id.Card11desc).text as String
+                     createDetailIntent(Carddesc, Img, "Chicken")
+                 }
+
+                 Card12.setOnClickListener {
+                     var Img = findViewById<ImageView>(R.id.Card12img).drawable.toBitmap(300, 400)
+                     var Carddesc = findViewById<TextView>(R.id.Card12desc).text as String
+                     createDetailIntent(Carddesc, Img, "Chicken")
+                 }
+                 Card13.setOnClickListener {
+                     var Img = findViewById<ImageView>(R.id.Card13img).drawable.toBitmap(300, 400)
+                     var Carddesc = findViewById<TextView>(R.id.Card13desc).text as String
+                     createDetailIntent(Carddesc, Img, "Chicken")
+                 }
+                 Card14.setOnClickListener {
+                     var Img = findViewById<ImageView>(R.id.Card14img).drawable.toBitmap(300, 400)
+                     var Carddesc = findViewById<TextView>(R.id.Card14desc).text as String
+                     createDetailIntent(Carddesc, Img, "Chicken")
+                 }
+                 Card15.setOnClickListener {
+                     var Img = findViewById<ImageView>(R.id.Card15img).drawable.toBitmap(300, 400)
+                     var Carddesc = findViewById<TextView>(R.id.Card15desc).text as String
+                     createDetailIntent(Carddesc, Img, "Chicken")
+                 }
+                 Card16.setOnClickListener {
+                     var Img = findViewById<ImageView>(R.id.Card16img).drawable.toBitmap(300, 400)
+                     var Carddesc = findViewById<TextView>(R.id.Card16desc).text as String
+                     createDetailIntent(Carddesc, Img, "Chicken")
+                 }*/
             // Row 2 OnclickListeners
-            Card21.setOnClickListener {
+            /*Card21.setOnClickListener {
                 var Img = findViewById<ImageView>(R.id.Card21img).drawable.toBitmap(300, 400)
                 var Carddesc = findViewById<TextView>(R.id.Card21desc).text as String
                 createDetailIntent(Carddesc, Img, "Seafood")
@@ -196,12 +250,13 @@ class MainActivity : AppCompatActivity() {
                 var Carddesc = findViewById<TextView>(R.id.Card36desc).text as String
                 createDetailIntent(Carddesc, Img, "Dessert")
             }
-
+*/
             //Fetches a category from the API. This will be used in the Search/browse functions.
 
 
             Log.i(TAG, "About to run testFun(args)")
-            testFun("52772")
+            testFun()
+
 
 
         }
@@ -290,6 +345,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
         }
 
 
@@ -318,15 +374,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        fun testFun(args: String) {
-            var mealInfo = api.getCat("Chicken")
-            Card11desc.text = mealInfo[2][0]
-            println(mealInfo[2][0])
-
+        fun testFun() {
 
         }
-
-
     }
 
 
