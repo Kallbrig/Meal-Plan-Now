@@ -47,15 +47,16 @@ import java.util.concurrent.Executors
     }
 */
     fun getMealById(mealId: String): ArrayList<String> {
-        var resultAL = doAsyncResult {
+
+        return doAsyncResult {
             var jsonO =
                 JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
-            var mealInfoLocal = parseIndMeal(jsonO)!!
+            var mealInfoLocal = parseIndMeal(jsonO)
             Log.i(TAG, "GetMealById has finished")
             return@doAsyncResult mealInfoLocal
         }.get()
 
-        return resultAL
+
     }
 
 
@@ -86,26 +87,58 @@ import java.util.concurrent.Executors
     // TESTING AND CHECKING WILL BE REQUIRED
 
     fun getCat(catName: String): ArrayList<ArrayList<String>> {
-        doAsync {
-            var jsonA =
-                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray(
-                    "meals"
-                )
 
+        var fullCat =  doAsyncResult {
 
-            uiThread {
-                setjsonA(jsonA)
+            var jsonA = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray("meals")
+            var fullMealInfo = ArrayList<ArrayList<String>>(jsonA.length())
+            var i = 0
+            while (i < jsonA.length()){
+
+                fullMealInfo.add(parseCatIndMeal(jsonA.getJSONObject(i)))
+
+                i++
             }
-        }
-        Log.i(TAG,"AAAAAAAAAAAAAAAAA"  +this.jsonA.toString())
-        return parseCategory(jsonA!!)
+
+
+            Log.i(TAG, "GetCat has finished")
+            return@doAsyncResult fullMealInfo
+        }.get()
+
+        return  fullCat
+
     }
+
+     private fun parseCatIndMeal(jsonO: JSONObject): ArrayList<String> {
+         var mealInfo: ArrayList<String> = ArrayList(5)
+
+
+
+         if (jsonO.has("strMeal")) {
+             mealInfo.add(jsonO.getString("strMeal"))
+         } else {
+             println("JsonO is incomplete: Missing strMeal")
+         }
+         if (jsonO.has("strMealThumb")) {
+             mealInfo.add(jsonO.getString("strMealThumb"))
+         } else {
+             println("JsonO is incomplete: Missing strMealThumb")
+         }
+         if (jsonO.has("idMeal")) {
+             mealInfo.add(jsonO.getString("idMeal"))
+         } else {
+             println("JsonO is incomplete: Missing idMeal")
+         }
+
+
+         return mealInfo
+     }
 
 
     // SLOW DOWN COWBOY. FIX THE OTHER SHIT FIRST
-    //
+    // THIS STILL NEEDS INGREDIENTS ADDED
 
-    private fun parseIndMeal(jsonO: JSONObject): ArrayList<String>? {
+    private fun parseIndMeal(jsonO: JSONObject): ArrayList<String> {
         var mealInfo: ArrayList<String> = ArrayList(5)
         //println("JsonO in parseIndMeal() - ")
 
@@ -113,27 +146,27 @@ import java.util.concurrent.Executors
         if (jsonO.has("strMeal")) {
             mealInfo.add(jsonO.getString("strMeal"))
         } else {
-            println("JsonO is incomplete")
+            println("JsonO is incomplete: Missing strMeal")
         }
         if (jsonO.has("strMealThumb")) {
             mealInfo.add(jsonO.getString("strMealThumb"))
         } else {
-            println("JsonO is incomplete")
+            println("JsonO is incomplete: Missing strMealThumb")
         }
         if (jsonO.has("idMeal")) {
             mealInfo.add(jsonO.getString("idMeal"))
         } else {
-            println("JsonO is incomplete")
+            println("JsonO is incomplete: Missing idMeal")
         }
         if (jsonO.has("strArea")) {
             mealInfo.add(jsonO.getString("strArea"))
         } else {
-            println("JsonO is incomplete")
+            println("JsonO is incomplete: Missing strArea")
         }
         if (jsonO.has("strInstructions")) {
             mealInfo.add(jsonO.getString("strInstructions"))
         } else {
-            println("JsonO is incomplete")
+            println("JsonO is incomplete: Missing strInstructions")
         }
 
         return mealInfo
@@ -144,25 +177,43 @@ import java.util.concurrent.Executors
     // UNLESS I'M WRONG, THIS DOES FUNCTION PROPERLY
     // CHECK IT ANYWAY
 
-    private fun parseCategory(jsonACategory: JSONArray): ArrayList<ArrayList<String>> {
-        var oneMealInfo = ArrayList<String>(3)
-        var fullMealInfo = ArrayList<ArrayList<String>>(6)
+/*     private fun parseCategory(jsonACategory: JSONArray): ArrayList<ArrayList<String>> {
+
+         var oneMealInfo = ArrayList<String>(3)
+         var fullMealInfo = ArrayList<ArrayList<String>>(6)
 
 
 //            for(i in 0 until 5) {
-        var i = 0
-        while (i < 5) {
-            oneMealInfo.add(jsonACategory.getJSONObject(i).getString("strMeal"))
-            oneMealInfo.add(jsonACategory.getJSONObject(i).getString("idMeal"))
-            oneMealInfo.add(jsonACategory.getJSONObject(i).getString("strMealThumb"))
-            fullMealInfo.add(i, oneMealInfo)
+         var i = 0
+         while (i < 5) {
+             oneMealInfo.add(jsonACategory.getJSONObject(i).getString("strMeal"))
+             oneMealInfo.add(jsonACategory.getJSONObject(i).getString("idMeal"))
+             oneMealInfo.add(jsonACategory.getJSONObject(i).getString("strMealThumb"))
+             fullMealInfo.add(i, oneMealInfo)
 
-            i++
+             i++
 
-        }
+         }
 
-        return fullMealInfo
-    }
+         return fullMealInfo
+     }*/
+
+
+
+
+
+     // THIS ONE BITCH
+/*
+
+     fun parseCategory(jsonACategory:JSONArray){
+         doAsyncResult {
+             var i = 0
+             var max = 0
+
+             return@doAsyncResult returnResult
+         }.get()
+     }
+*/
 
 
     //Setters for internal use only
