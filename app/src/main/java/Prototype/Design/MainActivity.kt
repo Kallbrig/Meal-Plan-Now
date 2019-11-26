@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
             for (i in 0..2) {
 
                 var new = mealCat.random()
@@ -110,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-            var mainCats = ArrayList<ArrayList<ArrayList<String>>>(4)
+            var mainCats = ArrayList<ArrayList<ArrayList<String>>>(5)
             for (i in 0..3) {
                 mainCats.add(api.getCat(mainMealCats[i]))
             }
@@ -124,11 +125,11 @@ class MainActivity : AppCompatActivity() {
                     cardRow1Name[i].text = mainCats[0][i][0].toString()
                     row1Name.text = row1Cat
                     println(1)
-                    cardRow2Name[i].text = mainCats[1][i][0].toString()
-                    row2Name.text = row2Cat
+                    //cardRow2Name[i].text = mainCats[1][i][0].toString()
+                    //row2Name.text = row2Cat
                     println(2)
-                    cardRow3Name[i].text = mainCats[2][i][0].toString()
-                    row3Name.text = row3Cat
+                    //cardRow3Name[i].text = mainCats[2][i][0].toString()
+                    //row3Name.text = row3Cat
                     println(3)
                 }
 

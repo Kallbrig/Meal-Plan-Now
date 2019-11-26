@@ -110,6 +110,7 @@
                                         android:layout_height="175sp"
                                         android:contentDescription="@string/brownStewChicken"
                                         android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/brownstewchicken"
                                         tools:srcCompat="@drawable/brownstewchicken" />
 
                                     <TextView
