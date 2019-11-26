@@ -40,14 +40,19 @@ import java.util.concurrent.Future
 class MainActivity : AppCompatActivity() {
 
 
-
+    //Log Tag
     val TAG = "MAINACTIVITY"
+    //Api Connection Object
     val api = apiConnection()
+    // Meal categories to display on the main page. just an array of categories that will be passed to parseCat()
     var mainMealCats = ArrayList<String>(4)
+    //Row1 Meals. Goes inside of mainMealCats
     var cardRow1: ArrayList<CardView> = ArrayList<CardView>(7)
     var row1Cat: String = ""
+    //Row2 Meals. Goes inside of mainMealCats
     var cardRow2: ArrayList<CardView> = ArrayList<CardView>(7)
     var row2Cat: String = ""
+    //Row3 Meals. Goes inside of mainMealCats
     var cardRow3: ArrayList<CardView> = ArrayList<CardView>(7)
     var row3Cat: String = ""
     var cardRow1Img = ArrayList<ImageView>(7)
@@ -73,48 +78,61 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
          row1Name = findViewById<TextView>(R.id.Row1Name)
-         row2Name = findViewById<TextView>(R.id.Row2Name)
-         row3Name = findViewById<TextView>(R.id.Row3Name)
+        row2Name = findViewById<TextView>(R.id.Row2Name)
+        row3Name = findViewById<TextView>(R.id.Row3Name)
 
-        Log.i(TAG, "onCreateActivities")
+
         onCreateActivities()
+        Log.i(TAG, "onCreateActivities has finished")
+
+
+        val mealCat = arrayListOf<String>(
+            "Chicken",
+            "Beef",
+            "Dessert",
+            "Lamb",
+            "Miscellaneous",
+            "Pasta",
+            "Pork",
+            "Seafood",
+            "Side",
+            "Starter",
+            "Vegan",
+            "Vegetarian",
+            "Breakfast",
+            "Goat"
+        )
 
 
 
-        val mealCat = arrayListOf<String>("Chicken","Beef","Dessert","Lamb","Miscellaneous","Pasta","Pork","Seafood","Side","Starter","Vegan","Vegetarian","Breakfast","Goat")
+        for (i in 0..2) {
 
+            var new = mealCat.random()
 
-
-
-
-
-
-
-
-
-            for (i in 0..2) {
-
-                var new = mealCat.random()
-                while (new == "Goat" || new == "Vegan") {
-                    new = mealCat.random()
-                }
-                if (!mainMealCats.contains(new)) {
-                    mainMealCats.add(new)
-                    if (row1Cat == ""){
-                        row1Cat = new
-                    } else if (row2Cat == ""){
-                        row2Cat = new
-                    } else if (row3Cat == ""){
-                        row3Cat = new
-                    }
-                }
+            while (new == "Goat" || new == "Vegan") {
+                new = mealCat.random()
             }
 
-
-            var mainCats = ArrayList<ArrayList<ArrayList<String>>>(5)
-            for (i in 0..3) {
-                mainCats.add(api.getCat(mainMealCats[i]))
+            if (!mainMealCats.contains(new)) {
+                mainMealCats.add(new)
+                if (row1Cat == "") {
+                    row1Cat = new
+                } else if (row2Cat == "") {
+                    row2Cat = new
+                } else if (row3Cat == "") {
+                    row3Cat = new
+                }
             }
+        }
+
+
+        var mainCats = ArrayList<ArrayList<ArrayList<String>>>(5)
+
+        for (i in 0..2){
+            mainCats.add(api.getCat(mainMealCats[i]))
+        }
+
+
 
 
 
@@ -125,11 +143,11 @@ class MainActivity : AppCompatActivity() {
                     cardRow1Name[i].text = mainCats[0][i][0].toString()
                     row1Name.text = row1Cat
                     println(1)
-                    //cardRow2Name[i].text = mainCats[1][i][0].toString()
-                    //row2Name.text = row2Cat
+                    cardRow2Name[i].text = mainCats[1][i][0].toString()
+                    row2Name.text = row2Cat
                     println(2)
-                    //cardRow3Name[i].text = mainCats[2][i][0].toString()
-                    //row3Name.text = row3Cat
+                    cardRow3Name[i].text = mainCats[2][i][0].toString()
+                    row3Name.text = row3Cat
                     println(3)
                 }
 
