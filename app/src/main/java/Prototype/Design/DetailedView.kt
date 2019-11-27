@@ -2,6 +2,7 @@ package Prototype.Design
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,9 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_detailed_view.view.*
+import org.jetbrains.anko.imageBitmap
+import java.net.URL
 
 
 class DetailedView : AppCompatActivity() {
@@ -34,19 +38,22 @@ class DetailedView : AppCompatActivity() {
         var mealCat = findViewById<TextView>(R.id.mealCat)
         var backBut = findViewById<ImageButton>(R.id.backButton)
 
-        mealName.text = intent.getStringExtra("id")
-        titleBar.text = intent.getStringExtra("id")
-        bgImg.setImageBitmap(intent.getParcelableExtra("img") as Bitmap)
-        mealCat.text = intent.getStringExtra("cat")
 
-        Log.i(TAG, "Background Image Set!")
 
-        var meal = api.getMealById(intent.getStringExtra("id"))
+
+        var meal = api.getMealById(intent.getStringExtra("id")!!)
 
         mealName.text = meal[0]
+        Log.i(TAG, "Background Image URL = " + meal[1])
+        //mealPreview.imageBitmap = (api.getImgBitmap(meal[1],this))
+        var suck = api.getImgDrawable(meal[1])
+        bgImg.setImageDrawable(suck)
+        mealPreview.setImageDrawable(suck)
+
+
         mealCat.text = meal[3]
         println(meal)
-        mealPreview.setImageBitmap(intent.getParcelableExtra("img") as Bitmap)
+        //mealPreview.setImageBitmap(intent.getParcelableExtra("img") as Bitmap)
 
 
 

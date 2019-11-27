@@ -1,15 +1,23 @@
 package Prototype.Design
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.nfc.Tag
 import android.os.AsyncTask
 import android.util.Log
 import android.widget.Toast
+import com.squareup.picasso.Picasso
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
 import org.jetbrains.anko.onComplete
 import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.IOException
+import java.io.InputStream
+import java.net.MalformedURLException
 import java.net.URL
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
@@ -78,7 +86,7 @@ class apiConnection {
             //parsedArray = parseIndMeal(jsonO)
         }
 
-        println("????????????????!!!!!!!!!!!!!!!!!!!!!" + parsedArray)
+
 
 
         return parsedArray
@@ -96,8 +104,6 @@ class apiConnection {
                 JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray(
                     "meals"
                 )
-
-            //println("jsonA for TS" + jsonA)
 
 
             var fullMealInfoSingleCat = ArrayList<ArrayList<String>>(jsonA.length())
@@ -118,6 +124,33 @@ class apiConnection {
         }.get()
 
 
+    }
+
+    fun getImgDrawable(imgUrl: String):Drawable{
+
+       return doAsyncResult {
+            var inputStream = URL(imgUrl).openStream()
+            var draw = Drawable.createFromStream(inputStream, null)
+            inputStream.close()
+
+
+            return@doAsyncResult draw
+        }.get()
+
+    }
+
+
+    fun getImgBitmap(imgUrl: String,cont:Context): Bitmap {
+        return doAsyncResult {
+
+
+
+            return@doAsyncResult Picasso.with(cont).load(imgUrl).get()
+
+
+            //BitmapFactory.decodeStream(URL(imgUrl).openStream())
+          // var img =  Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").get();
+        }.get()
     }
 
     private fun parseCatIndMeal(jsonO: JSONObject): ArrayList<String> {

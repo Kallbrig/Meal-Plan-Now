@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
         i = 0
         while (i < 6) {
             Row1Name.text = row1Cat
-            Log.i("BITCHSUCKDICK", mainCats[0][i].toString())
+
             cardRow1Name[i].text =
                 mainCats[0][i][0]
 
