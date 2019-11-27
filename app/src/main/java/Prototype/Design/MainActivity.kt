@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         row2Name = findViewById<TextView>(R.id.Row2Name)
         row3Name = findViewById<TextView>(R.id.Row3Name)
 
-
+        var i = 0
         onCreateActivities()
         Log.i(TAG, "onCreateActivities has finished")
 
@@ -103,67 +103,100 @@ class MainActivity : AppCompatActivity() {
         )
 
 
-
-        for (i in 0..2) {
+        i = 0
+        while (i < 3) {
 
             var new = mealCat.random()
 
-            while (new == "Goat" || new == "Vegan") {
+            while (new == "Goat" || new == "Vegan" || mainMealCats.contains(new)) {
                 new = mealCat.random()
             }
 
-            if (!mainMealCats.contains(new)) {
-                mainMealCats.add(new)
-                if (row1Cat == "") {
-                    row1Cat = new
-                } else if (row2Cat == "") {
-                    row2Cat = new
-                } else if (row3Cat == "") {
-                    row3Cat = new
-                }
+            mainMealCats.add(new)
+            Log.i(TAG, "main Meal Cats Size - " + mainMealCats.size)
+            Log.i(TAG, mainMealCats.toString())
+            if (row1Cat == "") {
+                row1Cat = new
+            } else if (row2Cat == "") {
+                row2Cat = new
+            } else if (row3Cat == "") {
+                row3Cat = new
             }
+
+            println(i)
+            i++
         }
 
 
         var mainCats = ArrayList<ArrayList<ArrayList<String>>>(3)
 
-        for (i in 0..2) {
+        i = 0
 
-
-            mainCats.add(api.getCat(mainMealCats[i]))
-
+        while (i < 3) {
+            //Log.i(TAG, i.toString())
+            mainCats.add(
+                api.getCat(mainMealCats[i])
+            )
+            println(i)
+            i++
         }
-        Log.i(TAG, mainCats.size.toString())
+        Log.i(TAG, "#ONCREATE main Cats Size - " + mainCats.size.toString())
 
 
 
-
-        for (i in 0 until 6) {
+        i = 0
+        while (i < 6) {
             Row1Name.text = row1Cat
-            cardRow1Name[i].text = mainCats[0][i][0]
+            Log.i("BITCHSUCKDICK", mainCats[0][i].toString())
+            cardRow1Name[i].text =
+                mainCats[0][i][0]
+
             cardRow1Id.add(mainCats[0][i][2])
             Row2Name.text = row2Cat
-            cardRow2Name[i].text = mainCats[1][i][0]
+            cardRow2Name[i].text =
+                mainCats[1][i][0]
             Row3Name.text = row3Cat
-            cardRow3Name[i].text = mainCats[2][i][0]
+            cardRow3Name[i].text =
+                mainCats[2][i][0]
+            Log.i(TAG, i.toString() + "while loop setting meal names")
+            i++
         }
 
 
         // Row 1  setonclicklistener setter
 
         // NOT FUNCTIONING
+/*           i = 0
+        Log.i(TAG, cardRow1.size.toString())
+          while (i <= cardRow1.size -1 ){
+              println(i)
+              cardRow1[i].setOnClickListener{
+                  createDetailIntent(cardRow1Id[i],cardRow1Img[i].image!!.toBitmap(300,400))
+                  Log.i(TAG,i.toString() + "while Loop setting onclick Listeners")
+              }
+          i++
+}*/
 
-        for (i in 0 until 5){
-            cardRow1[i].setOnClickListener(){
-                createDetailIntent(cardRow1Id[i],cardRow1Img[i].image!!.toBitmap(300,400))
-            }
+        cardRow1[0].setOnClickListener() {
+            createDetailIntent(cardRow1Id[0], cardRow1Img[0].image!!.toBitmap(300, 400))
+            Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
         }
-
-
+        cardRow1[1].setOnClickListener() {
+            createDetailIntent(cardRow1Id[1], cardRow1Img[1].image!!.toBitmap(300, 400))
+            Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+        }
+        cardRow1[2].setOnClickListener() {
+            createDetailIntent(cardRow1Id[2], cardRow1Img[2].image!!.toBitmap(300, 400))
+            Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+        }
+        cardRow1[3].setOnClickListener() {
+            createDetailIntent(cardRow1Id[3], cardRow1Img[3].image!!.toBitmap(300, 400))
+            Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+        }
 
         Log.i(TAG, "About to run testFun(args)")
         testFun()
-        createDetailIntent("55555", cardRow1Img[0].image!!.toBitmap(200,300))
+
 
     }
 
@@ -257,7 +290,6 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("img", img)
         intent.putExtra("id", id)
         //intent.putExtra("prevIntent", MainActivity::class.java)
-
 
 
         // log message

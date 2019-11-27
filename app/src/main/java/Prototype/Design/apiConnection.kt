@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 
 
- class apiConnection {
+class apiConnection {
 
 
     // GLOBAL VARIABLES
@@ -24,7 +24,7 @@ import java.util.concurrent.Executors
     protected var jsonA: JSONArray? = null
     protected var mealInfo2: JSONObject? = null
     protected var parsedArray: ArrayList<ArrayList<String>>? = null
-    protected var mealInfo:ArrayList<String> = ArrayList(5)
+    protected var mealInfo: ArrayList<String> = ArrayList(5)
     private val TAG = "APICONNECTION"
 
 
@@ -50,7 +50,9 @@ import java.util.concurrent.Executors
 
         return doAsyncResult {
             var jsonO =
-                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
+                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray(
+                    "meals"
+                ).getJSONObject(0)
             var mealInfoLocal = parseIndMeal(jsonO)
             Log.i(TAG, "GetMealById has finished")
             return@doAsyncResult mealInfoLocal
@@ -90,7 +92,10 @@ import java.util.concurrent.Executors
 
         return doAsyncResult {
 
-            var jsonA = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray("meals")
+            var jsonA =
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray(
+                    "meals"
+                )
 
             //println("jsonA for TS" + jsonA)
 
@@ -99,10 +104,10 @@ import java.util.concurrent.Executors
 
             //println("fullmealinfo size" + fullMealInfo.size)
 
-            for (i in 0 until jsonA.length()-1){
+            for (i in 0 until jsonA.length() - 1) {
 
                 fullMealInfoSingleCat.add(parseCatIndMeal(jsonA.getJSONObject(i)))
-               // println(fullMealInfo)
+                // println(fullMealInfo)
 
             }
 
@@ -113,33 +118,32 @@ import java.util.concurrent.Executors
         }.get()
 
 
-
     }
 
-     private fun parseCatIndMeal(jsonO: JSONObject): ArrayList<String> {
-         var mealInfo: ArrayList<String> = ArrayList(5)
+    private fun parseCatIndMeal(jsonO: JSONObject): ArrayList<String> {
+        var mealInfo: ArrayList<String> = ArrayList(5)
 
 
 
-         if (jsonO.has("strMeal")) {
-             mealInfo.add(jsonO.getString("strMeal"))
-         } else {
-             println("JsonO is incomplete: Missing strMeal")
-         }
-         if (jsonO.has("strMealThumb")) {
-             mealInfo.add(jsonO.getString("strMealThumb"))
-         } else {
-             println("JsonO is incomplete: Missing strMealThumb")
-         }
-         if (jsonO.has("idMeal")) {
-             mealInfo.add(jsonO.getString("idMeal"))
-         } else {
-             println("JsonO is incomplete: Missing idMeal")
-         }
+        if (jsonO.has("strMeal")) {
+            mealInfo.add(jsonO.getString("strMeal"))
+        } else {
+            println("JsonO is incomplete: Missing strMeal")
+        }
+        if (jsonO.has("strMealThumb")) {
+            mealInfo.add(jsonO.getString("strMealThumb"))
+        } else {
+            println("JsonO is incomplete: Missing strMealThumb")
+        }
+        if (jsonO.has("idMeal")) {
+            mealInfo.add(jsonO.getString("idMeal"))
+        } else {
+            println("JsonO is incomplete: Missing idMeal")
+        }
 
 
-         return mealInfo
-     }
+        return mealInfo
+    }
 
 
     // SLOW DOWN COWBOY. FIX THE OTHER SHIT FIRST
@@ -206,10 +210,7 @@ import java.util.concurrent.Executors
      }*/
 
 
-
-
-
-     // THIS ONE BITCH
+    // THIS ONE BITCH
 /*
 
      fun parseCategory(jsonACategory:JSONArray){
@@ -249,7 +250,7 @@ import java.util.concurrent.Executors
         }
     }
 
-    fun displayjsonO(){
+    fun displayjsonO() {
         Log.i(TAG, "mealInfo --- " + this.mealInfo.toString())
     }
 
@@ -268,10 +269,9 @@ import java.util.concurrent.Executors
 */
 
 
-    fun getMI():ArrayList<String> {
+    fun getMI(): ArrayList<String> {
         return this.mealInfo
     }
-
 
 
 }

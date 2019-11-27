@@ -15,6 +15,7 @@ import android.widget.TextView
 class DetailedView : AppCompatActivity() {
 
     val TAG = "DETAILED VIEW"
+    var api = apiConnection()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,16 +32,23 @@ class DetailedView : AppCompatActivity() {
         var mealName = findViewById<TextView>(R.id.mealName)
 
         var mealCat = findViewById<TextView>(R.id.mealCat)
+        var backBut = findViewById<ImageButton>(R.id.backButton)
 
         mealName.text = intent.getStringExtra("id")
         titleBar.text = intent.getStringExtra("id")
         bgImg.setImageBitmap(intent.getParcelableExtra("img") as Bitmap)
         mealCat.text = intent.getStringExtra("cat")
 
-        Log.i("?", "Background Image Set!")
+        Log.i(TAG, "Background Image Set!")
+
+        var meal = api.getMealById(intent.getStringExtra("id"))
+
+        mealName.text = meal[0]
+        mealCat.text = meal[3]
+        println(meal)
         mealPreview.setImageBitmap(intent.getParcelableExtra("img") as Bitmap)
 
-        var backBut = findViewById<ImageButton>(R.id.backButton)
+
 
         backBut.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
