@@ -37,6 +37,7 @@ class DetailedView : AppCompatActivity() {
 
         var mealCat = findViewById<TextView>(R.id.mealCat)
         var backBut = findViewById<ImageButton>(R.id.backButton)
+        var mealInstructions = findViewById<TextView>(R.id.mealInstructions)
 
 
 
@@ -49,6 +50,10 @@ class DetailedView : AppCompatActivity() {
         var suck = api.getImgDrawable(meal[1])
         bgImg.setImageDrawable(suck)
         mealPreview.setImageDrawable(suck)
+        titleBar.text = meal[0]
+
+
+        mealInstructions.text = meal[4]
 
 
         mealCat.text = meal[3]

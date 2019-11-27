@@ -114,7 +114,7 @@
                             android:textColor="@color/white" />
 
                         <TextView
-                            android:id="@+id/textView12"
+                            android:id="@+id/mealInstructions"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25sp"
