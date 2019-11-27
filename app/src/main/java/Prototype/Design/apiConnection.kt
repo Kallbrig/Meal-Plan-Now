@@ -93,20 +93,23 @@ import java.util.concurrent.Executors
             var jsonA = JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray("meals")
 
             //println("jsonA for TS" + jsonA)
-            var fullMealInfo = ArrayList<ArrayList<String>>(jsonA.length())
 
-            //println("fullmenl info size" + fullMealInfo.size)
-            var i = 0
-            while (i < jsonA.length()){
 
-                fullMealInfo.add(parseCatIndMeal(jsonA.getJSONObject(i)))
+            var fullMealInfoSingleCat = ArrayList<ArrayList<String>>(jsonA.length())
+
+            //println("fullmealinfo size" + fullMealInfo.size)
+
+            for (i in 0 until jsonA.length()-1){
+
+                fullMealInfoSingleCat.add(parseCatIndMeal(jsonA.getJSONObject(i)))
                // println(fullMealInfo)
-                i++
+
             }
 
 
             Log.i(TAG, "GetCat has finished")
-            return@doAsyncResult fullMealInfo
+
+            return@doAsyncResult fullMealInfoSingleCat
         }.get()
 
 

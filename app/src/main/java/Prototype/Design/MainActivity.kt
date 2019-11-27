@@ -30,6 +30,7 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.net.UrlQuerySanitizer
 import android.os.Looper
 import android.util.Log
+import androidx.annotation.IntegerRes
 import androidx.core.content.ContextCompat.*
 import kotlinx.android.synthetic.main.activity_detailed_view.*
 import org.jetbrains.anko.*
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     var cardRow1Img = ArrayList<ImageView>(7)
     var cardRow2Img = ArrayList<ImageView>(7)
     var cardRow3Img = ArrayList<ImageView>(7)
-    var cardRow1Name = ArrayList<TextView>(7)
+    var cardRow1Name = ArrayList<TextView>(6)
     var cardRow2Name = ArrayList<TextView>(7)
     var cardRow3Name = ArrayList<TextView>(7)
     var cardRow1Id = ArrayList<String>(7)
@@ -126,30 +127,28 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        var mainCats = ArrayList<ArrayList<ArrayList<String>>>(5)
 
-        for (i in 0..2){
+        var mainCats = ArrayList<ArrayList<ArrayList<String>>>(3)
+
+        for (i in 0 until 3){
+
+
             mainCats.add(api.getCat(mainMealCats[i]))
+
         }
+        Log.i(TAG,mainCats.size.toString())
 
 
 
 
-
-
-
-                for (i in 0..4) {
-
-                    cardRow1Name[i].text = mainCats[0][i][0].toString()
-                    row1Name.text = row1Cat
-                    println(1)
-                    cardRow2Name[i].text = mainCats[1][i][0].toString()
-                    row2Name.text = row2Cat
-                    println(2)
-                    cardRow3Name[i].text = mainCats[2][i][0].toString()
-                    row3Name.text = row3Cat
-                    println(3)
-                }
+        for (i in 0 until 6){
+            Row1Name.text = row1Cat
+            cardRow1Name[i].text = mainCats[0][i][0]
+            Row2Name.text = row2Cat
+            cardRow2Name[i].text = mainCats[1][i][0]
+            Row3Name.text = row3Cat
+            cardRow3Name[i].text = mainCats[2][i][0]
+        }
 
 
 
@@ -342,6 +341,7 @@ class MainActivity : AppCompatActivity() {
             cardRow1Name.add(findViewById<TextView>(R.id.Card14desc))
             cardRow1Name.add(findViewById<TextView>(R.id.Card15desc))
             cardRow1Name.add(findViewById<TextView>(R.id.Card16desc))
+            Log.i(TAG, "CardRow1Name " + cardRow1Name.size)
 
 
 
