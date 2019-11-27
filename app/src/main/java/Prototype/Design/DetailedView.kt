@@ -14,9 +14,13 @@ import android.widget.TextView
 
 class DetailedView : AppCompatActivity() {
 
+    val TAG = "DETAILED VIEW"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_view)
+
+        Log.i(TAG, "Detailed View Started")
 
 
         var bgImg = findViewById<ImageView>(R.id.bgImg)
