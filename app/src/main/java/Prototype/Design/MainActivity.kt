@@ -29,6 +29,7 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.net.UrlQuerySanitizer
 import android.os.Looper
+import android.os.SystemClock
 import android.util.Log
 import androidx.annotation.IntegerRes
 import androidx.core.content.ContextCompat.*
@@ -38,51 +39,42 @@ import org.jetbrains.anko.*
 import org.w3c.dom.Text
 import java.util.concurrent.Future
 
+val TAG = "MAINACTIVITY"
+val api = apiConnection()
+// Meal categories to display on the main page. just an array of categories that will be passed to parseCat()
+var mainMealCats = ArrayList<String>(4)
+//Row1 Meals. Goes inside of mainMealCats
+var cardRow1: ArrayList<CardView> = ArrayList<CardView>(7)
+var row1Cat: String = ""
+//Row2 Meals. Goes inside of mainMealCats
+var cardRow2: ArrayList<CardView> = ArrayList<CardView>(7)
+var row2Cat: String = ""
+//Row3 Meals. Goes inside of mainMealCats
+var cardRow3: ArrayList<CardView> = ArrayList<CardView>(7)
+var row3Cat: String = ""
+var cardRow1Img = ArrayList<ImageView>(6)
+var cardRow2Img = ArrayList<ImageView>(6)
+var cardRow3Img = ArrayList<ImageView>(6)
+var cardRow1Name = ArrayList<TextView>(6)
+var cardRow2Name = ArrayList<TextView>(6)
+var cardRow3Name = ArrayList<TextView>(6)
+var cardRow1Id = ArrayList<String>(6)
+var cardRow2Id = ArrayList<String>(6)
+var cardRow3Id = ArrayList<String>(6)
+//    var sevenDayButton = findViewById<Button>(R.id.sevenDayButton)
+lateinit var row1Name: TextView
+lateinit var row2Name: TextView
+lateinit var row3Name: TextView
 
 class MainActivity : AppCompatActivity() {
-
-
-    //Log Tag
-    val TAG = "MAINACTIVITY"
-    //Api Connection Object
-    val api = apiConnection()
-    // Meal categories to display on the main page. just an array of categories that will be passed to parseCat()
-    var mainMealCats = ArrayList<String>(4)
-    //Row1 Meals. Goes inside of mainMealCats
-    var cardRow1: ArrayList<CardView> = ArrayList<CardView>(7)
-    var row1Cat: String = ""
-    //Row2 Meals. Goes inside of mainMealCats
-    var cardRow2: ArrayList<CardView> = ArrayList<CardView>(7)
-    var row2Cat: String = ""
-    //Row3 Meals. Goes inside of mainMealCats
-    var cardRow3: ArrayList<CardView> = ArrayList<CardView>(7)
-    var row3Cat: String = ""
-    var cardRow1Img = ArrayList<ImageView>(6)
-    var cardRow2Img = ArrayList<ImageView>(6)
-    var cardRow3Img = ArrayList<ImageView>(6)
-    var cardRow1Name = ArrayList<TextView>(6)
-    var cardRow2Name = ArrayList<TextView>(6)
-    var cardRow3Name = ArrayList<TextView>(6)
-    var cardRow1Id = ArrayList<String>(6)
-    var cardRow2Id = ArrayList<String>(6)
-    var cardRow3Id = ArrayList<String>(6)
-    //    var favsButton = findViewById<Button>(R.id.favsButton)
-//    var sevenDayButton = findViewById<Button>(R.id.sevenDayButton)
-    lateinit var row1Name: TextView
-    lateinit var row2Name: TextView
-    lateinit var row3Name: TextView
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        row1Name = findViewById<TextView>(R.id.Row1Name)
-        row2Name = findViewById<TextView>(R.id.Row2Name)
-        row3Name = findViewById<TextView>(R.id.Row3Name)
+
 
         var i = 0
         onCreateActivities()
-        Log.i(TAG, "onCreateActivities has finished")
+        println(api.getMealById("52841"))
 
 
         val mealCat = arrayListOf<String>(
@@ -102,19 +94,24 @@ class MainActivity : AppCompatActivity() {
             "Goat"
         )
 
+        for (i in 0 until mealCat.size) {
+            println(mealCat[i] + " - " + api.getCat(mealCat[i]).size)
+
+        }
+
 
         i = 0
         while (i < 3) {
 
             var new = mealCat.random()
 
-            while (new == "Goat" || new == "Vegan" || mainMealCats.contains(new)) {
+            while (new == "Goat" || new == "Vegan" || new == "Starter" || mainMealCats.contains(new)) {
                 new = mealCat.random()
             }
 
             mainMealCats.add(new)
-            Log.i(TAG, "main Meal Cats Size - " + mainMealCats.size)
-            Log.i(TAG, mainMealCats.toString())
+            //Log.i(TAG, "main Meal Cats Size - " + mainMealCats.size)
+
             if (row1Cat == "") {
                 row1Cat = new
             } else if (row2Cat == "") {
@@ -123,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                 row3Cat = new
             }
 
-            println(i)
+            //println(i)
             i++
         }
 
@@ -135,22 +132,25 @@ class MainActivity : AppCompatActivity() {
         while (i < 3) {
             //Log.i(TAG, i.toString())
             mainCats.add(
-                api.getCat(mainMealCats[i])
+                api.getCat(
+                    mainMealCats[i]
+                )
             )
-            println(i)
             i++
         }
-        Log.i(TAG, "#ONCREATE main Cats Size - " + mainCats.size.toString())
+        //Log.i(TAG, "#ONCREATE main Cats Size - " + mainCats.size.toString())
 
 
 
         i = 0
         while (i < 6) {
             Row1Name.text = row1Cat
+            //println(mealCat[2].toString())
 
             cardRow1Name[i].text =
                 mainCats[0][i][0]
-
+            cardRow1Img[i].setImageDrawable(api.getImgDrawable(mainCats[0][i][1]))
+            cardRow2Img[i].setImageDrawable(api.getImgDrawable(mainCats[1][i][1]))
             cardRow1Id.add(mainCats[0][i][2])
             Row2Name.text = row2Cat
             cardRow2Name[i].text =
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
             Row3Name.text = row3Cat
             cardRow3Name[i].text =
                 mainCats[2][i][0]
-            Log.i(TAG, i.toString() + "while loop setting meal names")
+            //Log.i(TAG, i.toString() + " while loop setting meal names")
             i++
         }
 
@@ -179,23 +179,20 @@ class MainActivity : AppCompatActivity() {
 
         cardRow1[0].setOnClickListener() {
             createDetailIntent(cardRow1Id[0], cardRow1Img[0].image!!.toBitmap(300, 400))
-            Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
         }
         cardRow1[1].setOnClickListener() {
             createDetailIntent(cardRow1Id[1], cardRow1Img[1].image!!.toBitmap(300, 400))
-            Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
         }
         cardRow1[2].setOnClickListener() {
             createDetailIntent(cardRow1Id[2], cardRow1Img[2].image!!.toBitmap(300, 400))
-            Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
         }
         cardRow1[3].setOnClickListener() {
             createDetailIntent(cardRow1Id[3], cardRow1Img[3].image!!.toBitmap(300, 400))
-            Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
         }
-
-        Log.i(TAG, "About to run testFun(args)")
-        testFun()
 
 
     }
@@ -279,6 +276,11 @@ class MainActivity : AppCompatActivity() {
         cardRow3Name.add(findViewById<TextView>(R.id.Card35desc))
         cardRow3Name.add(findViewById<TextView>(R.id.Card36desc))
 
+        row1Name = findViewById<TextView>(R.id.Row1Name)
+        row2Name = findViewById<TextView>(R.id.Row2Name)
+        row3Name = findViewById<TextView>(R.id.Row3Name)
+
+
 
     }
 
@@ -308,6 +310,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun testFun() {
+
 
     }
 }

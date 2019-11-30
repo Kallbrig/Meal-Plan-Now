@@ -62,7 +62,7 @@ class apiConnection {
                     "meals"
                 ).getJSONObject(0)
             var mealInfoLocal = parseIndMeal(jsonO)
-            Log.i(TAG, "GetMealById has finished")
+            //  Log.i(TAG, "GetMealById has finished")
             return@doAsyncResult mealInfoLocal
         }.get()
 
@@ -105,12 +105,13 @@ class apiConnection {
                     "meals"
                 )
 
+            //println("JsonA length = " +jsonA.length() + jsonA[jsonA.length()-1])
 
             var fullMealInfoSingleCat = ArrayList<ArrayList<String>>(jsonA.length())
 
-            //println("fullmealinfo size" + fullMealInfo.size)
 
-            for (i in 0 until jsonA.length() - 1) {
+
+            for (i in 0..jsonA.length() - 1) {
 
                 fullMealInfoSingleCat.add(parseCatIndMeal(jsonA.getJSONObject(i)))
                 // println(fullMealInfo)
@@ -118,7 +119,7 @@ class apiConnection {
             }
 
 
-            Log.i(TAG, "GetCat has finished")
+            // Log.i(TAG, "GetCat has finished")
 
             return@doAsyncResult fullMealInfoSingleCat
         }.get()
@@ -243,7 +244,7 @@ class apiConnection {
      }*/
 
 
-    // THIS ONE BITCH
+
 /*
 
      fun parseCategory(jsonACategory:JSONArray){
@@ -264,7 +265,7 @@ class apiConnection {
         // For Debugging //println("ParsedArray[0] = " + parsedArray.get(0))
         if (!parsedArray.isNullOrEmpty()) {
             this.parsedArray = parsedArray
-            Log.i(TAG, "GOOD: setparsedArray() has succeeded  -  Size = " + this.parsedArray)
+            //  Log.i(TAG, "GOOD: setparsedArray() has succeeded  -  Size = " + this.parsedArray)
 
         } else {
             Log.e(TAG, "BAD: setparsedArray() was passed a null or empty argument")
@@ -275,7 +276,7 @@ class apiConnection {
         if (jsonA.toString() != "") {
             this.jsonA = jsonA
 
-            Log.i(TAG, "GOOD: setjsonA() was passed a nonempty JsonArray")
+            //   Log.i(TAG, "GOOD: setjsonA() was passed a nonempty JsonArray")
 
 
         } else {
