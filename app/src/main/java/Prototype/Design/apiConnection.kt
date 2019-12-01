@@ -127,9 +127,9 @@ class apiConnection {
 
     }
 
-    fun getImgDrawable(imgUrl: String):Drawable{
+    fun getImgDrawable(imgUrl: String): Drawable {
 
-       return doAsyncResult {
+        return doAsyncResult {
             var inputStream = URL(imgUrl).openStream()
             var draw = Drawable.createFromStream(inputStream, null)
             inputStream.close()
@@ -141,16 +141,15 @@ class apiConnection {
     }
 
 
-    fun getImgBitmap(imgUrl: String,cont:Context): Bitmap {
+    fun getImgBitmap(imgUrl: String, cont: Context): Bitmap {
         return doAsyncResult {
-
 
 
             return@doAsyncResult Picasso.with(cont).load(imgUrl).get()
 
 
             //BitmapFactory.decodeStream(URL(imgUrl).openStream())
-          // var img =  Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").get();
+            // var img =  Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").get();
         }.get()
     }
 
@@ -242,7 +241,6 @@ class apiConnection {
 
          return fullMealInfo
      }*/
-
 
 
 /*

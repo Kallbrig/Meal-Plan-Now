@@ -94,12 +94,6 @@ class MainActivity : AppCompatActivity() {
             "Goat"
         )
 
-        for (i in 0 until mealCat.size) {
-            println(mealCat[i] + " - " + api.getCat(mealCat[i]).size)
-
-        }
-
-
         i = 0
         while (i < 3) {
 
@@ -141,59 +135,52 @@ class MainActivity : AppCompatActivity() {
         //Log.i(TAG, "#ONCREATE main Cats Size - " + mainCats.size.toString())
 
 
-
-        i = 0
-        while (i < 6) {
+        for (i in 0 until 6) {
             Row1Name.text = row1Cat
-            //println(mealCat[2].toString())
+            Row2Name.text = row2Cat
+            Row3Name.text = row3Cat
 
-            cardRow1Name[i].text =
-                mainCats[0][i][0]
+            cardRow1Name[i].text = mainCats[0][i][0]
+            cardRow2Name[i].text = mainCats[1][i][0]
+            cardRow3Name[i].text = mainCats[2][i][0]
+
             cardRow1Img[i].setImageDrawable(api.getImgDrawable(mainCats[0][i][1]))
             cardRow2Img[i].setImageDrawable(api.getImgDrawable(mainCats[1][i][1]))
+            cardRow3Img[i].setImageDrawable(api.getImgDrawable(mainCats[2][i][1]))
+
             cardRow1Id.add(mainCats[0][i][2])
-            Row2Name.text = row2Cat
-            cardRow2Name[i].text =
-                mainCats[1][i][0]
-            Row3Name.text = row3Cat
-            cardRow3Name[i].text =
-                mainCats[2][i][0]
-            //Log.i(TAG, i.toString() + " while loop setting meal names")
-            i++
+            cardRow2Id.add(mainCats[1][i][2])
+            cardRow3Id.add(mainCats[2][i][2])
         }
 
 
-        // Row 1  setonclicklistener setter
 
-        // NOT FUNCTIONING
-/*           i = 0
-        Log.i(TAG, cardRow1.size.toString())
-          while (i <= cardRow1.size -1 ){
-              println(i)
-              cardRow1[i].setOnClickListener{
-                  createDetailIntent(cardRow1Id[i],cardRow1Img[i].image!!.toBitmap(300,400))
-                  Log.i(TAG,i.toString() + "while Loop setting onclick Listeners")
-              }
-          i++
-}*/
 
-        cardRow1[0].setOnClickListener() {
-            createDetailIntent(cardRow1Id[0], cardRow1Img[0].image!!.toBitmap(300, 400))
-            //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
-        }
-        cardRow1[1].setOnClickListener() {
-            createDetailIntent(cardRow1Id[1], cardRow1Img[1].image!!.toBitmap(300, 400))
-            //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
-        }
-        cardRow1[2].setOnClickListener() {
-            createDetailIntent(cardRow1Id[2], cardRow1Img[2].image!!.toBitmap(300, 400))
-            //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
-        }
-        cardRow1[3].setOnClickListener() {
-            createDetailIntent(cardRow1Id[3], cardRow1Img[3].image!!.toBitmap(300, 400))
-            //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
-        }
+        for (i in 0..3) {
 
+
+            cardRow1[i].setOnClickListener() {
+                createDetailIntent(cardRow1Id[i], cardRow1Img[i].image!!.toBitmap(300, 400))
+                //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            }
+
+/*            cardRow1[0].setOnClickListener() {
+                createDetailIntent(cardRow1Id[0], cardRow1Img[0].image!!.toBitmap(300, 400))
+                //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            }
+            cardRow1[1].setOnClickListener() {
+                createDetailIntent(cardRow1Id[1], cardRow1Img[1].image!!.toBitmap(300, 400))
+                //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            }
+            cardRow1[2].setOnClickListener() {
+                createDetailIntent(cardRow1Id[2], cardRow1Img[2].image!!.toBitmap(300, 400))
+                //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            }
+            cardRow1[3].setOnClickListener() {
+                createDetailIntent(cardRow1Id[3], cardRow1Img[3].image!!.toBitmap(300, 400))
+                //Log.i(TAG, i.toString() + "while Loop setting onclick Listeners")
+            }*/
+        }
 
     }
 
@@ -215,6 +202,7 @@ class MainActivity : AppCompatActivity() {
         cardRow2.add(findViewById<CardView>(R.id.Card24))
         cardRow2.add(findViewById<CardView>(R.id.Card25))
         cardRow2.add(findViewById<CardView>(R.id.Card26))
+
 
 
         cardRow3.add(findViewById<CardView>(R.id.Card31))
@@ -251,6 +239,8 @@ class MainActivity : AppCompatActivity() {
         cardRow3Img.add(findViewById<ImageView>(R.id.Card35img))
         cardRow3Img.add(findViewById<ImageView>(R.id.Card36img))
 
+
+
         cardRow1Name.add(findViewById<TextView>(R.id.Card11desc))
         cardRow1Name.add(findViewById<TextView>(R.id.Card12desc))
         cardRow1Name.add(findViewById<TextView>(R.id.Card13desc))
@@ -276,12 +266,11 @@ class MainActivity : AppCompatActivity() {
         cardRow3Name.add(findViewById<TextView>(R.id.Card35desc))
         cardRow3Name.add(findViewById<TextView>(R.id.Card36desc))
 
+
+
         row1Name = findViewById<TextView>(R.id.Row1Name)
         row2Name = findViewById<TextView>(R.id.Row2Name)
         row3Name = findViewById<TextView>(R.id.Row3Name)
-
-
-
     }
 
 
