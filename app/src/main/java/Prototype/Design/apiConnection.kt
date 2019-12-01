@@ -36,26 +36,10 @@ class apiConnection {
     private val TAG = "APICONNECTION"
 
 
-    //
-    //
-/*
-    fun getMealById(mealId: String):ArrayList<String> {
-        doAsyncResult {
-            var jsonO = JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray("meals").getJSONObject(0)
-            var returnVal = parseIndMeal(jsonO)
-            uiThread {
-
-                mealInfo = returnVal!!
-
-                Log.i(TAG, "GetMealById has finished")
-            }
-        }
-
-        return  mealInfo
-    }
-*/
+    //fetches meal information using an ID Number
+    //Requires the Meal ID # as an Argument
+    //Returns an ArrayList<String> Containing the single Meal Information.
     fun getMealById(mealId: String): ArrayList<String> {
-
         return doAsyncResult {
             var jsonO =
                 JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray(
@@ -65,31 +49,25 @@ class apiConnection {
             //  Log.i(TAG, "GetMealById has finished")
             return@doAsyncResult mealInfoLocal
         }.get()
-
-
     }
 
 
-    // THIS DOES NOT WORK
-    // IT RETURNS A EMPTY ARRAY INSTEAD OF ONE FULL OF THE MEAL INFORMATION
-
+    //fetches meal information using the meal's Name
+    //Requires the Meal Name as an Argument
+    //Returns an ArrayList<String> containing the single Meal Information
     fun getMealByName(mealName: String): ArrayList<String> {
-        //This is the Json Object containing the meal information
-        var parsedArray = ArrayList<String>()
-
-        doAsync {
+        return doAsyncResult {
+            while (mealName.contains(' ')) {
+                mealName.replace(' ', '_')
+            }
             var jsonO =
-                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
+                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName).readText()).getJSONArray(
                     "meals"
                 ).getJSONObject(0)
-
-            //parsedArray = parseIndMeal(jsonO)
-        }
-
-
-
-
-        return parsedArray
+            var mealInfoLocal = parseIndMeal(jsonO)
+            //  Log.i(TAG, "GetMealById has finished")
+            return@doAsyncResult mealInfoLocal
+        }.get()
     }
 
 
@@ -97,66 +75,39 @@ class apiConnection {
     // TESTING AND CHECKING WILL BE REQUIRED
 
     fun getCat(catName: String): ArrayList<ArrayList<String>> {
-
         return doAsyncResult {
-
             var jsonA =
                 JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray(
                     "meals"
                 )
-
-            //println("JsonA length = " +jsonA.length() + jsonA[jsonA.length()-1])
-
             var fullMealInfoSingleCat = ArrayList<ArrayList<String>>(jsonA.length())
-
-
-
             for (i in 0..jsonA.length() - 1) {
-
                 fullMealInfoSingleCat.add(parseCatIndMeal(jsonA.getJSONObject(i)))
-                // println(fullMealInfo)
-
             }
-
-
-            // Log.i(TAG, "GetCat has finished")
-
             return@doAsyncResult fullMealInfoSingleCat
         }.get()
-
-
     }
 
-    fun getImgDrawable(imgUrl: String): Drawable {
 
+    fun getImgDrawable(imgUrl: String): Drawable {
         return doAsyncResult {
             var inputStream = URL(imgUrl).openStream()
             var draw = Drawable.createFromStream(inputStream, null)
             inputStream.close()
-
-
             return@doAsyncResult draw
         }.get()
-
     }
 
 
     fun getImgBitmap(imgUrl: String, cont: Context): Bitmap {
         return doAsyncResult {
-
-
             return@doAsyncResult Picasso.with(cont).load(imgUrl).get()
-
-
-            //BitmapFactory.decodeStream(URL(imgUrl).openStream())
-            // var img =  Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").get();
         }.get()
     }
 
+
     private fun parseCatIndMeal(jsonO: JSONObject): ArrayList<String> {
         var mealInfo: ArrayList<String> = ArrayList(5)
-
-
 
         if (jsonO.has("strMeal")) {
             mealInfo.add(jsonO.getString("strMeal"))

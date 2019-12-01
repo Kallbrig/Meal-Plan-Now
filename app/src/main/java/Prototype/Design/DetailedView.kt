@@ -40,8 +40,6 @@ class DetailedView : AppCompatActivity() {
         var mealInstructions = findViewById<TextView>(R.id.mealInstructions)
 
 
-
-
         var meal = api.getMealById(intent.getStringExtra("id")!!)
 
         mealName.text = meal[0]
@@ -61,9 +59,10 @@ class DetailedView : AppCompatActivity() {
         //mealPreview.setImageBitmap(intent.getParcelableExtra("img") as Bitmap)
 
 
-
         backBut.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            //finishActivity(0)
+            //startActivity(Intent(this, MainActivity::class.java))
 
         }
 

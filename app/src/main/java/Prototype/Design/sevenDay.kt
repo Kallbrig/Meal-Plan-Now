@@ -1,8 +1,10 @@
 package Prototype.Design
 
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 
 class sevenDay : AppCompatActivity() {
@@ -23,8 +25,7 @@ class sevenDay : AppCompatActivity() {
         }
         var backBut = findViewById<ImageButton>(R.id.backButSevenDay)
         backBut.setOnClickListener {
-            var i = Intent(this, MainActivity::class.java)
-            startActivity(i)
+            finish()
         }
 
         if (intent.extras?.get("addrem") == "AddSevenDay") {
@@ -39,6 +40,22 @@ class sevenDay : AppCompatActivity() {
 
 
         }
+
+    }
+
+
+    fun createDetailIntent(id: String, img: Bitmap) {
+        println("Intent Created")
+        val intent = Intent(this, DetailedView::class.java)
+        intent.putExtra("img", img)
+        intent.putExtra("id", id)
+        //intent.putExtra("prevIntent", MainActivity::class.java)
+
+
+        // log message
+        Log.i(TAG, "Put Extras - about to start DetailedView with meal ID#" + id)
+
+        startActivity(intent)
 
     }
 }
