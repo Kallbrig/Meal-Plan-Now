@@ -26,12 +26,12 @@ class favs_view : AppCompatActivity() {
         //Adding all Cards from Favs_View to the arraylist that will store them. This makes them iteratable
         favsCards.addAll(
             arrayListOf(
-                findViewById<CardView>(R.id.Card1),
-                findViewById<CardView>(R.id.Card2),
-                findViewById<CardView>(R.id.Card3),
-                findViewById<CardView>(R.id.Card4),
-                findViewById<CardView>(R.id.Card5),
-                findViewById<CardView>(R.id.Card6)
+                findViewById(R.id.Card1),
+                findViewById(R.id.Card2),
+                findViewById(R.id.Card3),
+                findViewById(R.id.Card4),
+                findViewById(R.id.Card5),
+                findViewById(R.id.Card6)
             )
         )
 
