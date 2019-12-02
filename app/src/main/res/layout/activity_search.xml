@@ -102,7 +102,7 @@
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
@@ -141,7 +141,7 @@
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
@@ -179,7 +179,7 @@
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
@@ -219,24 +219,24 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/Card11"
+                    android:id="@+id/Card21"
                     android:layout_width="120sp"
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
 
                     <LinearLayout
-                        android:id="@+id/Card11Ll"
+                        android:id="@+id/Card21Ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/Card11img"
+                            android:id="@+id/Card21img"
                             android:layout_width="match_parent"
                             android:layout_height="175sp"
                             android:contentDescription="@string/brownStewChicken"
@@ -245,7 +245,7 @@
                             tools:srcCompat="@drawable/brownstewchicken" />
 
                         <TextView
-                            android:id="@+id/Card11desc"
+                            android:id="@+id/Card21desc"
                             android:layout_width="match_parent"
                             android:layout_height="25sp"
                             android:background="@color/black"
@@ -258,24 +258,24 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/Card12"
+                    android:id="@+id/Card22"
                     android:layout_width="120sp"
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
 
                     <LinearLayout
-                        android:id="@+id/Card12Ll"
+                        android:id="@+id/Card22Ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/Card12img"
+                            android:id="@+id/Card22img"
                             android:layout_width="match_parent"
                             android:layout_height="175sp"
                             android:contentDescription="@string/chickenAlfredoPrimavera"
@@ -283,7 +283,7 @@
                             app:srcCompat="@drawable/chickenalfredoprimavera" />
 
                         <TextView
-                            android:id="@+id/Card12desc"
+                            android:id="@+id/Card22desc"
                             android:layout_width="match_parent"
                             android:layout_height="25sp"
                             android:background="@color/black"
@@ -296,31 +296,31 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/Card13"
+                    android:id="@+id/Card23"
                     android:layout_width="120sp"
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
 
                     <LinearLayout
-                        android:id="@+id/Card13Ll"
+                        android:id="@+id/Card23Ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/Card13img"
+                            android:id="@+id/Card23img"
                             android:layout_width="match_parent"
                             android:layout_height="175sp"
                             android:scaleType="centerCrop"
                             app:srcCompat="@drawable/chickenandmushroom" />
 
                         <TextView
-                            android:id="@+id/Card13desc"
+                            android:id="@+id/Card23desc"
                             android:layout_width="match_parent"
                             android:layout_height="25sp"
                             android:background="@color/black"
@@ -341,24 +341,24 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/Card11"
+                    android:id="@+id/Card31"
                     android:layout_width="120sp"
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
 
                     <LinearLayout
-                        android:id="@+id/Card11Ll"
+                        android:id="@+id/Card31Ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/Card11img"
+                            android:id="@+id/Card31img"
                             android:layout_width="match_parent"
                             android:layout_height="175sp"
                             android:contentDescription="@string/brownStewChicken"
@@ -367,7 +367,7 @@
                             tools:srcCompat="@drawable/brownstewchicken" />
 
                         <TextView
-                            android:id="@+id/Card11desc"
+                            android:id="@+id/Card31desc"
                             android:layout_width="match_parent"
                             android:layout_height="25sp"
                             android:background="@color/black"
@@ -380,24 +380,24 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/Card12"
+                    android:id="@+id/Card32"
                     android:layout_width="120sp"
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
 
                     <LinearLayout
-                        android:id="@+id/Card12Ll"
+                        android:id="@+id/Card32Ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/Card12img"
+                            android:id="@+id/Card32img"
                             android:layout_width="match_parent"
                             android:layout_height="175sp"
                             android:contentDescription="@string/chickenAlfredoPrimavera"
@@ -405,7 +405,7 @@
                             app:srcCompat="@drawable/chickenalfredoprimavera" />
 
                         <TextView
-                            android:id="@+id/Card12desc"
+                            android:id="@+id/Card32desc"
                             android:layout_width="match_parent"
                             android:layout_height="25sp"
                             android:background="@color/black"
@@ -418,153 +418,31 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/Card13"
+                    android:id="@+id/Card33"
                     android:layout_width="120sp"
                     android:layout_height="200sp"
                     android:layout_margin="8sp"
                     android:layout_weight="0"
-                    android:alpha=".7"
+                    android:alpha="0"
                     app:cardCornerRadius="8sp"
                     app:cardElevation="5sp"
                     app:cardMaxElevation="5sp">
 
                     <LinearLayout
-                        android:id="@+id/Card13Ll"
+                        android:id="@+id/Card33Ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/Card13img"
+                            android:id="@+id/Card33img"
                             android:layout_width="match_parent"
                             android:layout_height="175sp"
                             android:scaleType="centerCrop"
                             app:srcCompat="@drawable/chickenandmushroom" />
 
                         <TextView
-                            android:id="@+id/Card13desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="25sp"
-                            android:background="@color/black"
-                            android:gravity="center|center_horizontal|center_vertical"
-                            android:maxLines="1"
-                            android:text="@string/chickenAndMushrooms"
-                            android:textColor="@color/white"
-                            app:autoSizeTextType="uniform" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/Card11"
-                    android:layout_width="120sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="8sp"
-                    android:layout_weight="0"
-                    android:alpha=".7"
-                    app:cardCornerRadius="8sp"
-                    app:cardElevation="5sp"
-                    app:cardMaxElevation="5sp">
-
-                    <LinearLayout
-                        android:id="@+id/Card11Ll"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/Card11img"
-                            android:layout_width="match_parent"
-                            android:layout_height="175sp"
-                            android:contentDescription="@string/brownStewChicken"
-                            android:scaleType="centerCrop"
-                            app:srcCompat="@drawable/brownstewchicken"
-                            tools:srcCompat="@drawable/brownstewchicken" />
-
-                        <TextView
-                            android:id="@+id/Card11desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="25sp"
-                            android:background="@color/black"
-                            android:gravity="center|center_horizontal|center_vertical"
-                            android:maxLines="1"
-                            android:text="@string/brownStewChicken"
-                            android:textColor="@color/white"
-                            app:autoSizeTextType="uniform" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/Card12"
-                    android:layout_width="120sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="8sp"
-                    android:layout_weight="0"
-                    android:alpha=".7"
-                    app:cardCornerRadius="8sp"
-                    app:cardElevation="5sp"
-                    app:cardMaxElevation="5sp">
-
-                    <LinearLayout
-                        android:id="@+id/Card12Ll"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/Card12img"
-                            android:layout_width="match_parent"
-                            android:layout_height="175sp"
-                            android:contentDescription="@string/chickenAlfredoPrimavera"
-                            android:scaleType="centerCrop"
-                            app:srcCompat="@drawable/chickenalfredoprimavera" />
-
-                        <TextView
-                            android:id="@+id/Card12desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="25sp"
-                            android:background="@color/black"
-                            android:gravity="center|center_horizontal|center_vertical"
-                            android:maxLines="1"
-                            android:text="@string/chickenAlfredoPrimavera"
-                            android:textColor="@color/white"
-                            app:autoSizeTextType="uniform" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/Card13"
-                    android:layout_width="120sp"
-                    android:layout_height="200sp"
-                    android:layout_margin="8sp"
-                    android:layout_weight="0"
-                    android:alpha=".7"
-                    app:cardCornerRadius="8sp"
-                    app:cardElevation="5sp"
-                    app:cardMaxElevation="5sp">
-
-                    <LinearLayout
-                        android:id="@+id/Card13Ll"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/Card13img"
-                            android:layout_width="match_parent"
-                            android:layout_height="175sp"
-                            android:scaleType="centerCrop"
-                            app:srcCompat="@drawable/chickenandmushroom" />
-
-                        <TextView
-                            android:id="@+id/Card13desc"
+                            android:id="@+id/Card33desc"
                             android:layout_width="match_parent"
                             android:layout_height="25sp"
                             android:background="@color/black"

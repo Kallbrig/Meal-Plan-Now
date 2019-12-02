@@ -61,7 +61,7 @@ var cardRow3Name = ArrayList<TextView>(6)
 var cardRow1Id = ArrayList<String>(6)
 var cardRow2Id = ArrayList<String>(6)
 var cardRow3Id = ArrayList<String>(6)
-//    var sevenDayButton = findViewById<Button>(R.id.sevenDayButton)
+//var sevenDayButton = findViewById<Button>(R.id.sevenDayButton)
 lateinit var row1Name: TextView
 lateinit var row2Name: TextView
 lateinit var row3Name: TextView
@@ -72,6 +72,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        //
+        //
+        testFun()
+        //
+        //
+
 
         //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats
         setMealCat()
@@ -203,7 +211,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //Sets onclicklisteners for all cards
-    //No Arguments
+    //Takes No Arguments
     //
     private fun setOnClick() {
         doAsync() {
@@ -230,7 +238,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //Adds all views to thier correct arrays
-    //No Arguments
+    //Takes No Arguments
     //
     private fun cardArraySetter() {
 
@@ -352,9 +360,16 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //Used specifically for testing
+    //creates and starts an intent that takes you to Search
+    //Takes No Arguments
     //
-    //
+    private fun createSearchIntent() {
+        val intent = Intent(this, Search::class.java)
+
+        startActivity(intent)
+
+    }
+
     private fun testFun() {
 
 

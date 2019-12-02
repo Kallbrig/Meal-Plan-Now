@@ -229,92 +229,24 @@ class apiConnection {
     }
 
 
-    //Function to parse a category search. takes the Json Array produced by the getCat() function as an argument.
-    // UNLESS I'M WRONG, THIS DOES FUNCTION PROPERLY
-    // CHECK IT ANYWAY
+    fun SearchByName(mealName: String): ArrayList<ArrayList<String>> {
 
-/*     private fun parseCategory(jsonACategory: JSONArray): ArrayList<ArrayList<String>> {
+        return doAsyncResult {
+            var jsonA =
+                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName).readText()).getJSONArray(
+                    "meals"
+                )
+            var mealInfoLocal = ArrayList<ArrayList<String>>(9)
 
-         var oneMealInfo = ArrayList<String>(3)
-         var fullMealInfo = ArrayList<ArrayList<String>>(6)
+            for (i in 0 until jsonA.length() - 1) {
 
+                mealInfoLocal.add(parseIndMeal(jsonA.getJSONObject(i)))
 
-//            for(i in 0 until 5) {
-         var i = 0
-         while (i < 5) {
-             oneMealInfo.add(jsonACategory.getJSONObject(i).getString("strMeal"))
-             oneMealInfo.add(jsonACategory.getJSONObject(i).getString("idMeal"))
-             oneMealInfo.add(jsonACategory.getJSONObject(i).getString("strMealThumb"))
-             fullMealInfo.add(i, oneMealInfo)
-
-             i++
-
-         }
-
-         return fullMealInfo
-     }*/
+            }
 
 
-/*
-
-     fun parseCategory(jsonACategory:JSONArray){
-         doAsyncResult {
-             var i = 0
-             var max = 0
-
-             return@doAsyncResult returnResult
-         }.get()
-     }
-*/
-
-
-    //Setters for internal use only
-    //THESE ARE BASIC SETTERS. THEY DEFINITELY FUNCTION.
-
-    private fun setparsedArray(parsedArray: ArrayList<ArrayList<String>>) {
-        // For Debugging //println("ParsedArray[0] = " + parsedArray.get(0))
-        if (!parsedArray.isNullOrEmpty()) {
-            this.parsedArray = parsedArray
-            //  Log.i(TAG, "GOOD: setparsedArray() has succeeded  -  Size = " + this.parsedArray)
-
-        } else {
-            Log.e(TAG, "BAD: setparsedArray() was passed a null or empty argument")
-        }
-    }
-
-    private fun setjsonA(jsonA: JSONArray) {
-        if (jsonA.toString() != "") {
-            this.jsonA = jsonA
-
-            //   Log.i(TAG, "GOOD: setjsonA() was passed a nonempty JsonArray")
-
-
-        } else {
-            Log.e(TAG, "BAD: setjsonA() was passed an empty argument")
-        }
-    }
-
-    fun displayjsonO() {
-        Log.i(TAG, "mealInfo --- " + this.mealInfo.toString())
-    }
-
-
-/*
-    fun setMI(jjj:ArrayList<String>){
-        for(i in jjj.toArray().indices){
-            mealInfo.set(i, jjj.get(i))
-
-
-            Log.i(TAG, mealInfo.get(i))
-
-        }
-
-    }
-*/
-
-
-    fun getMI(): ArrayList<String> {
-        return this.mealInfo
+            return@doAsyncResult mealInfoLocal
+        }.get()
     }
 
 
