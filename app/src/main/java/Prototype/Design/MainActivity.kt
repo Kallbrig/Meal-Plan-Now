@@ -71,7 +71,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //
+
+        //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats
         setMealCat()
 
         //shortens OnCreate.
@@ -120,6 +121,49 @@ class MainActivity : AppCompatActivity() {
         //After Api Calls, this functions sets the content of each cards with the fetched information
         setContent()
 
+    }
+
+    //Determines the meals that will appear on the MainActivity
+    //No Arguments
+    //
+    private fun setMealCat() {
+
+        val mealCat = arrayListOf<String>(
+            "Chicken",
+            "Beef",
+            "Dessert",
+            "Lamb",
+            "Miscellaneous",
+            "Pasta",
+            "Pork",
+            "Seafood",
+            "Side",
+            "Starter",
+            "Vegan",
+            "Vegetarian",
+            "Breakfast",
+            "Goat"
+        )
+        for (i in 0..3) {
+
+            var new = mealCat.random()
+
+            while (new == "Goat" || new == "Vegan" || new == "Starter" || mainMealCats.contains(new)) {
+                new = mealCat.random()
+            }
+
+            mainMealCats.add(new)
+            //Log.i(TAG, "main Meal Cats Size - " + mainMealCats.size)
+
+            if (row1Cat == "") {
+                row1Cat = new
+            } else if (row2Cat == "") {
+                row2Cat = new
+            } else if (row3Cat == "") {
+                row3Cat = new
+            }
+
+        }
     }
 
 
@@ -295,49 +339,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //Determines the meals that will appear on the MainActivity
-    //No Arguments
-    //
-    private fun setMealCat() {
-
-        val mealCat = arrayListOf<String>(
-            "Chicken",
-            "Beef",
-            "Dessert",
-            "Lamb",
-            "Miscellaneous",
-            "Pasta",
-            "Pork",
-            "Seafood",
-            "Side",
-            "Starter",
-            "Vegan",
-            "Vegetarian",
-            "Breakfast",
-            "Goat"
-        )
-        for (i in 0..3) {
-
-            var new = mealCat.random()
-
-            while (new == "Goat" || new == "Vegan" || new == "Starter" || mainMealCats.contains(new)) {
-                new = mealCat.random()
-            }
-
-            mainMealCats.add(new)
-            //Log.i(TAG, "main Meal Cats Size - " + mainMealCats.size)
-
-            if (row1Cat == "") {
-                row1Cat = new
-            } else if (row2Cat == "") {
-                row2Cat = new
-            } else if (row3Cat == "") {
-                row3Cat = new
-            }
-
-        }
-    }
-
 
     // Creates and starts an intent that takes you to favsView.
     // Takes No arguments.
@@ -347,6 +348,7 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("prevIntent", MainActivity::class.java)
         startActivity(intent)
     }
+
 
     //Used specifically for testing
     //

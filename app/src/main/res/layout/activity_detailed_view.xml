@@ -98,6 +98,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
+                            android:foregroundGravity="clip_horizontal"
+                            android:gravity="center_horizontal"
                             android:text="MealName"
                             android:textColor="@color/white"
                             android:textSize="25sp"
@@ -112,6 +114,276 @@
                             android:layout_weight="1"
                             android:text="MealCategory"
                             android:textColor="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/ingredients"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="2"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView27"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Ingredients"
+                                    android:textColor="@color/red"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="350sp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="20sp"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/ing1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing7"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing8"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing9"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing10"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/ing11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing12"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing13"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing14"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing15"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing16"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing17"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing18"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing19"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ing20"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:paddingLeft="2sp"
+                                        android:paddingBottom="2sp"
+                                        android:text="TextView"
+                                        android:textColor="@color/white"
+                                        android:textSize="15sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/mealInstructions"
@@ -141,109 +413,135 @@
                             android:layout_marginRight="25sp"
                             android:orientation="horizontal">
 
-                            <ImageButton
-                                android:id="@+id/imageButton5"
-                                android:layout_width="40sp"
-                                android:layout_height="30sp"
-                                android:layout_marginLeft="5sp"
-                                android:layout_marginRight="5sp"
+                            <LinearLayout
+                                android:id="@+id/addToFavs"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="#C1444242"
-                                android:cropToPadding="false"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@android:drawable/btn_star" />
+                                android:orientation="vertical">
 
-                            <ImageButton
-                                android:id="@+id/imageButton4"
-                                android:layout_width="40sp"
-                                android:layout_height="30sp"
-                                android:layout_marginLeft="5sp"
-                                android:layout_marginRight="5sp"
+                                <ImageButton
+                                    android:id="@+id/imageButton5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35sp"
+                                    android:layout_marginLeft="5sp"
+                                    android:layout_marginRight="5sp"
+                                    android:layout_weight="1"
+                                    android:background="#C1444242"
+                                    android:cropToPadding="false"
+                                    android:scaleType="fitCenter"
+                                    app:srcCompat="@android:drawable/btn_star" />
+
+                                <TextView
+                                    android:id="@+id/textView9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35sp"
+                                    android:layout_marginLeft="5sp"
+                                    android:layout_marginRight="5sp"
+                                    android:layout_weight="1"
+                                    android:background="#C1444242"
+                                    android:gravity="center"
+                                    android:text="Favorites"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/addToSevenDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="#C1444242"
-                                android:cropToPadding="false"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/sevendayicon" />
+                                android:orientation="vertical">
 
-                            <ImageButton
-                                android:id="@+id/imageButton3"
-                                android:layout_width="40sp"
-                                android:layout_height="30sp"
-                                android:layout_marginLeft="5sp"
-                                android:layout_marginRight="5sp"
+                                <ImageButton
+                                    android:id="@+id/imageButton4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35sp"
+                                    android:layout_marginLeft="5sp"
+                                    android:layout_marginRight="5sp"
+                                    android:layout_weight="1"
+                                    android:background="#C1444242"
+                                    android:cropToPadding="false"
+                                    android:scaleType="fitCenter"
+                                    app:srcCompat="@drawable/sevendayicon" />
+
+                                <TextView
+                                    android:id="@+id/textView10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35sp"
+                                    android:layout_marginLeft="5sp"
+                                    android:layout_marginRight="5sp"
+                                    android:layout_weight="1"
+                                    android:background="#C1444242"
+                                    android:gravity="center"
+                                    android:text="7 Day Plan"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/shareBut"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="#C1444242"
-                                android:cropToPadding="false"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/shareicon" />
+                                android:orientation="vertical">
 
-                            <ImageButton
-                                android:id="@+id/imageButton2"
-                                android:layout_width="40sp"
-                                android:layout_height="30sp"
-                                android:layout_marginLeft="5sp"
-                                android:layout_marginRight="5sp"
+                                <ImageButton
+                                    android:id="@+id/imageButton3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35sp"
+                                    android:layout_marginLeft="5sp"
+                                    android:layout_marginRight="5sp"
+                                    android:layout_weight="1"
+                                    android:background="#C1444242"
+                                    android:cropToPadding="false"
+                                    android:scaleType="fitCenter"
+                                    app:srcCompat="@drawable/shareicon" />
+
+                                <TextView
+                                    android:id="@+id/textView11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35sp"
+                                    android:layout_marginLeft="5sp"
+                                    android:layout_marginRight="5sp"
+                                    android:layout_weight="1"
+                                    android:background="#C1444242"
+                                    android:gravity="center"
+                                    android:text="Share"
+                                    android:textColor="@color/white" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/downloadBut"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="#C1444242"
-                                android:cropToPadding="false"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/downloadicon" />
-                        </LinearLayout>
+                                android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="25sp"
-                            android:layout_marginRight="25sp"
-                            android:orientation="horizontal">
+                                <ImageButton
+                                    android:id="@+id/imageButton2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35sp"
+                                    android:layout_marginLeft="5sp"
+                                    android:layout_marginRight="5sp"
+                                    android:layout_weight="1"
+                                    android:background="#C1444242"
+                                    android:cropToPadding="false"
+                                    android:scaleType="fitCenter"
+                                    app:srcCompat="@drawable/downloadicon" />
 
-                            <TextView
-                                android:id="@+id/textView9"
-                                android:layout_width="50sp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5sp"
-                                android:layout_marginRight="5sp"
-                                android:layout_weight="1"
-                                android:background="#C1444242"
-                                android:gravity="center"
-                                android:text="Favorites"
-                                android:textColor="@color/white" />
+                                <TextView
+                                    android:id="@+id/textView8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="35sp"
+                                    android:layout_marginLeft="5sp"
+                                    android:layout_marginRight="5sp"
+                                    android:layout_weight="1"
+                                    android:background="#C1444242"
+                                    android:gravity="center"
+                                    android:text="Download"
+                                    android:textColor="@color/white" />
 
-                            <TextView
-                                android:id="@+id/textView10"
-                                android:layout_width="50sp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5sp"
-                                android:layout_marginRight="5sp"
-                                android:layout_weight="1"
-                                android:background="#C1444242"
-                                android:gravity="center"
-                                android:text="7 Day Plan"
-                                android:textColor="@color/white" />
-
-                            <TextView
-                                android:id="@+id/textView11"
-                                android:layout_width="50sp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5sp"
-                                android:layout_marginRight="5sp"
-                                android:layout_weight="1"
-                                android:background="#C1444242"
-                                android:gravity="center"
-                                android:text="Share"
-                                android:textColor="@color/white" />
-
-                            <TextView
-                                android:id="@+id/textView8"
-                                android:layout_width="50sp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5sp"
-                                android:layout_marginRight="5sp"
-                                android:layout_weight="1"
-                                android:background="#C1444242"
-                                android:gravity="center"
-                                android:text="Download"
-                                android:textColor="@color/white" />
+                            </LinearLayout>
 
                         </LinearLayout>
 

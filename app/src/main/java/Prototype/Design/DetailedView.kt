@@ -7,10 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_detailed_view.view.*
 import org.jetbrains.anko.imageBitmap
 import java.net.URL
@@ -29,15 +26,29 @@ class DetailedView : AppCompatActivity() {
 
 
         var bgImg = findViewById<ImageView>(R.id.bgImg)
-
         var mealPreview = findViewById<ImageView>(R.id.mealPreview)
-
         var titleBar = findViewById<TextView>(R.id.titleBar)
         var mealName = findViewById<TextView>(R.id.mealName)
-
         var mealCat = findViewById<TextView>(R.id.mealCat)
         var backBut = findViewById<ImageButton>(R.id.backButton)
         var mealInstructions = findViewById<TextView>(R.id.mealInstructions)
+        var shareBut = findViewById<LinearLayout>(R.id.addToFavs)
+        var downloadBut = findViewById<LinearLayout>(R.id.addToSevenDay)
+
+        shareBut.setOnClickListener {
+
+            val sendIntent: Intent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this Meal!")
+            sendIntent.type = "text/plain"
+
+            Log.i(TAG, "Share Intent Created")
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+
+            startActivity(shareIntent)
+
+        }
 
 
         var meal = api.getMealById(intent.getStringExtra("id")!!)
@@ -45,25 +56,15 @@ class DetailedView : AppCompatActivity() {
         mealName.text = meal[0]
         Log.i(TAG, "Background Image URL = " + meal[1])
         //mealPreview.imageBitmap = (api.getImgBitmap(meal[1],this))
-        var suck = api.getImgDrawable(meal[1])
-        bgImg.setImageDrawable(suck)
-        mealPreview.setImageDrawable(suck)
+        var mealImg = api.getImgDrawable(meal[1])
+        bgImg.setImageDrawable(mealImg)
+        mealPreview.setImageDrawable(mealImg)
         titleBar.text = meal[0]
-
-
         mealInstructions.text = meal[4]
-
-
         mealCat.text = meal[3]
-        println(meal)
-        //mealPreview.setImageBitmap(intent.getParcelableExtra("img") as Bitmap)
-
 
         backBut.setOnClickListener {
             finish()
-            //finishActivity(0)
-            //startActivity(Intent(this, MainActivity::class.java))
-
         }
 
     }
