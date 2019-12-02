@@ -67,10 +67,11 @@ lateinit var row2Name: TextView
 lateinit var row3Name: TextView
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats
         setMealCat()
@@ -97,6 +98,7 @@ class MainActivity : AppCompatActivity() {
             "Breakfast",
             "Goat"
         )
+
         for (i in 0..3) {
 
             var new = mealCat.random()

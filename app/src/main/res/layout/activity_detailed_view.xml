@@ -485,7 +485,7 @@
                                 android:orientation="vertical">
 
                                 <ImageButton
-                                    android:id="@+id/imageButton3"
+                                    android:id="@+id/shareButImg"
                                     android:layout_width="match_parent"
                                     android:layout_height="35sp"
                                     android:layout_marginLeft="5sp"
@@ -497,7 +497,7 @@
                                     app:srcCompat="@drawable/shareicon" />
 
                                 <TextView
-                                    android:id="@+id/textView11"
+                                    android:id="@+id/shareButText"
                                     android:layout_width="match_parent"
                                     android:layout_height="35sp"
                                     android:layout_marginLeft="5sp"

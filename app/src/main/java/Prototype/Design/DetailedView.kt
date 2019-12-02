@@ -28,7 +28,6 @@ class DetailedView : AppCompatActivity() {
 
 
     lateinit var mealInstructions: TextView
-    lateinit var shareBut: LinearLayout
     lateinit var downloadBut: LinearLayout
     lateinit var meal: ArrayList<String>
 
@@ -47,13 +46,8 @@ class DetailedView : AppCompatActivity() {
 
 
         mealInstructions = findViewById<TextView>(R.id.mealInstructions)
-        shareBut = findViewById<LinearLayout>(R.id.addToFavs)
         downloadBut = findViewById<LinearLayout>(R.id.addToSevenDay)
 
-
-        //Sets onClickListeners for Share and Back Buttons
-        setShareBut()
-        setBackBut()
 
 
         meal = api.getMealById(intent.getStringExtra("id")!!)
@@ -79,6 +73,10 @@ class DetailedView : AppCompatActivity() {
 
         //Meal Category Setter
         mealCat.text = meal[3]
+
+        //Sets onClickListeners for Share and Back Buttons
+        setShareBut()
+        setBackBut()
 
         ingListSetter()
 
@@ -126,11 +124,18 @@ class DetailedView : AppCompatActivity() {
     }
 
     private fun setShareBut() {
-        shareBut.setOnClickListener {
+        //var shareBut = findViewById<LinearLayout>(R.id.shareBut)
+        var shareButText = findViewById<TextView>(R.id.shareButText)
+        var sharebutImg = findViewById<ImageButton>(R.id.shareButImg)
 
+
+        shareButText.setOnClickListener {
             val sendIntent = Intent()
             sendIntent.action = Intent.ACTION_SEND
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this Meal!")
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Check out this Meal! - https://www.themealdb.com/meal.php?c=" + meal[2]
+            )
             sendIntent.type = "text/plain"
 
             Log.i(TAG, "Share Intent Created")
@@ -138,7 +143,22 @@ class DetailedView : AppCompatActivity() {
             val shareIntent = Intent.createChooser(sendIntent, null)
 
             startActivity(shareIntent)
+        }
 
+        sharebutImg.setOnClickListener {
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Check out this Meal! - https://www.themealdb.com/meal.php?c=" + meal[2]
+            )
+            sendIntent.type = "text/plain"
+
+            Log.i(TAG, "Share Intent Created")
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+
+            startActivity(shareIntent)
         }
     }
 

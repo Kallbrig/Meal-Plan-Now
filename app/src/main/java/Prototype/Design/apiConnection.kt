@@ -229,7 +229,6 @@ class apiConnection {
     }
 
 
-
     //Function to parse a category search. takes the Json Array produced by the getCat() function as an argument.
     // UNLESS I'M WRONG, THIS DOES FUNCTION PROPERLY
     // CHECK IT ANYWAY
