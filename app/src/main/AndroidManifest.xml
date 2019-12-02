@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".favs_view"></activity>
+        <activity android:name=".Search"></activity>
+        <activity android:name=".favs_view" />
         <activity android:name=".sevenDay" />
         <activity android:name=".DetailedView" />
         <activity android:name=".MainActivity">
