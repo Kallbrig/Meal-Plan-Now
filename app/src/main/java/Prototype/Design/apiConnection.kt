@@ -71,7 +71,7 @@ class apiConnection {
     }
 
 
-    // UNSURE IF THIS WORKS
+    //fetches an entire Category from
     // TESTING AND CHECKING WILL BE REQUIRED
 
     fun getCat(catName: String): ArrayList<ArrayList<String>> {
@@ -166,72 +166,68 @@ class apiConnection {
             println("JsonO is incomplete: Missing strInstructions")
         }
         if (jsonO.has("strMeasure1") && !jsonO.getString("strMeasure1").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure1") + jsonO.getString("strIngredient1"))
+            mealInfo.add(jsonO.getString("strMeasure1") + " " + jsonO.getString("strIngredient1"))
         }
         if (jsonO.has("strMeasure2") && !jsonO.getString("strMeasure2").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure2") + jsonO.getString("strIngredient2"))
+            mealInfo.add(jsonO.getString("strMeasure2") + " " + jsonO.getString("strIngredient2"))
         }
         if (jsonO.has("strMeasure3") && !jsonO.getString("strMeasure3").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure3") + jsonO.getString("strIngredient3"))
+            mealInfo.add(jsonO.getString("strMeasure3") + " " + jsonO.getString("strIngredient3"))
         }
         if (jsonO.has("strMeasure4") && !jsonO.getString("strMeasure4").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure4") + jsonO.getString("strIngredient4"))
+            mealInfo.add(jsonO.getString("strMeasure4") + " " + jsonO.getString("strIngredient4"))
         }
         if (jsonO.has("strMeasure5") && !jsonO.getString("strMeasure5").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure5") + jsonO.getString("strIngredient5"))
+            mealInfo.add(jsonO.getString("strMeasure5") + " " + jsonO.getString("strIngredient5"))
         }
         if (jsonO.has("strMeasure6") && !jsonO.getString("strMeasure6").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure6") + jsonO.getString("strIngredient6"))
+            mealInfo.add(jsonO.getString("strMeasure6") + " " + jsonO.getString("strIngredient6"))
         }
         if (jsonO.has("strMeasure7") && !jsonO.getString("strMeasure7").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure7") + jsonO.getString("strIngredient7"))
+            mealInfo.add(jsonO.getString("strMeasure7") + " " + jsonO.getString("strIngredient7"))
         }
         if (jsonO.has("strMeasure8") && !jsonO.getString("strMeasure8").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure8") + jsonO.getString("strIngredient8"))
+            mealInfo.add(jsonO.getString("strMeasure8") + " " + jsonO.getString("strIngredient8"))
         }
         if (jsonO.has("strMeasure9") && !jsonO.getString("strMeasure9").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure9") + jsonO.getString("strIngredient9"))
+            mealInfo.add(jsonO.getString("strMeasure9") + " " + jsonO.getString("strIngredient9"))
         }
         if (jsonO.has("strMeasure10") && !jsonO.getString("strMeasure10").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure10") + jsonO.getString("strIngredient10"))
+            mealInfo.add(jsonO.getString("strMeasure10") + " " + jsonO.getString("strIngredient10"))
         }
         if (jsonO.has("strMeasure11") && !jsonO.getString("strMeasure11").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure11") + jsonO.getString("strIngredient11"))
+            mealInfo.add(jsonO.getString("strMeasure11") + " " + jsonO.getString("strIngredient11"))
         }
         if (jsonO.has("strMeasure12") && !jsonO.getString("strMeasure12").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure12") + jsonO.getString("strIngredient12"))
+            mealInfo.add(jsonO.getString("strMeasure12") + " " + jsonO.getString("strIngredient12"))
         }
         if (jsonO.has("strMeasure13") && !jsonO.getString("strMeasure13").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure13") + jsonO.getString("strIngredient13"))
+            mealInfo.add(jsonO.getString("strMeasure13") + " " + jsonO.getString("strIngredient13"))
         }
         if (jsonO.has("strMeasure14") && !jsonO.getString("strMeasure14").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure14") + jsonO.getString("strIngredient14"))
+            mealInfo.add(jsonO.getString("strMeasure14") + " " + jsonO.getString("strIngredient14"))
         }
         if (jsonO.has("strMeasure15") && !jsonO.getString("strMeasure15").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure15") + jsonO.getString("strIngredient15"))
+            mealInfo.add(jsonO.getString("strMeasure15") + " " + jsonO.getString("strIngredient15"))
         }
         if (jsonO.has("strMeasure16") && !jsonO.getString("strMeasure16").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure16") + jsonO.getString("strIngredient16"))
+            mealInfo.add(jsonO.getString("strMeasure16") + " " + jsonO.getString("strIngredient16"))
         }
         if (jsonO.has("strMeasure17") && !jsonO.getString("strMeasure17").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure17") + jsonO.getString("strIngredient17"))
+            mealInfo.add(jsonO.getString("strMeasure17") + " " + jsonO.getString("strIngredient17"))
         }
         if (jsonO.has("strMeasure18") && !jsonO.getString("strMeasure18").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure18") + jsonO.getString("strIngredient18"))
+            mealInfo.add(jsonO.getString("strMeasure18") + " " + jsonO.getString("strIngredient18"))
         }
         if (jsonO.has("strMeasure19") && !jsonO.getString("strMeasure19").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure19") + jsonO.getString("strIngredient19"))
+            mealInfo.add(jsonO.getString("strMeasure19") + " " + jsonO.getString("strIngredient19"))
         }
         if (jsonO.has("strMeasure20") && !jsonO.getString("strMeasure20").isNullOrEmpty()) {
-            mealInfo.add(jsonO.getString("strMeasure20") + jsonO.getString("strIngredient20"))
+            mealInfo.add(jsonO.getString("strMeasure20") + " " + jsonO.getString("strIngredient20"))
         }
         return mealInfo
     }
 
-    fun parseIng() {
-
-
-    }
 
 
     //Function to parse a category search. takes the Json Array produced by the getCat() function as an argument.

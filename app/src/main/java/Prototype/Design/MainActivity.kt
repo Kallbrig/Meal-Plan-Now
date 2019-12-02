@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Determines the meals that will appear on the MainActivity
-    //No Arguments
+    //No Arguments needed
     //
     private fun setMealCat() {
 
