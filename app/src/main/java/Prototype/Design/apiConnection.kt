@@ -137,7 +137,7 @@ class apiConnection {
     //requires a Json Object as an argument. Only used by getMealById and getMealByName internally.
     //returns an ArrayList<String> full of all Individual Meal Information
 
-    //[0]mealName, [1]mealImgURL, [2]Meal Id #, [3]mealArea, [4]Instructions, [5]Ingredients1, [6]Ingredients2, [7]...
+    //format of each meal is: [0]mealName, [1]mealImgURL, [2]Meal Id #, [3]mealArea, [4]Instructions, [5]Ingredients1, [6]Ingredients2, [7]...
     private fun parseIndMeal(jsonO: JSONObject): ArrayList<String> {
         var mealInfo: ArrayList<String> = ArrayList(25)
         //println("JsonO in parseIndMeal() - ")
@@ -232,6 +232,12 @@ class apiConnection {
     }
 
 
+    //This function queries the API for a response using a search term
+    //Requires a search term as an Argument
+    //Returns an ArrayList<ArrayList<String>> containing meal information parsed using parseIndMeal()
+
+    //format of return is 'ReturnVal[0] - first meal, ReturnVal[1] - Second Meal ...
+    //format of each meal is '[0]mealName, [1]mealImgURL, [2]Meal Id #, [3]mealArea, [4]Instructions, [5]Ingredients1, [6]Ingredients2, [7]...'
     fun searchByName(mealName: String): ArrayList<ArrayList<String>> {
 
         return doAsyncResult {
@@ -239,17 +245,11 @@ class apiConnection {
                 JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
                     "meals"
                 )
-
             var mealInfoLocal = ArrayList<ArrayList<String>>(9)
-
-
-
             for (i in 0 until jsonA.length()) {
                 mealInfoLocal.add(parseIndMeal(jsonA.getJSONObject(i)))
                 println(jsonA.length())
             }
-
-
             return@doAsyncResult mealInfoLocal
         }.get()
 

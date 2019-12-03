@@ -88,16 +88,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //
-        //
-        Log.i(TAG, "Remember to fix Main")
-        val intent = Intent(this, Search::class.java)
-        startActivity(intent)
-        Log.i(TAG, "started Search Activity")
-        //
-        //
-
-
         //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats
         setMealCat()
 

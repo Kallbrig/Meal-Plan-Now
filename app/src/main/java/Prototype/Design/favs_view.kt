@@ -10,6 +10,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.marginLeft
+
+lateinit var searchButFavs: ImageButton
+lateinit var favsButFavs: ImageButton
+lateinit var sevenDayButFavs: ImageButton
+
 
 class favs_view : AppCompatActivity() {
 
@@ -46,6 +52,19 @@ class favs_view : AppCompatActivity() {
                 createDetailIntent(Carddesc, Img)
             }
 
+        searchButFavs = findViewById(R.id.searchButFavs)
+        searchButFavs.setOnClickListener {
+            createSearchIntent()
+        }
+
+        sevenDayButFavs = findViewById(R.id.sevenDayButFavs)
+        sevenDayButFavs.setOnClickListener {
+            createSevenDayIntent()
+        }
+
+
+
+
 
     }
 
@@ -69,6 +88,21 @@ class favs_view : AppCompatActivity() {
         backBut.setOnClickListener {
             finish()
         }
+    }
+
+    private fun createSearchIntent() {
+        val intent = Intent(this, Search::class.java)
+        startActivity(intent)
+    }
+
+    private fun createFavsIntent() {
+        val intent = Intent(this, favs_view::class.java)
+        startActivity(intent)
+    }
+
+    private fun createSevenDayIntent() {
+        val intent = Intent(this, sevenDay::class.java)
+        startActivity(intent)
     }
 
 }

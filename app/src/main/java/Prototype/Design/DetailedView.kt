@@ -63,7 +63,7 @@ class DetailedView : AppCompatActivity() {
         }
         sevenDayButDetail = findViewById(R.id.sevenDayButDetail)
         sevenDayButDetail.setOnClickListener {
-            createFavsIntent()
+            createSevenDayIntent()
         }
 
 
