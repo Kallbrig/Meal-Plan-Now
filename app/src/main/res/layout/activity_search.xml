@@ -43,38 +43,6 @@
             app:srcCompat="@android:drawable/btn_star" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_marginTop="50sp"
-        android:layout_weight="5"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:scaleType="center"
-            android:tint="@color/red"
-            app:srcCompat="@android:drawable/ic_menu_search" />
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="4"
-            android:background="@null"
-            android:ems="10"
-            android:gravity="center_horizontal|center_vertical"
-            android:hint="Meal Name"
-            android:inputType="textPersonName"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColorHint="@color/red" />
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,13 +50,45 @@
         android:background="@drawable/drawablebg"
         android:foregroundGravity="center_horizontal"
         android:minHeight="2000sp"
-        android:paddingTop="50sp"
+        android:paddingTop="5sp"
         android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_weight="5"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/SearchButton"
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    android:onClick="search"
+                    android:scaleType="center"
+                    android:tint="@color/red"
+                    app:srcCompat="@android:drawable/ic_menu_search" />
+
+                <EditText
+                    android:id="@+id/searchTextBox"
+                    android:layout_width="250sp"
+                    android:layout_height="50sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="4"
+                    android:background="@null"
+                    android:ems="10"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:hint="Meal Name"
+                    android:inputType="none|text"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColorHint="@color/red" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -76,7 +76,10 @@ class MainActivity : AppCompatActivity() {
 
         //
         //
-        testFun()
+        Log.i(TAG, "Remember to fix Main")
+        val intent = Intent(this, Search::class.java)
+        startActivity(intent)
+        Log.i(TAG, "started Search Activity")
         //
         //
 
@@ -336,7 +339,7 @@ class MainActivity : AppCompatActivity() {
     //Requires Meal ID # and the Meal Image as a bitmap as arguments
     //
     private fun createDetailIntent(id: String, img: Bitmap) {
-        println("Intent Created")
+        Log.i(TAG, "Detailed Intent Created")
         val intent = Intent(this, DetailedView::class.java)
         intent.putExtra("img", img)
         intent.putExtra("id", id)
@@ -355,7 +358,6 @@ class MainActivity : AppCompatActivity() {
     //
     private fun createFavsIntent() {
         val intent = Intent(this, favs_view::class.java)
-        intent.putExtra("prevIntent", MainActivity::class.java)
         startActivity(intent)
     }
 
@@ -365,9 +367,7 @@ class MainActivity : AppCompatActivity() {
     //
     private fun createSearchIntent() {
         val intent = Intent(this, Search::class.java)
-
         startActivity(intent)
-
     }
 
     private fun testFun() {

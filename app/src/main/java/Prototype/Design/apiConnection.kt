@@ -42,7 +42,7 @@ class apiConnection {
     fun getMealById(mealId: String): ArrayList<String> {
         return doAsyncResult {
             var jsonO =
-                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealId).readText()).getJSONArray(
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=" + mealId).readText()).getJSONArray(
                     "meals"
                 ).getJSONObject(0)
             var mealInfoLocal = parseIndMeal(jsonO)
@@ -61,7 +61,7 @@ class apiConnection {
                 mealName.replace(' ', '_')
             }
             var jsonO =
-                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName).readText()).getJSONArray(
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
                     "meals"
                 ).getJSONObject(0)
             var mealInfoLocal = parseIndMeal(jsonO)
@@ -77,10 +77,13 @@ class apiConnection {
     fun getCat(catName: String): ArrayList<ArrayList<String>> {
         return doAsyncResult {
             var jsonA =
-                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName).readText()).getJSONArray(
-                    "meals"
-                )
+                JSONObject(
+                    URL("https://www.themealdb.com/api/json/v2/9973533/filter.php?c=" + catName)
+                        .readText()
+                ).getJSONArray("meals")
+
             var fullMealInfoSingleCat = ArrayList<ArrayList<String>>(jsonA.length())
+            println(jsonA.length())
             for (i in 0..jsonA.length() - 1) {
                 fullMealInfoSingleCat.add(parseCatIndMeal(jsonA.getJSONObject(i)))
             }
@@ -229,24 +232,27 @@ class apiConnection {
     }
 
 
-    fun SearchByName(mealName: String): ArrayList<ArrayList<String>> {
+    fun searchByName(mealName: String): ArrayList<ArrayList<String>> {
 
         return doAsyncResult {
             var jsonA =
-                JSONObject(URL("https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName).readText()).getJSONArray(
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
                     "meals"
                 )
+
             var mealInfoLocal = ArrayList<ArrayList<String>>(9)
 
-            for (i in 0 until jsonA.length() - 1) {
 
+
+            for (i in 0 until jsonA.length()) {
                 mealInfoLocal.add(parseIndMeal(jsonA.getJSONObject(i)))
-
+                println(jsonA.length())
             }
 
 
             return@doAsyncResult mealInfoLocal
         }.get()
+
     }
 
 
