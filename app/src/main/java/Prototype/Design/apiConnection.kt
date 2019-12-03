@@ -16,10 +16,7 @@ class apiConnection {
     // GLOBAL VARIABLES
     //
 
-    protected var jsonA: JSONArray? = null
-    protected var mealInfo2: JSONObject? = null
-    protected var parsedArray: ArrayList<ArrayList<String>>? = null
-    protected var mealInfo: ArrayList<String> = ArrayList(5)
+
     private val TAG = "APICONNECTION"
 
 
