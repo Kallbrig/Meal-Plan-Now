@@ -97,7 +97,6 @@ class DetailedView : AppCompatActivity() {
         //Sets onClickListeners for Share and Back Buttons
         setShareBut()
         setBackBut()
-
         ingListSetter()
 
 
@@ -133,16 +132,23 @@ class DetailedView : AppCompatActivity() {
         var j = 0
         while (i < meal.size - 1) {
             ingList[j].text = meal[i]
+            ingList[j].alpha = 1f
             i++
             j++
         }
-
-        println("i = " + i)
-        println("j = " + j)
+        println(i)
+        println(j)
+        println(ingList.size - 1)
 
 
     }
 
+
+    //Sets Share button to work.
+    //No Arguments
+    //No returns
+
+    //Needs to be simplified. it works now, but It's a workaround due to time constraints.
     private fun setShareBut() {
         //var shareBut = findViewById<LinearLayout>(R.id.shareBut)
         var shareButText = findViewById<TextView>(R.id.shareButText)
