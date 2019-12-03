@@ -2,25 +2,12 @@ package Prototype.Design
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
-import android.nfc.Tag
-import android.os.AsyncTask
-import android.util.Log
-import android.widget.Toast
 import com.squareup.picasso.Picasso
-import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
-import org.jetbrains.anko.onComplete
-import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.IOException
-import java.io.InputStream
-import java.net.MalformedURLException
 import java.net.URL
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.Executors
 
 
 class apiConnection {

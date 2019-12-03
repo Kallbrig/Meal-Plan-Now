@@ -1,17 +1,10 @@
 package Prototype.Design
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
-import android.view.View
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_detailed_view.view.*
-import org.jetbrains.anko.imageBitmap
-import java.net.URL
 
 
 class DetailedView : AppCompatActivity() {

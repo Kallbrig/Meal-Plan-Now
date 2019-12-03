@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.marginLeft
 
 lateinit var searchButFavs: ImageButton
 lateinit var favsButFavs: ImageButton

@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
 
     //Determines the meals that will appear on the MainActivity
     //No Arguments needed
-    //
+    //No return
     private fun setMealCat() {
 
         val mealCat = arrayListOf<String>(
@@ -222,7 +222,7 @@ class MainActivity : AppCompatActivity() {
     //
     private fun setOnClick() {
         doAsync() {
-            for (i in 0..3) {
+            for (i in 0..5) {
 
 
                 cardRow1[i].setOnClickListener() {
