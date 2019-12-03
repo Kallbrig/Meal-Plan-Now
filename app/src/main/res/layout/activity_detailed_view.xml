@@ -44,7 +44,7 @@
             app:autoSizeTextType="uniform" />
 
         <ImageButton
-            android:id="@+id/searchButSevenDay2"
+            android:id="@+id/searchButDetail"
             android:layout_width="40sp"
             android:layout_height="50sp"
             android:layout_margin="2sp"
@@ -54,7 +54,7 @@
             android:src="@android:drawable/ic_menu_search" />
 
         <ImageButton
-            android:id="@+id/favsButSevenDay2"
+            android:id="@+id/favsButDetail"
             android:layout_width="40sp"
             android:layout_height="50sp"
             android:layout_margin="2sp"
@@ -64,7 +64,7 @@
             android:src="@android:drawable/btn_star" />
 
         <ImageButton
-            android:id="@+id/sevenDayButSevenDay2"
+            android:id="@+id/sevenDayButDetail"
             android:layout_width="40sp"
             android:layout_height="50sp"
             android:layout_margin="2sp"

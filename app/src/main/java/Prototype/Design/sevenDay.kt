@@ -48,9 +48,11 @@ class sevenDay : AppCompatActivity() {
     fun createDetailIntent(id: String, img: Bitmap) {
         println("Intent Created")
         val intent = Intent(this, DetailedView::class.java)
+        //img - The image to put into the detailed view as a bitmap.
         intent.putExtra("img", img)
+        //This takes ID# as an argument. not Name.
         intent.putExtra("id", id)
-        //intent.putExtra("prevIntent", MainActivity::class.java)
+
 
 
         // log message
@@ -59,4 +61,21 @@ class sevenDay : AppCompatActivity() {
         startActivity(intent)
 
     }
+
+    private fun createSearchIntent() {
+        val intent = Intent(this, Search::class.java)
+        startActivity(intent)
+    }
+
+    private fun createFavsIntent() {
+        val intent = Intent(this, favs_view::class.java)
+        startActivity(intent)
+    }
+
+    private fun createSevenDayIntent() {
+        val intent = Intent(this, sevenDay::class.java)
+        startActivity(intent)
+    }
+
+
 }

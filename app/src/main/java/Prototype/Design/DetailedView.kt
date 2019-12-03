@@ -31,6 +31,11 @@ class DetailedView : AppCompatActivity() {
     lateinit var downloadBut: LinearLayout
     lateinit var meal: ArrayList<String>
 
+    lateinit var searchButDetail: ImageButton
+    lateinit var favsButDetail: ImageButton
+    lateinit var sevenDayButDetail: ImageButton
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_view)
@@ -47,6 +52,21 @@ class DetailedView : AppCompatActivity() {
 
         mealInstructions = findViewById<TextView>(R.id.mealInstructions)
         downloadBut = findViewById<LinearLayout>(R.id.addToSevenDay)
+
+        searchButDetail = findViewById(R.id.searchButDetail)
+        searchButDetail.setOnClickListener {
+            createSearchIntent()
+        }
+        favsButDetail = findViewById(R.id.favsButDetail)
+        favsButDetail.setOnClickListener {
+            createFavsIntent()
+        }
+        sevenDayButDetail = findViewById(R.id.sevenDayButDetail)
+        sevenDayButDetail.setOnClickListener {
+            createFavsIntent()
+        }
+
+
 
 
 
@@ -167,6 +187,22 @@ class DetailedView : AppCompatActivity() {
         backBut.setOnClickListener {
             finish()
         }
+
+    }
+
+    private fun createSearchIntent() {
+        val intent = Intent(this, Search::class.java)
+        startActivity(intent)
+    }
+
+    private fun createFavsIntent() {
+        val intent = Intent(this, favs_view::class.java)
+        startActivity(intent)
+    }
+
+    private fun createSevenDayIntent() {
+        val intent = Intent(this, sevenDay::class.java)
+        startActivity(intent)
     }
 
 
