@@ -67,6 +67,10 @@ class Search : AppCompatActivity() {
 
     }
 
+
+    //Sets View Variables and puts them into the ArrayLists. used to shorten and simplify onCreate()
+    //Takes no Arguments
+    //Returns nothing
     private fun setViews() {
 
         searchTextBox = findViewById<EditText>(R.id.searchTextBox)
@@ -150,6 +154,10 @@ class Search : AppCompatActivity() {
 
     }
 
+
+    //Function that searches the information. this is the only function that needs to be called from Search
+    //Takes a View as an Argument. Primarily the Search button.
+    //Does not return anything
     fun search(v: View) {
         Log.i(TAG, "Search has Begun...")
         var searchKeyword = searchTextBox.text.toString()
@@ -168,6 +176,9 @@ class Search : AppCompatActivity() {
         }
     }
 
+    //This function takes fetched information and fills it into the activities in Search
+    //Takes no arguments. Only uses Global Variables
+    //Returns nothing
     private fun setSearchViewContent() {
 
         for (i in 0 until 9) {
@@ -175,14 +186,20 @@ class Search : AppCompatActivity() {
             cards[i].setOnClickListener(null)
         }
 
-        for (i in 0..searchResponse.size - 1) {
+        var upperBound: Int
+        if ((searchResponse.size - 1) >= 9) {
+            upperBound = 8
+        } else {
+            upperBound = searchResponse.size - 1
+        }
+
+        for (i in 0..upperBound) {
             cardTexts[i].text = searchResponse[i][0]
             cardImgs[i].setImageDrawable(api.getImgDrawable(searchResponse[i][1]))
             cards[i].alpha = 1f
             cards[i].setOnClickListener {
                 createDetailIntent(searchResponse[i][2], cardImgs[i].drawable.toBitmap(300, 400))
             }
-            println("I've got a huge dick and index 2 is: " + searchResponse[i][2])
 
         }
 
@@ -201,6 +218,9 @@ class Search : AppCompatActivity() {
         }*/
     }
 
+    //Opens Detailed View
+    //Takes meal Id # as a string and meal Image as a bitmap as arguments
+    //Starts detailedIntent but doesn't return anything
     private fun createDetailIntent(id: String, img: Bitmap) {
         Log.i(TAG, "Detailed Intent Created")
         val intent = Intent(this, DetailedView::class.java)
