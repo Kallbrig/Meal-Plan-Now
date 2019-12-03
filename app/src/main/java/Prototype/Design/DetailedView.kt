@@ -123,17 +123,16 @@ class DetailedView : AppCompatActivity() {
         )
         var i = 5
         var j = 0
+        println(meal.size - 1)
         while (i < meal.size - 1) {
             ingList[j].text = meal[i]
-            ingList[j].alpha = 1f
+            if (!ingList[j].text.contains("null")) {
+                ingList[j].alpha = 1f
+            }
+
             i++
             j++
         }
-        println(i)
-        println(j)
-        println(ingList.size - 1)
-
-
     }
 
 
