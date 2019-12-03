@@ -16,9 +16,9 @@
 
         <ImageButton
             android:id="@+id/backButton"
-            android:layout_width="wrap_content"
+            android:layout_width="50sp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:background="#00FFFFFF"
             android:onClick="backButtonPress"
             android:padding="15sp"
@@ -26,15 +26,22 @@
 
         <TextView
             android:id="@+id/titleBar"
-            android:layout_width="wrap_content"
+            android:layout_width="260sp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30sp"
-            android:layout_weight="2"
-            android:paddingTop="10sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginBottom="2sp"
+            android:layout_weight="0"
+            android:autoText="true"
+            android:bufferType="normal"
+            android:fitsSystemWindows="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:maxLines="1"
+            android:paddingTop="5sp"
             android:text="TitleBar"
             android:textColor="@color/red"
             android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 
     <ImageView

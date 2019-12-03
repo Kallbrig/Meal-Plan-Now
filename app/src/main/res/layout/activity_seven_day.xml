@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/drawablebg"
     tools:context=".sevenDay">
 
     <LinearLayout
@@ -15,37 +14,33 @@
         android:weightSum="4">
 
         <ImageButton
-            android:id="@+id/backButSevenDay"
-            android:layout_width="wrap_content"
+            android:id="@+id/backButton"
+            android:layout_width="50sp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:background="#00FFFFFF"
+            android:onClick="backButtonPress"
             android:padding="15sp"
             app:srcCompat="@drawable/backarrow" />
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:id="@+id/titleBar"
+            android:layout_width="260sp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30sp"
-            android:layout_weight="2"
-            android:paddingTop="10sp"
-            android:text="Seven Day Plan"
+            android:layout_marginLeft="20sp"
+            android:layout_marginBottom="2sp"
+            android:layout_weight="0"
+            android:autoText="true"
+            android:bufferType="normal"
+            android:fitsSystemWindows="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:maxLines="1"
+            android:paddingTop="5sp"
+            android:text="Seven Day View!"
             android:textColor="@color/red"
             android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/favsButSevenDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:contentDescription="Favorites Button"
-            android:padding="15sp"
-            app:srcCompat="@android:drawable/btn_star" />
-
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 
     <ScrollView
@@ -69,7 +64,7 @@
                 android:layout_marginRight="4sp"
                 android:layout_marginBottom="8sp"
                 android:layout_weight="0"
-                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardBackgroundColor="#4B534F4F"
                 app:cardCornerRadius="8sp"
                 app:cardElevation="5sp"
                 app:cardMaxElevation="5sp">
@@ -86,7 +81,7 @@
                         android:background="#00FFFFFF"
                         android:gravity="center"
                         android:text="1"
-                        android:textColor="#DA242424"
+                        android:textColor="@color/red"
                         android:textSize="150sp" />
 
                     <LinearLayout
@@ -124,7 +119,7 @@
                 android:layout_marginRight="4sp"
                 android:layout_marginBottom="8sp"
                 android:layout_weight="0"
-                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardBackgroundColor="#4B534F4F"
                 app:cardCornerRadius="8sp"
                 app:cardElevation="5sp"
                 app:cardMaxElevation="5sp">
@@ -141,7 +136,7 @@
                         android:background="#00FFFFFF"
                         android:gravity="center"
                         android:text="2"
-                        android:textColor="#DA242424"
+                        android:textColor="@color/red"
                         android:textSize="150sp" />
 
                     <LinearLayout
@@ -179,7 +174,7 @@
                 android:layout_marginRight="4sp"
                 android:layout_marginBottom="8sp"
                 android:layout_weight="0"
-                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardBackgroundColor="#4B534F4F"
                 app:cardCornerRadius="8sp"
                 app:cardElevation="5sp"
                 app:cardMaxElevation="5sp">
@@ -196,7 +191,7 @@
                         android:background="#00FFFFFF"
                         android:gravity="center"
                         android:text="3"
-                        android:textColor="#DA242424"
+                        android:textColor="@color/red"
                         android:textSize="150sp" />
 
                     <LinearLayout
@@ -234,7 +229,7 @@
                 android:layout_marginRight="4sp"
                 android:layout_marginBottom="8sp"
                 android:layout_weight="0"
-                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardBackgroundColor="#4B534F4F"
                 app:cardCornerRadius="8sp"
                 app:cardElevation="5sp"
                 app:cardMaxElevation="5sp">
@@ -251,7 +246,7 @@
                         android:background="#00FFFFFF"
                         android:gravity="center"
                         android:text="4"
-                        android:textColor="#DA242424"
+                        android:textColor="@color/red"
                         android:textSize="150sp" />
 
                     <LinearLayout
@@ -289,7 +284,7 @@
                 android:layout_marginRight="4sp"
                 android:layout_marginBottom="8sp"
                 android:layout_weight="0"
-                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardBackgroundColor="#4B534F4F"
                 app:cardCornerRadius="8sp"
                 app:cardElevation="5sp"
                 app:cardMaxElevation="5sp">
@@ -306,7 +301,7 @@
                         android:background="#00FFFFFF"
                         android:gravity="center"
                         android:text="5"
-                        android:textColor="#DA242424"
+                        android:textColor="@color/red"
                         android:textSize="150sp" />
 
                     <LinearLayout
@@ -344,7 +339,7 @@
                 android:layout_marginRight="4sp"
                 android:layout_marginBottom="8sp"
                 android:layout_weight="0"
-                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardBackgroundColor="#4B534F4F"
                 app:cardCornerRadius="8sp"
                 app:cardElevation="5sp"
                 app:cardMaxElevation="5sp">
@@ -361,7 +356,7 @@
                         android:background="#00FFFFFF"
                         android:gravity="center"
                         android:text="6"
-                        android:textColor="#DA242424"
+                        android:textColor="@color/red"
                         android:textSize="150sp" />
 
                     <LinearLayout
@@ -399,7 +394,7 @@
                 android:layout_marginRight="4sp"
                 android:layout_marginBottom="35sp"
                 android:layout_weight="0"
-                app:cardBackgroundColor="#1EFFFFFF"
+                app:cardBackgroundColor="#4B534F4F"
                 app:cardCornerRadius="8sp"
                 app:cardElevation="5sp"
                 app:cardMaxElevation="5sp">
@@ -416,7 +411,7 @@
                         android:background="#00FFFFFF"
                         android:gravity="center"
                         android:text="7"
-                        android:textColor="#DA242424"
+                        android:textColor="@color/red"
                         android:textSize="150sp" />
 
                     <LinearLayout
