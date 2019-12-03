@@ -19,14 +19,14 @@
             android:layout_width="50sp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:alpha="0"
             android:background="#00FFFFFF"
-            android:onClick="backButtonPress"
             android:padding="15sp"
             app:srcCompat="@drawable/backarrow" />
 
         <TextView
             android:id="@+id/titleBar"
-            android:layout_width="260sp"
+            android:layout_width="210sp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20sp"
             android:layout_marginBottom="2sp"
@@ -42,6 +42,36 @@
             android:textSize="25sp"
             android:textStyle="bold"
             app:autoSizeTextType="uniform" />
+
+        <ImageButton
+            android:id="@+id/searchButMain"
+            android:layout_width="40sp"
+            android:layout_height="50sp"
+            android:layout_margin="2sp"
+            android:layout_weight="0"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_search" />
+
+        <ImageButton
+            android:id="@+id/favsButMain"
+            android:layout_width="40sp"
+            android:layout_height="50sp"
+            android:layout_margin="2sp"
+            android:layout_weight="0"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/sevenDayButMain"
+            android:layout_width="40sp"
+            android:layout_height="50sp"
+            android:layout_margin="2sp"
+            android:layout_weight="0"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sevendayicon" />
     </LinearLayout>
 
     <ScrollView

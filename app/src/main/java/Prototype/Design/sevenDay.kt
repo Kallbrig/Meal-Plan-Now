@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.ImageView
 
 class sevenDay : AppCompatActivity() {
 
@@ -16,14 +17,14 @@ class sevenDay : AppCompatActivity() {
         setContentView(R.layout.activity_seven_day)
 
 
-        var favsBut = findViewById<ImageButton>(R.id.favsButSevenDay)
+        var favsBut = findViewById<ImageView>(R.id.favsButSevenDay)
         favsBut.setOnClickListener {
 
             var i = Intent(this, favs_view::class.java)
             startActivity(i)
 
         }
-        var backBut = findViewById<ImageButton>(R.id.backButSevenDay)
+        var backBut = findViewById<ImageButton>(R.id.backButton)
         backBut.setOnClickListener {
             finish()
         }

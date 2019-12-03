@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/titleBar"
-            android:layout_width="260sp"
+            android:layout_width="210sp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20sp"
             android:layout_marginBottom="2sp"
@@ -42,6 +42,37 @@
             android:textSize="25sp"
             android:textStyle="bold"
             app:autoSizeTextType="uniform" />
+
+        <ImageButton
+            android:id="@+id/searchButSearch"
+            android:layout_width="40sp"
+            android:layout_height="50sp"
+            android:layout_margin="2sp"
+            android:layout_weight="0"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_search" />
+
+        <ImageButton
+            android:id="@+id/favsButSearch"
+            android:layout_width="40sp"
+            android:layout_height="50sp"
+            android:layout_margin="2sp"
+            android:layout_weight="0"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/sevenDayButSearch"
+            android:layout_width="40sp"
+            android:layout_height="50sp"
+            android:layout_margin="2sp"
+            android:layout_weight="0"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sevendayicon" />
+
     </LinearLayout>
 
     <ScrollView
@@ -71,7 +102,6 @@
                     android:layout_height="50sp"
                     android:layout_weight="1"
                     android:background="#00FFFFFF"
-                    android:onClick="search"
                     android:scaleType="center"
                     android:tint="@color/red"
                     app:srcCompat="@android:drawable/ic_menu_search" />
@@ -82,7 +112,6 @@
                     android:layout_height="50sp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="4"
-                    android:background="@null"
                     android:ems="10"
                     android:gravity="center_horizontal|center_vertical"
                     android:hint="Meal Name"

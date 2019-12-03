@@ -52,6 +52,11 @@ class Search : AppCompatActivity() {
     lateinit var card32: CardView
     lateinit var card33: CardView
 
+    lateinit var searchButSearch: ImageButton
+    lateinit var favsButSearch: ImageButton
+    lateinit var sevenDayButSearch: ImageButton
+    lateinit var backBut: ImageButton
+
     lateinit var searchBut: ImageButton
     lateinit var searchTextBox: EditText
     var searchResponse = ArrayList<ArrayList<String>>(9)
@@ -151,6 +156,29 @@ class Search : AppCompatActivity() {
             )
         )
 
+        searchButSearch = findViewById(R.id.searchButSearch)
+        searchButSearch.alpha = 0f
+
+
+        favsButSearch = findViewById(R.id.favsButSearch)
+        favsButSearch.setOnClickListener {
+            createFavsIntent()
+        }
+
+        sevenDayButSearch = findViewById(R.id.sevenDayButSearch)
+        sevenDayButSearch.setOnClickListener {
+            createSevenDayIntent()
+        }
+
+        searchBut.setOnClickListener {
+            search()
+        }
+
+        backBut = findViewById(R.id.backButton)
+        backBut.setOnClickListener {
+            finish()
+        }
+
 
     }
 
@@ -158,7 +186,7 @@ class Search : AppCompatActivity() {
     //Function that searches the information. this is the only function that needs to be called from Search
     //Takes a View as an Argument. Primarily the Search button.
     //Does not return anything
-    fun search(v: View) {
+    fun search() {
         Log.i(TAG, "Search has Begun...")
         var searchKeyword = searchTextBox.text.toString()
 
@@ -202,20 +230,6 @@ class Search : AppCompatActivity() {
             }
 
         }
-
-
-/*
-        for (i in 0 until searchResponse.size) {
-
-            cardTexts[i].text = searchResponse[i][0]
-            cardImgs[i].setImageDrawable(api.getImgDrawable(searchResponse[i][1]))
-            cards[i].alpha = 1f
-
-            Log.i(TAG,"Meal ID#: " + api.getMealByName(searchResponse[i][0])[2])
-*//*            cards[i].setOnClickListener {
-                createDetailIntent(api.getMealById("52772")[2] , cardImgs[i].drawable.toBitmap(300, 400))
-            }*//*
-        }*/
     }
 
     //Opens Detailed View
@@ -233,6 +247,21 @@ class Search : AppCompatActivity() {
 
         startActivity(intent)
 
+    }
+
+    private fun createSearchIntent() {
+        val intent = Intent(this, Search::class.java)
+        startActivity(intent)
+    }
+
+    private fun createFavsIntent() {
+        val intent = Intent(this, favs_view::class.java)
+        startActivity(intent)
+    }
+
+    private fun createSevenDayIntent() {
+        val intent = Intent(this, sevenDay::class.java)
+        startActivity(intent)
     }
 
 

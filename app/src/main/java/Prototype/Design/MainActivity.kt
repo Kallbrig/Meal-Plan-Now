@@ -35,6 +35,7 @@ import androidx.annotation.IntegerRes
 import androidx.core.content.ContextCompat.*
 import androidx.core.view.drawToBitmap
 import kotlinx.android.synthetic.main.activity_detailed_view.*
+import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.*
 import org.w3c.dom.Text
 import java.util.concurrent.Future
@@ -61,10 +62,10 @@ var cardRow3Name = ArrayList<TextView>(6)
 var cardRow1Id = ArrayList<String>(6)
 var cardRow2Id = ArrayList<String>(6)
 var cardRow3Id = ArrayList<String>(6)
-//var sevenDayButton = findViewById<Button>(R.id.sevenDayButton)
 lateinit var row1Name: TextView
 lateinit var row2Name: TextView
 lateinit var row3Name: TextView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -72,6 +73,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var searchButMain = findViewById<ImageButton>(R.id.searchButMain)
+        searchButMain.setOnClickListener() {
+            createSearchIntent()
+        }
+        var favsButMain = findViewById<ImageButton>(R.id.favsButMain)
+        favsButMain.setOnClickListener() {
+            createFavsIntent()
+        }
+        var sevenDayButMain = findViewById<ImageButton>(R.id.sevenDayButMain)
+        sevenDayButMain.setOnClickListener() {
+            createSevenDayIntent()
+        }
 
 
         //
@@ -184,13 +198,13 @@ class MainActivity : AppCompatActivity() {
     //No Arguments needed
     //
     private fun setContent() {
-        var i = 0
+        var j = 0
         var mainCats = ArrayList<ArrayList<ArrayList<String>>>(3)
 
-        while (i < 3) {
+        while (j < 3) {
             //Log.i(TAG, i.toString())
-            mainCats.add(api.getCat(mainMealCats[i]))
-            i++
+            mainCats.add(api.getCat(mainMealCats[j]))
+            j++
         }
 
         for (i in 0 until 6) {
@@ -331,6 +345,8 @@ class MainActivity : AppCompatActivity() {
             row1Name = findViewById<TextView>(R.id.Row1Name)
             row2Name = findViewById<TextView>(R.id.Row2Name)
             row3Name = findViewById<TextView>(R.id.Row3Name)
+
+
         }
     }
 
@@ -369,6 +385,12 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, Search::class.java)
         startActivity(intent)
     }
+
+    private fun createSevenDayIntent() {
+        val intent = Intent(this, sevenDay::class.java)
+        startActivity(intent)
+    }
+
 
     private fun testFun() {
 
