@@ -14,6 +14,7 @@ import androidx.core.graphics.drawable.toBitmap
 lateinit var searchButFavs: ImageButton
 lateinit var favsButFavs: ImageButton
 lateinit var sevenDayButFavs: ImageButton
+private val TAG: String = "FAVORITES VIEW"
 
 
 class favs_view : AppCompatActivity() {

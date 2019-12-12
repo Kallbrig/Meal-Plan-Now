@@ -31,16 +31,16 @@ class sevenDay : AppCompatActivity() {
         }
 
         var favsButSevenDay = findViewById<ImageButton>(R.id.favsButSevenDay)
-        favsButSevenDay.setOnClickListener(){
+        favsButSevenDay.setOnClickListener {
             createFavsIntent()
         }
 
         var searchButSevenDay = findViewById<ImageButton>(R.id.searchButSevenDay)
-        searchButSevenDay.setOnClickListener(){
+        searchButSevenDay.setOnClickListener {
             createSearchIntent()
         }
 
-        var sevenDayButSevenDay = findViewById<ImageButton>(R.id.sevenDayButSevenDay)
+        // var sevenDayButSevenDay = findViewById<ImageButton>(R.id.sevenDayButSevenDay)
 
 
     }

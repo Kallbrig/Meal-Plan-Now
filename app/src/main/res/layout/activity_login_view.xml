@@ -36,8 +36,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,21 +51,116 @@
             android:id="@+id/infoTextLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginBottom="12sp"
+            android:alpha=".75"
+            android:gravity="center"
+            android:text="Login"
+            android:textColor="@color/red"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="360sp"
+            android:layout_height="5sp"
+            android:layout_marginBottom="13sp"
+            android:alpha=".75"
+            android:background="@color/red" />
 
         <EditText
             android:id="@+id/signInEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="350sp"
+            android:layout_height="40sp"
+            android:background="@null"
             android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:gravity="center_horizontal"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/red"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/red"
+            android:textCursorDrawable="@color/red" />
 
         <EditText
             android:id="@+id/signInPassword"
+            android:layout_width="350sp"
+            android:layout_height="40sp"
+            android:background="@null"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/red"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/red"
+            android:textCursorDrawable="@color/red" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword" />
+            android:gravity="center|center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="0">
+
+            <Button
+                android:id="@+id/signUpBut"
+                android:layout_width="150sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="50sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginRight="50sp"
+                android:layout_marginBottom="15sp"
+                android:layout_weight="0"
+                android:alpha=".75"
+                android:background="@color/red"
+                android:text="Sign Up"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/loginBut"
+                android:layout_width="150sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="50sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginRight="50sp"
+                android:layout_marginBottom="15sp"
+                android:layout_weight="0"
+                android:alpha=".75"
+                android:background="@color/red"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50sp"
+        android:foregroundGravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Powered By:"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200sp"
+            android:layout_height="100sp"
+            app:srcCompat="@drawable/themealdblogo" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

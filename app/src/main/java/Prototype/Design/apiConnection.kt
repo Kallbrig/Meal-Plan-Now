@@ -17,7 +17,7 @@ class apiConnection {
 
 
     private val TAG = "APICONNECTION"
-    public var time:Long = 0
+    private var time: Long = 0
 
     //fetches meal information using an ID Number
         //Requires the Meal ID # as an Argument
