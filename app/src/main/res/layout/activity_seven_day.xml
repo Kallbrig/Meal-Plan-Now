@@ -44,6 +44,17 @@
             app:autoSizeTextType="uniform" />
 
         <ImageButton
+            android:id="@+id/sevenDayButSevenDay"
+            android:layout_width="40sp"
+            android:layout_height="50sp"
+            android:layout_margin="3sp"
+            android:layout_weight="0"
+            android:alpha="0"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sevendayicon" />
+
+        <ImageButton
             android:id="@+id/searchButSevenDay"
             android:layout_width="40sp"
             android:layout_height="50sp"
@@ -62,16 +73,6 @@
             android:background="#00FFFFFF"
             android:scaleType="fitCenter"
             android:src="@android:drawable/btn_star" />
-
-        <ImageButton
-            android:id="@+id/sevenDayButSevenDay"
-            android:layout_width="40sp"
-            android:layout_height="50sp"
-            android:layout_margin="3sp"
-            android:layout_weight="0"
-            android:background="#00FFFFFF"
-            android:scaleType="fitCenter"
-            android:src="@drawable/sevendayicon" />
 
     </LinearLayout>
 

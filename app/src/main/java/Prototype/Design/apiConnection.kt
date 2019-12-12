@@ -3,56 +3,69 @@ package Prototype.Design
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.util.Log
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
+import kotlin.system.measureTimeMillis
 
 
 class apiConnection {
 
 
-    // GLOBAL VARIABLES
-    //
-
 
     private val TAG = "APICONNECTION"
-
+    public var time:Long = 0
 
     //fetches meal information using an ID Number
-    //Requires the Meal ID # as an Argument
-    //Returns an ArrayList<String> Containing the single Meal Information.
-    fun getMealById(mealId: String): ArrayList<String> {
-        return doAsyncResult {
-            var jsonO =
-                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=" + mealId).readText()).getJSONArray(
-                    "meals"
-                ).getJSONObject(0)
-            var mealInfoLocal = parseIndMeal(jsonO)
-            //  Log.i(TAG, "GetMealById has finished")
-            return@doAsyncResult mealInfoLocal
-        }.get()
-    }
+        //Requires the Meal ID # as an Argument
+        //Returns an ArrayList<String> Containing the single Meal Information.
+        fun getMealById(mealId: String): ArrayList<String> {
+
+        var jj = System.currentTimeMillis()
+            var returnval =  doAsyncResult {
+                var jsonO =
+                    JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=" + mealId).readText()).getJSONArray(
+                        "meals"
+                    ).getJSONObject(0)
+                var mealInfoLocal = parseIndMeal(jsonO)
+                //  Log.i(TAG, "GetMealById has finished")
+                return@doAsyncResult mealInfoLocal
+            }.get()
+
+        var ii = System.currentTimeMillis()
+
+        time = ii - jj
+
+        Log.i(TAG, "Log Time - " + time.toString())
+
+        return returnval
+        }
 
 
-    //fetches meal information using the meal's Name
-    //Requires the Meal Name as an Argument
-    //Returns an ArrayList<String> containing the single Meal Information
-    fun getMealByName(mealName: String): ArrayList<String> {
-        return doAsyncResult {
-            while (mealName.contains(' ')) {
-                mealName.replace(' ', '_')
-            }
-            var jsonO =
-                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
-                    "meals"
-                ).getJSONObject(0)
-            var mealInfoLocal = parseIndMeal(jsonO)
-            //  Log.i(TAG, "GetMealById has finished")
-            return@doAsyncResult mealInfoLocal
-        }.get()
-    }
+
+
+
+
+        //fetches meal information using the meal's Name
+        //Requires the Meal Name as an Argument
+        //Returns an ArrayList<String> containing the single Meal Information
+        fun getMealByName(mealName: String): ArrayList<String> {
+            return doAsyncResult {
+                while (mealName.contains(' ')) {
+                    mealName.replace(' ', '_')
+                }
+                var jsonO =
+                    JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=" + mealName).readText()).getJSONArray(
+                        "meals"
+                    ).getJSONObject(0)
+                var mealInfoLocal = parseIndMeal(jsonO)
+                //  Log.i(TAG, "GetMealById has finished")
+                return@doAsyncResult mealInfoLocal
+            }.get()
+        }
 
 
     //fetches an entire Category from
