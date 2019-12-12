@@ -40,7 +40,7 @@ import org.jetbrains.anko.*
 import org.w3c.dom.Text
 import java.util.concurrent.Future
 
-val TAG = "MAINACTIVITY"
+private val TAG = "MAINACTIVITY"
 val api = apiConnection()
 // Meal categories to display on the main page. just an array of categories that will be passed to parseCat()
 var mainMealCats = ArrayList<String>(4)
