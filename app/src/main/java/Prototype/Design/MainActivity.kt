@@ -34,6 +34,7 @@ import android.util.Log
 import androidx.annotation.IntegerRes
 import androidx.core.content.ContextCompat.*
 import androidx.core.view.drawToBitmap
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_detailed_view.*
 import kotlinx.android.synthetic.main.activity_search.*
@@ -66,17 +67,24 @@ var cardRow3Id = ArrayList<String>(6)
 lateinit var row1Name: TextView
 lateinit var row2Name: TextView
 lateinit var row3Name: TextView
-private lateinit var user: FirebaseUser
+
 
 
 class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        user = intent!!.extras!!["user"] as FirebaseUser
+
+        var mainLogo = findViewById<TextView>(R.id.titleBar)
+        mainLogo.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(this, login_view::class.java)
+            startActivity(intent)
+        }
 
         var searchButMain = findViewById<ImageButton>(R.id.searchButMain)
         searchButMain.setOnClickListener() {
@@ -90,6 +98,9 @@ class MainActivity : AppCompatActivity() {
         sevenDayButMain.setOnClickListener() {
             createSevenDayIntent()
         }
+
+        //TESTING LOG OUT
+        FirebaseAuth.getInstance().signOut()
 
 
         //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats

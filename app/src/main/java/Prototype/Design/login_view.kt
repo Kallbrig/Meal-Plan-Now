@@ -1,12 +1,10 @@
 package Prototype.Design
 
 
-import android.R.id.message
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log.*
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -19,8 +17,8 @@ import com.google.firebase.auth.FirebaseUser
 
 
 private val TAG: String = "LOGIN ACTIVITY"
-private lateinit var auth: FirebaseAuth
-private var user: FirebaseUser? = null
+lateinit var auth: FirebaseAuth
+var user: FirebaseUser? = null
 
 class login_view : AppCompatActivity() {
 
@@ -36,18 +34,17 @@ class login_view : AppCompatActivity() {
 
     }
 
-    /*  override fun onStart() {
+    override fun onStart() {
           super.onStart()
           // Check if user is signed in (non-null) and update UI accordingly.
           val currentUser = auth.currentUser
-          if (currentUser == null) {
-              var toast = makeText(applicationContext, "Please Verify your Email", LENGTH_LONG)
-              toast.show()
-          } else {
+        if (currentUser != null) {
               createMainIntent()
-          }
+        } else {
+            e(TAG, "Current User is null")
+        }
       }
-  */
+
     fun emailSignUpBut(v: View) {
         //var loginBut = findViewById<Button>(R.id.loginBut)
         //var SignUpBut = findViewById<Button>(R.id.signUpBut)
@@ -58,10 +55,9 @@ class login_view : AppCompatActivity() {
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
                 d(TAG, "createUserWithEmail:success")
-                Toast.makeText(baseContext, "Authentication Success", LENGTH_LONG).show()
+                makeText(baseContext, "Authentication Success", LENGTH_LONG).show()
                 user = auth.currentUser
                 sendVerificationEmail()
-
 
             } else {
                 // If sign in fails, display a message to the user.
@@ -69,7 +65,6 @@ class login_view : AppCompatActivity() {
                 //Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 val e = task.exception as FirebaseAuthException?
                 makeText(this, "Failed Registration: " + e!!.message, Toast.LENGTH_SHORT).show()
-
 
                 //UPDATE UI FAIL
             }
@@ -96,12 +91,16 @@ class login_view : AppCompatActivity() {
         var email = findViewById<EditText>(R.id.signInEmail).text.toString()
         var password = findViewById<EditText>(R.id.signInPassword).toString()
 
+        auth.signOut()
+
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
+
                 user = auth.currentUser
                 createMainIntent()
+
             } else {
-                //makeText(this,"There was an issue, please try again", LENGTH_LONG).show()
+
                 val e = task.exception as FirebaseAuthException?
                 makeText(this, "Failed SignIn " + e!!.message, Toast.LENGTH_SHORT).show()
             }
@@ -110,7 +109,6 @@ class login_view : AppCompatActivity() {
 
     private fun createMainIntent() {
         var intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("user", auth.currentUser)
         startActivity(intent)
     }
 
