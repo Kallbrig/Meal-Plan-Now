@@ -99,13 +99,6 @@ class apiConnection {
     }
 
 
-    fun getImgBitmap(imgUrl: String, cont: Context): Bitmap {
-        return doAsyncResult {
-            return@doAsyncResult Picasso.with(cont).load(imgUrl).get()
-        }.get()
-    }
-
-
     private fun parseCatIndMeal(jsonO: JSONObject): ArrayList<String> {
         var mealInfo: ArrayList<String> = ArrayList(5)
 

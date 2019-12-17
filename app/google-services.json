@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "951429471590",
+    "firebase_url": "https://mealplannow-e2e48.firebaseio.com",
+    "project_id": "mealplannow-e2e48",
+    "storage_bucket": "mealplannow-e2e48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951429471590:android:fd849ab7b40b760f187ca7",
+        "android_client_info": {
+          "package_name": "com.application.MealPlanNow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951429471590-9cbok3j4vn9d4cs4ennppt3vooodgh0g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.application.MealPlanNow",
+            "certificate_hash": "ab7082bf514fc25e99c15c36065f224b555581d6"
+          }
+        },
+        {
+          "client_id": "951429471590-b1ied5i411b931ae1q2frvuu4atl4rek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCqf30Nefr33KoXIqulns7tPEcjw1aUcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951429471590-b1ied5i411b931ae1q2frvuu4atl4rek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

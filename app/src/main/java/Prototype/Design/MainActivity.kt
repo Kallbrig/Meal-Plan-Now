@@ -34,6 +34,7 @@ import android.util.Log
 import androidx.annotation.IntegerRes
 import androidx.core.content.ContextCompat.*
 import androidx.core.view.drawToBitmap
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_detailed_view.*
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.*
@@ -65,6 +66,7 @@ var cardRow3Id = ArrayList<String>(6)
 lateinit var row1Name: TextView
 lateinit var row2Name: TextView
 lateinit var row3Name: TextView
+private lateinit var user: FirebaseUser
 
 
 class MainActivity : AppCompatActivity() {
@@ -73,6 +75,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        user = intent!!.extras!!["user"] as FirebaseUser
 
         var searchButMain = findViewById<ImageButton>(R.id.searchButMain)
         searchButMain.setOnClickListener() {

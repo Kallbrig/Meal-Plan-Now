@@ -116,6 +116,7 @@
                 android:layout_weight="0"
                 android:alpha=".75"
                 android:background="@color/red"
+                android:onClick="emailSignUpBut"
                 android:text="Sign Up"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
@@ -131,6 +132,7 @@
                 android:layout_weight="0"
                 android:alpha=".75"
                 android:background="@color/red"
+                android:onClick="signInBut"
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
