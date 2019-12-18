@@ -16,30 +16,31 @@ import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.*
 
 private val TAG = "MAINACTIVITY"
-val api = apiConnection()
+private val api = apiConnection()
 // Meal categories to display on the main page. just an array of categories that will be passed to parseCat()
-var mainMealCats = ArrayList<String>(4)
+private var mealCatsOnMain = ArrayList<String>(4)
 //Row1 Meals. Goes inside of mainMealCats
-var cardRow1: ArrayList<CardView> = ArrayList<CardView>(7)
-var row1Cat: String = ""
+private var cardRow1: ArrayList<CardView> = ArrayList<CardView>(7)
+private var row1CatName: String = ""
 //Row2 Meals. Goes inside of mainMealCats
-var cardRow2: ArrayList<CardView> = ArrayList<CardView>(7)
-var row2Cat: String = ""
+private var cardRow2: ArrayList<CardView> = ArrayList<CardView>(7)
+private var row2CatName: String = ""
 //Row3 Meals. Goes inside of mainMealCats
-var cardRow3: ArrayList<CardView> = ArrayList<CardView>(7)
-var row3Cat: String = ""
-var cardRow1Img = ArrayList<ImageView>(6)
-var cardRow2Img = ArrayList<ImageView>(6)
-var cardRow3Img = ArrayList<ImageView>(6)
-var cardRow1Name = ArrayList<TextView>(6)
-var cardRow2Name = ArrayList<TextView>(6)
-var cardRow3Name = ArrayList<TextView>(6)
-var cardRow1Id = ArrayList<String>(6)
-var cardRow2Id = ArrayList<String>(6)
-var cardRow3Id = ArrayList<String>(6)
-lateinit var row1Name: TextView
-lateinit var row2Name: TextView
-lateinit var row3Name: TextView
+private var cardRow3: ArrayList<CardView> = ArrayList<CardView>(7)
+private var row3CatName: String = ""
+
+private var cardRow1Img = ArrayList<ImageView>(6)
+private var cardRow2Img = ArrayList<ImageView>(6)
+private var cardRow3Img = ArrayList<ImageView>(6)
+private var cardRow1Name = ArrayList<TextView>(6)
+private var cardRow2Name = ArrayList<TextView>(6)
+private var cardRow3Name = ArrayList<TextView>(6)
+private var cardRow1Id = ArrayList<String>(6)
+private var cardRow2Id = ArrayList<String>(6)
+private var cardRow3Id = ArrayList<String>(6)
+private lateinit var row1Name: TextView
+private lateinit var row2Name: TextView
+private lateinit var row3Name: TextView
 
 
 
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         var mainLogo = findViewById<TextView>(R.id.titleBar)
         mainLogo.setOnClickListener {
-            //auth.signOut()
+
             var fauth = FirebaseAuth.getInstance()
             fauth.signOut()
             val intent = Intent(this, login_view::class.java)
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         //Sets onclicklisteners for all cards
         setOnClick()
 
-        val mealCat = arrayListOf<String>(
+        val fullMealCatList = arrayListOf<String>(
             "Chicken",
             "Beef",
             "Dessert",
@@ -103,20 +104,23 @@ class MainActivity : AppCompatActivity() {
 
         for (i in 0..3) {
 
-            var new = mealCat.random()
+            var new = fullMealCatList.random()
 
-            while (new == "Goat" || new == "Vegan" || new == "Starter" || mainMealCats.contains(new)) {
-                new = mealCat.random()
+            while (new == "Goat" || new == "Vegan" || new == "Starter" || mealCatsOnMain.contains(
+                    new
+                )
+            ) {
+                new = fullMealCatList.random()
             }
 
-            mainMealCats.add(new)
+            mealCatsOnMain.add(new)
 
-            if (row1Cat == "") {
-                row1Cat = new
-            } else if (row2Cat == "") {
-                row2Cat = new
-            } else if (row3Cat == "") {
-                row3Cat = new
+            if (row1CatName == "") {
+                row1CatName = new
+            } else if (row2CatName == "") {
+                row2CatName = new
+            } else if (row3CatName == "") {
+                row3CatName = new
             }
 
         }
@@ -151,18 +155,21 @@ class MainActivity : AppCompatActivity() {
 
             var new = mealCat.random()
 
-            while (new == "Goat" || new == "Vegan" || new == "Starter" || mainMealCats.contains(new)) {
+            while (new == "Goat" || new == "Vegan" || new == "Starter" || mealCatsOnMain.contains(
+                    new
+                )
+            ) {
                 new = mealCat.random()
             }
 
-            mainMealCats.add(new)
+            mealCatsOnMain.add(new)
 
-            if (row1Cat == "") {
-                row1Cat = new
-            } else if (row2Cat == "") {
-                row2Cat = new
-            } else if (row3Cat == "") {
-                row3Cat = new
+            if (row1CatName == "") {
+                row1CatName = new
+            } else if (row2CatName == "") {
+                row2CatName = new
+            } else if (row3CatName == "") {
+                row3CatName = new
             }
 
         }
@@ -173,31 +180,28 @@ class MainActivity : AppCompatActivity() {
     //No Arguments needed
     //
     private fun setContent() {
-        var j = 0
         var mainCats = ArrayList<ArrayList<ArrayList<String>>>(3)
 
-        while (j < 3) {
-
-            mainCats.add(api.getCat(mainMealCats[j]))
-            j++
-
+        for (i in 0 until 3) {
+            mainCats.add(api.getCat(mealCatsOnMain[i]))
         }
 
         for (i in 0 until 6) {
-            Row1Name.text = row1Cat
-            Row2Name.text = row2Cat
-            Row3Name.text = row3Cat
+
+            Row1Name.text = row1CatName
+            Row2Name.text = row2CatName
+            Row3Name.text = row3CatName
 
             cardRow1Name[i].text = mainCats[0][i][0]
-            cardRow2Name[i].text = mainCats[1][i][0]
-            cardRow3Name[i].text = mainCats[2][i][0]
-
             cardRow1Img[i].setImageDrawable(api.getImgDrawable(mainCats[0][i][1]))
-            cardRow2Img[i].setImageDrawable(api.getImgDrawable(mainCats[1][i][1]))
-            cardRow3Img[i].setImageDrawable(api.getImgDrawable(mainCats[2][i][1]))
-
             cardRow1Id.add(mainCats[0][i][2])
+
+            cardRow2Name[i].text = mainCats[1][i][0]
+            cardRow2Img[i].setImageDrawable(api.getImgDrawable(mainCats[1][i][1]))
             cardRow2Id.add(mainCats[1][i][2])
+
+            cardRow3Name[i].text = mainCats[2][i][0]
+            cardRow3Img[i].setImageDrawable(api.getImgDrawable(mainCats[2][i][1]))
             cardRow3Id.add(mainCats[2][i][2])
         }
     }
@@ -338,7 +342,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // log message
-        Log.i(TAG, "Put Extras - about to start DetailedView with meal ID#" + id)
+        Log.i(TAG, "Put Extras - about to start DetailedView with meal ID#$id")
 
         startActivity(intent)
 
@@ -367,11 +371,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-
-    private fun testFun() {
-
-
-    }
 }
 
 

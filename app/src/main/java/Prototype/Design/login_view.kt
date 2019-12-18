@@ -9,8 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
-import android.widget.Toast.makeText
+import android.widget.Toast.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -38,25 +37,39 @@ class login_view : AppCompatActivity() {
         var signUpBut = findViewById<Button>(R.id.signUpBut)
 
         loginBut.setOnClickListener {
+
             var email = findViewById<EditText>(R.id.signInEmail).text.toString()
             var password = findViewById<EditText>(R.id.signInPassword).text.toString()
-            i(TAG, "Email and password is pulled: sign up")
+
+            if (email == "" || password == "") {
+                makeText(this, "Please Input an Email & Password", LENGTH_SHORT).show()
+
+            } else {
+                i(TAG, "Sign In Initiated. Hang on!")
 /*            email = "chase.allbright@outlook.com"
             password = "1234567890"*/
 
-            auth.signOut()
 
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-
-                    user = auth.currentUser
-                    createMainIntent()
-
-                } else {
-
-                    val e = task.exception as FirebaseAuthException?
-                    makeText(this, "Failed Sign In: " + e!!.message, Toast.LENGTH_SHORT).show()
+                if (auth.currentUser != null) {
+                    i(TAG, "Signing " + user?.displayName + " out.")
+                    auth.signOut()
                 }
+
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            user = auth.currentUser
+                            makeText(this, "Sign in Successful. Welcome!", LENGTH_SHORT).show()
+                            createMainIntent()
+                        } else {
+                            val e = task.exception as FirebaseAuthException?
+                            makeText(
+                                this,
+                                "Failed Sign In: " + e!!.message,
+                                LENGTH_SHORT
+                            ).show()
+                        }
+                    }
             }
         }
 
@@ -65,34 +78,43 @@ class login_view : AppCompatActivity() {
 
             var email = findViewById<EditText>(R.id.signInEmail).text.toString()
             var password = findViewById<EditText>(R.id.signInPassword).text.toString()
-            i(TAG, "Email and password is pulled: sign up")
+
+            if (email == "" || password == "") {
+                makeText(this, "Please Input an Email & Password", LENGTH_SHORT).show()
+
+            } else {
+                i(TAG, "Email and password is pulled: sign up")
 /*            email = "chase.allbright@outlook.com"
             password = "1234567890"*/
 
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        d(TAG, "createUserWithEmail:success")
-                        makeText(baseContext, "Authentication Success", LENGTH_LONG).show()
-                        user = auth.currentUser
-                        sendVerificationEmail()
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            d(TAG, "createUserWithEmail:success")
+                            makeText(
+                                baseContext,
+                                "Sign Up Success. Please Check Your Email!",
+                                LENGTH_LONG
+                            ).show()
+                            user = auth.currentUser
+                            sendVerificationEmail()
 
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        w(TAG, "createUserWithEmail:failure", task.exception)
-                        //Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                        val e = task.exception as FirebaseAuthException?
-                        makeText(
-                            this,
-                            "Failed Registration: " + e!!.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            w(TAG, "createUserWithEmail:failure", task.exception)
+                            //Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                            val e = task.exception as FirebaseAuthException?
+                            makeText(
+                                this,
+                                "Failed Registration: " + e!!.message,
+                                LENGTH_SHORT
+                            ).show()
 
-                        //UPDATE UI FAIL
+                            //UPDATE UI FAIL
+                        }
                     }
-                }
-
+            }
         }
 
     }
