@@ -4,43 +4,16 @@ import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import android.widget.TextView
-import org.json.JSONArray
-import org.json.JSONObject
-import java.net.URL
-import java.util.concurrent.Executors
-import Prototype.Design.apiConnection
-import android.content.AsyncQueryHandler
-import android.content.Context
-import android.graphics.drawable.Drawable
-import android.media.Image
-import android.net.Uri
 import kotlinx.android.synthetic.main.activity_main.*
-import com.squareup.picasso.Picasso
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.net.UrlQuerySanitizer
-import android.os.Looper
-import android.os.SystemClock
 import android.util.Log
-import androidx.annotation.IntegerRes
-import androidx.core.content.ContextCompat.*
-import androidx.core.view.drawToBitmap
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_detailed_view.*
-import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.*
-import org.w3c.dom.Text
-import java.util.concurrent.Future
 
 private val TAG = "MAINACTIVITY"
 val api = apiConnection()
@@ -81,7 +54,9 @@ class MainActivity : AppCompatActivity() {
 
         var mainLogo = findViewById<TextView>(R.id.titleBar)
         mainLogo.setOnClickListener {
-            auth.signOut()
+            //auth.signOut()
+            var fauth = FirebaseAuth.getInstance()
+            fauth.signOut()
             val intent = Intent(this, login_view::class.java)
             startActivity(intent)
         }
@@ -98,9 +73,6 @@ class MainActivity : AppCompatActivity() {
         sevenDayButMain.setOnClickListener() {
             createSevenDayIntent()
         }
-
-        //TESTING LOG OUT
-        FirebaseAuth.getInstance().signOut()
 
 
         //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats
@@ -138,7 +110,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             mainMealCats.add(new)
-            //Log.i(TAG, "main Meal Cats Size - " + mainMealCats.size)
 
             if (row1Cat == "") {
                 row1Cat = new
@@ -185,7 +156,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             mainMealCats.add(new)
-            //Log.i(TAG, "main Meal Cats Size - " + mainMealCats.size)
 
             if (row1Cat == "") {
                 row1Cat = new
@@ -207,9 +177,10 @@ class MainActivity : AppCompatActivity() {
         var mainCats = ArrayList<ArrayList<ArrayList<String>>>(3)
 
         while (j < 3) {
-            //Log.i(TAG, i.toString())
+
             mainCats.add(api.getCat(mainMealCats[j]))
             j++
+
         }
 
         for (i in 0 until 6) {

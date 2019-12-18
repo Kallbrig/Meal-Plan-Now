@@ -1,16 +1,10 @@
 package Prototype.Design
 
-import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.util.Log
-import com.squareup.picasso.Picasso
 import org.jetbrains.anko.doAsyncResult
-import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
-import kotlin.system.measureTimeMillis
-
 
 class apiConnection {
 
@@ -80,7 +74,7 @@ class apiConnection {
                 ).getJSONArray("meals")
 
             var fullMealInfoSingleCat = ArrayList<ArrayList<String>>(jsonA.length())
-            println(jsonA.length())
+            //println(jsonA.length())
             for (i in 0..jsonA.length() - 1) {
                 fullMealInfoSingleCat.add(parseCatIndMeal(jsonA.getJSONObject(i)))
             }
@@ -238,7 +232,7 @@ class apiConnection {
             var mealInfoLocal = ArrayList<ArrayList<String>>(9)
             for (i in 0 until jsonA.length()) {
                 mealInfoLocal.add(parseIndMeal(jsonA.getJSONObject(i)))
-                println(jsonA.length())
+                //println(jsonA.length())
             }
             return@doAsyncResult mealInfoLocal
         }.get()
