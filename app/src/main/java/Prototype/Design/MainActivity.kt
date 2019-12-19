@@ -10,7 +10,6 @@ import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
-
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.*
@@ -101,28 +100,38 @@ class MainActivity : AppCompatActivity() {
             "Goat"
         )
 
+
+        //These Categories don't have enough meals to fill out a row on Main. Fix and then Reinstate these Categories.
+        fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))
+
+
+        val start = System.currentTimeMillis()
         for (i in 0..3) {
 
-            var new = fullMealCatList.random()
+            var catToFetch = fullMealCatList.random()
+            fullMealCatList.remove(catToFetch)
+            mealCatsOnMain.add(catToFetch)
 
-            while (new == "Goat" || new == "Vegan" || new == "Starter" || mealCatsOnMain.contains(
-                    new
-                )
-            ) {
-                new = fullMealCatList.random()
-            }
+            /*  var new = fullMealCatList.random()
 
-            mealCatsOnMain.add(new)
+              while (new == "Goat" || new == "Vegan" || new == "Starter" || mealCatsOnMain.contains(new)) { new = fullMealCatList.random() }
 
-            if (row1CatName == "") {
-                row1CatName = new
-            } else if (row2CatName == "") {
-                row2CatName = new
-            } else if (row3CatName == "") {
-                row3CatName = new
-            }
+              mealCatsOnMain.add(new)
+
+              if (row1CatName == "") {
+                  row1CatName = new
+              } else if (row2CatName == "") {
+                  row2CatName = new
+              } else if (row3CatName == "") {
+                  row3CatName = new
+              }*/
 
         }
+
+        Log.i(
+            TAG,
+            "Time to Determine Categories  ---  " + ((System.currentTimeMillis() as Long - start).toLong()).toString()
+        )
 
         //After Api Calls, this functions sets the content of each cards with the fetched information
         setContent()
@@ -193,20 +202,13 @@ class MainActivity : AppCompatActivity() {
 
 
             var compareMealRow1 = mainCats[0].random()
+            mainCats[0].remove(compareMealRow1)
 
-            while (cardRow1Name.toString().contains(compareMealRow1.toString())) {
-                compareMealRow1 = mainCats[0].random()
-            }
             var compareMealRow2 = mainCats[1].random()
+            mainCats[1].remove(compareMealRow2)
 
-            while (cardRow2Name.toString().contains(compareMealRow2.toString())) {
-                compareMealRow2 = mainCats[1].random()
-            }
             var compareMealRow3 = mainCats[2].random()
-
-            while (cardRow3Name.toString().contains(compareMealRow3.toString())) {
-                compareMealRow3 = mainCats[2].random()
-            }
+            mainCats[2].remove(compareMealRow3)
 
             cardRow1Name[i].text = compareMealRow1[0]
             cardRow1Img[i].setImageDrawable(api.getImgDrawable(compareMealRow1[1]))
