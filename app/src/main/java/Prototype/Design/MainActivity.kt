@@ -52,10 +52,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        // TitleBar Text is Logout Button
         var mainLogo = findViewById<TextView>(R.id.titleBar)
         mainLogo.setOnClickListener {
-
             var fauth = FirebaseAuth.getInstance()
             fauth.signOut()
             val intent = Intent(this, login_view::class.java)
@@ -192,17 +191,36 @@ class MainActivity : AppCompatActivity() {
             Row2Name.text = row2CatName
             Row3Name.text = row3CatName
 
-            cardRow1Name[i].text = mainCats[0][i][0]
-            cardRow1Img[i].setImageDrawable(api.getImgDrawable(mainCats[0][i][1]))
-            cardRow1Id.add(mainCats[0][i][2])
 
-            cardRow2Name[i].text = mainCats[1][i][0]
-            cardRow2Img[i].setImageDrawable(api.getImgDrawable(mainCats[1][i][1]))
-            cardRow2Id.add(mainCats[1][i][2])
+            var compareMealRow1 = mainCats[0].random()
 
-            cardRow3Name[i].text = mainCats[2][i][0]
-            cardRow3Img[i].setImageDrawable(api.getImgDrawable(mainCats[2][i][1]))
-            cardRow3Id.add(mainCats[2][i][2])
+            while (cardRow1Name.toString().contains(compareMealRow1.toString())) {
+                compareMealRow1 = mainCats[0].random()
+            }
+            var compareMealRow2 = mainCats[1].random()
+
+            while (cardRow2Name.toString().contains(compareMealRow2.toString())) {
+                compareMealRow2 = mainCats[1].random()
+            }
+            var compareMealRow3 = mainCats[2].random()
+
+            while (cardRow3Name.toString().contains(compareMealRow3.toString())) {
+                compareMealRow3 = mainCats[2].random()
+            }
+
+            cardRow1Name[i].text = compareMealRow1[0]
+            cardRow1Img[i].setImageDrawable(api.getImgDrawable(compareMealRow1[1]))
+            cardRow1Id.add(compareMealRow1[2])
+
+            cardRow2Name[i].text = compareMealRow2[0]
+            cardRow2Img[i].setImageDrawable(api.getImgDrawable(compareMealRow2[1]))
+            cardRow2Id.add(compareMealRow2[2])
+
+            cardRow3Name[i].text = compareMealRow3[0]
+            cardRow3Img[i].setImageDrawable(api.getImgDrawable(compareMealRow3[1]))
+            cardRow3Id.add(compareMealRow3[2])
+
+
         }
     }
 
