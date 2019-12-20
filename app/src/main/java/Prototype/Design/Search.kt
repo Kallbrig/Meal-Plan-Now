@@ -190,16 +190,18 @@ class Search : AppCompatActivity() {
     //Takes a View as an Argument. Primarily the Search button.
     //Does not return anything
     private fun search() {
-        Log.i(TAG, "Search has Begun...")
+        i(TAG, "Search has Begun...")
         var searchKeyword = searchTextBox.text.toString()
 
 
         if (searchKeyword == "") {
-            makeText(this, "Invalid! Please Try Again!", LENGTH_LONG).show()
+            makeText(this, "Search Must Contain At Least 1 Character.", LENGTH_LONG).show()
+            i(TAG, "Search box is Empty")
         } else {
             searchResponse = api.searchByName(searchKeyword)
             if (searchResponse.isEmpty()) {
-                makeText(this, "There is a problem, please try again.", LENGTH_LONG).show()
+                makeText(this, "No Results! Please Try Again!", LENGTH_LONG).show()
+                i(TAG, "Empty Search - Keyword: $searchKeyword")
             } else {
                 setSearchViewContent()
             }
@@ -238,14 +240,14 @@ class Search : AppCompatActivity() {
     //Takes meal Id # as a string and meal Image as a bitmap as arguments
     //Starts detailedIntent but doesn't return anything
     private fun createDetailIntent(id: String, img: Bitmap) {
-        Log.i(TAG, "Detailed Intent Created")
+        i(TAG, "Detailed Intent Created")
         val intent = Intent(this, DetailedView::class.java)
         intent.putExtra("img", img)
         intent.putExtra("id", id)
 
 
         // log message
-        Log.i(TAG, "Put Extras - about to start DetailedView with meal ID#$id")
+        i(TAG, "Put Extras - about to start DetailedView with meal ID#$id")
 
         startActivity(intent)
 
