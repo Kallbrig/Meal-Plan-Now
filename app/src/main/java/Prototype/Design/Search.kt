@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.util.Log.i
 import android.view.View
 import android.widget.*
+import android.widget.Toast.LENGTH_LONG
+import android.widget.Toast.makeText
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.drawToBitmap
@@ -186,21 +189,20 @@ class Search : AppCompatActivity() {
     //Function that searches the information. this is the only function that needs to be called from Search
     //Takes a View as an Argument. Primarily the Search button.
     //Does not return anything
-    fun search() {
+    private fun search() {
         Log.i(TAG, "Search has Begun...")
         var searchKeyword = searchTextBox.text.toString()
 
-        if (searchKeyword.isNullOrEmpty()) {
-            Toast.makeText(this, "Invalid! Please Try Again!", Toast.LENGTH_LONG).show()
+
+        if (searchKeyword == "") {
+            makeText(this, "Invalid! Please Try Again!", LENGTH_LONG).show()
         } else {
             searchResponse = api.searchByName(searchKeyword)
-
-            if (searchResponse.isNullOrEmpty()) {
-                Toast.makeText(this, "There is a problem, please try again.", Toast.LENGTH_LONG)
-                    .show()
+            if (searchResponse.isEmpty()) {
+                makeText(this, "There is a problem, please try again.", LENGTH_LONG).show()
+            } else {
+                setSearchViewContent()
             }
-
-            setSearchViewContent()
         }
     }
 
@@ -243,7 +245,7 @@ class Search : AppCompatActivity() {
 
 
         // log message
-        Log.i(TAG, "Put Extras - about to start DetailedView with meal ID#" + id)
+        Log.i(TAG, "Put Extras - about to start DetailedView with meal ID#$id")
 
         startActivity(intent)
 

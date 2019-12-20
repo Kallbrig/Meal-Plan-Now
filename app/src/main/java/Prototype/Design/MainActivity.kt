@@ -42,7 +42,6 @@ private lateinit var row2Name: TextView
 private lateinit var row3Name: TextView
 
 
-
 class MainActivity : AppCompatActivity() {
 
 
@@ -105,33 +104,17 @@ class MainActivity : AppCompatActivity() {
         fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))
 
 
-        val start = System.currentTimeMillis()
-        for (i in 0..3) {
 
+        for (i in 0..3) {
             var catToFetch = fullMealCatList.random()
             fullMealCatList.remove(catToFetch)
             mealCatsOnMain.add(catToFetch)
-
-            /*  var new = fullMealCatList.random()
-
-              while (new == "Goat" || new == "Vegan" || new == "Starter" || mealCatsOnMain.contains(new)) { new = fullMealCatList.random() }
-
-              mealCatsOnMain.add(new)
-
-              if (row1CatName == "") {
-                  row1CatName = new
-              } else if (row2CatName == "") {
-                  row2CatName = new
-              } else if (row3CatName == "") {
-                  row3CatName = new
-              }*/
-
         }
 
-        Log.i(
-            TAG,
-            "Time to Determine Categories  ---  " + ((System.currentTimeMillis() as Long - start).toLong()).toString()
-        )
+
+        val start = System.currentTimeMillis()
+        val end = System.currentTimeMillis()
+        Log.i(TAG, "Time to Determine Categories  ---  " + (end - start).toString())
 
         //After Api Calls, this functions sets the content of each cards with the fetched information
         setContent()
@@ -348,6 +331,11 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
 

@@ -1,53 +1,51 @@
 package Prototype.Design
 
 import android.graphics.drawable.Drawable
+import android.util.Log.e
+import android.util.Log.i
 import org.jetbrains.anko.doAsyncResult
+import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
 
 class apiConnection {
 
 
-
     private val TAG = "APICONNECTION"
 
     //fetches meal information using an ID Number
-        //Requires the Meal ID # as an Argument
-        //Returns an ArrayList<String> Containing the single Meal Information.
-        fun getMealById(mealId: String): ArrayList<String> {
+    //Requires the Meal ID # as an Argument
+    //Returns an ArrayList<String> Containing the single Meal Information.
+    fun getMealById(mealId: String): ArrayList<String> {
 
         return doAsyncResult {
-                var jsonO =
-                    JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=$mealId").readText()).getJSONArray(
-                        "meals"
-                    ).getJSONObject(0)
-                var mealInfoLocal = parseIndMeal(jsonO)
-                //  Log.i(TAG, "GetMealById has finished")
-                return@doAsyncResult mealInfoLocal
-            }.get()
-        }
+            var jsonO =
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=$mealId").readText()).getJSONArray(
+                    "meals"
+                ).getJSONObject(0)
+            var mealInfoLocal = parseIndMeal(jsonO)
+            //  Log.i(TAG, "GetMealById has finished")
+            return@doAsyncResult mealInfoLocal
+        }.get()
+    }
 
 
+    //fetches meal information using the meal's Name
+    //Requires the Meal Name as an Argument
+    //Returns an ArrayList<String> containing the single Meal Information
+    fun getMealByName(mealName: String): ArrayList<String> {
+        return doAsyncResult {
+            while (mealName.contains(' ')) {
+                mealName.replace(' ', '_')
+            }
+            var jsonO =
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=$mealName").readText()).getJSONArray(
+                    "meals"
+                ).getJSONObject(0)
 
-
-
-
-        //fetches meal information using the meal's Name
-        //Requires the Meal Name as an Argument
-        //Returns an ArrayList<String> containing the single Meal Information
-        fun getMealByName(mealName: String): ArrayList<String> {
-            return doAsyncResult {
-                while (mealName.contains(' ')) {
-                    mealName.replace(' ', '_')
-                }
-                var jsonO =
-                    JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=$mealName").readText()).getJSONArray(
-                        "meals"
-                    ).getJSONObject(0)
-
-                return@doAsyncResult parseIndMeal(jsonO)
-            }.get()
-        }
+            return@doAsyncResult parseIndMeal(jsonO)
+        }.get()
+    }
 
 
     // Fetches an entire Category from the API
@@ -213,16 +211,30 @@ class apiConnection {
     fun searchByName(mealName: String): ArrayList<ArrayList<String>> {
 
         return doAsyncResult {
-            var jsonA =
-                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=$mealName").readText()).getJSONArray(
-                    "meals"
-                )
-            var mealInfoLocal = ArrayList<ArrayList<String>>(9)
-            for (i in 0 until jsonA.length()) {
-                mealInfoLocal.add(parseIndMeal(jsonA.getJSONObject(i)))
 
+            var mealInfoLocal = ArrayList<ArrayList<String>>(9)
+            var jsonA: JSONArray? = null
+
+            var jsonObj: JSONObject? =
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/search.php?s=$mealName").readText())
+
+
+
+            if (jsonObj!!.toString() != "{\"meals\":null}") {
+                jsonA = jsonObj.getJSONArray("meals")
+
+
+                for (i in 0 until jsonA!!.length()) {
+                    mealInfoLocal.add(parseIndMeal(jsonA.getJSONObject(i)))
+
+                }
+            } else {
+                e(TAG, "searchByName() returned null")
             }
+
             return@doAsyncResult mealInfoLocal
+
+
         }.get()
 
     }
