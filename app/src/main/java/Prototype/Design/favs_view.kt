@@ -5,16 +5,22 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.i
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import helpers.databaseManager
+
 
 lateinit var searchButFavs: ImageButton
 lateinit var favsButFavs: ImageButton
 lateinit var sevenDayButFavs: ImageButton
 private val TAG: String = "FAVORITES VIEW"
+private var data = databaseManager()
 
 
 class favs_view : AppCompatActivity() {
@@ -28,6 +34,9 @@ class favs_view : AppCompatActivity() {
 
         //Back Button
         setBackBut()
+        //data.idkwhatsup()
+        data.getDB()
+        i(TAG, "SUCK MY GIANT DICK")
 
         //Adding all Cards from Favs_View to the arraylist that will store them. This makes them iteratable
         favsCards.addAll(
@@ -103,6 +112,15 @@ class favs_view : AppCompatActivity() {
     private fun createSevenDayIntent() {
         val intent = Intent(this, sevenDay::class.java)
         startActivity(intent)
+    }
+
+
+    private fun addToFavs(meal: String) {
+        i(TAG, meal)
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("message")
+        i(TAG, myRef.toString())
+
     }
 
 }

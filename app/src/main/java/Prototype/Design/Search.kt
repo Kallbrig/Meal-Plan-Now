@@ -2,68 +2,71 @@ package Prototype.Design
 
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.util.Log.i
-import android.view.View
-import android.widget.*
-import android.widget.Toast.LENGTH_LONG
-import android.widget.Toast.makeText
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.DecelerateInterpolator
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.drawToBitmap
-import androidx.core.widget.ImageViewCompat
-import org.jetbrains.anko.editText
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
 
 
 class Search : AppCompatActivity() {
 
-    var TAG = "SEARCH"
+    private var TAG = "SEARCH"
+    private lateinit var fadein: Animation
 
-    lateinit var cardImgs: ArrayList<ImageView>
-    lateinit var card11Img: ImageView
-    lateinit var card12Img: ImageView
-    lateinit var card13Img: ImageView
-    lateinit var card21Img: ImageView
-    lateinit var card22Img: ImageView
-    lateinit var card23Img: ImageView
-    lateinit var card31Img: ImageView
-    lateinit var card32Img: ImageView
-    lateinit var card33Img: ImageView
+    private lateinit var cardImgs: ArrayList<ImageView>
+    private lateinit var card11Img: ImageView
+    private lateinit var card12Img: ImageView
+    private lateinit var card13Img: ImageView
+    private lateinit var card21Img: ImageView
+    private lateinit var card22Img: ImageView
+    private lateinit var card23Img: ImageView
+    private lateinit var card31Img: ImageView
+    private lateinit var card32Img: ImageView
+    private lateinit var card33Img: ImageView
 
-    lateinit var cardTexts: ArrayList<TextView>
-    lateinit var card11Text: TextView
-    lateinit var card12Text: TextView
-    lateinit var card13Text: TextView
-    lateinit var card21Text: TextView
-    lateinit var card22Text: TextView
-    lateinit var card23Text: TextView
-    lateinit var card31Text: TextView
-    lateinit var card32Text: TextView
-    lateinit var card33Text: TextView
+    private lateinit var cardTexts: ArrayList<TextView>
+    private lateinit var card11Text: TextView
+    private lateinit var card12Text: TextView
+    private lateinit var card13Text: TextView
+    private lateinit var card21Text: TextView
+    private lateinit var card22Text: TextView
+    private lateinit var card23Text: TextView
+    private lateinit var card31Text: TextView
+    private lateinit var card32Text: TextView
+    private lateinit var card33Text: TextView
 
-    lateinit var cards: ArrayList<CardView>
-    lateinit var card11: CardView
-    lateinit var card12: CardView
-    lateinit var card13: CardView
-    lateinit var card21: CardView
-    lateinit var card22: CardView
-    lateinit var card23: CardView
-    lateinit var card31: CardView
-    lateinit var card32: CardView
-    lateinit var card33: CardView
+    private lateinit var cards: ArrayList<CardView>
+    private lateinit var card11: CardView
+    private lateinit var card12: CardView
+    private lateinit var card13: CardView
+    private lateinit var card21: CardView
+    private lateinit var card22: CardView
+    private lateinit var card23: CardView
+    private lateinit var card31: CardView
+    private lateinit var card32: CardView
+    private lateinit var card33: CardView
 
-    lateinit var searchButSearch: ImageButton
-    lateinit var favsButSearch: ImageButton
-    lateinit var sevenDayButSearch: ImageButton
-    lateinit var backBut: ImageButton
+    private lateinit var searchButSearch: ImageButton
+    private lateinit var favsButSearch: ImageButton
+    private lateinit var sevenDayButSearch: ImageButton
+    private lateinit var backBut: ImageButton
 
-    lateinit var searchBut: ImageButton
-    lateinit var searchTextBox: EditText
-    var searchResponse = ArrayList<ArrayList<String>>(9)
-    lateinit var api: apiConnection
+    private lateinit var searchBut: ImageButton
+    private lateinit var searchTextBox: EditText
+    private var searchResponse = ArrayList<ArrayList<String>>(9)
+    private lateinit var api: apiConnection
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +74,10 @@ class Search : AppCompatActivity() {
         setContentView(R.layout.activity_search)
         api = apiConnection()
         setViews()
+
+        fadein = AlphaAnimation(0f, 1f)
+        fadein.interpolator = DecelerateInterpolator()
+        fadein.duration = 2000
 
 
     }
@@ -203,10 +210,12 @@ class Search : AppCompatActivity() {
                 makeText(this, "No Results! Please Try Again!", LENGTH_LONG).show()
                 i(TAG, "Empty Search - Keyword: $searchKeyword")
             } else {
+                i(TAG, "Setting Search View Content")
                 setSearchViewContent()
             }
         }
     }
+
 
     //This function takes fetched information and fills it into the activities in Search
     //Takes no arguments. Only uses Global Variables
@@ -214,26 +223,38 @@ class Search : AppCompatActivity() {
     private fun setSearchViewContent() {
 
         for (i in 0 until 9) {
-            cards[i].alpha = 0f
-            cards[i].setOnClickListener(null)
+            if (cards[i].alpha != 0f) {
+                //cards[i].alpha = 0f
+                cards[i].setOnClickListener(null)
+            }
         }
 
-        var upperBound: Int
-        if ((searchResponse.size - 1) >= 9) {
-            upperBound = 8
-        } else {
-            upperBound = searchResponse.size - 1
-        }
+        val upperBound: Int = doAsyncResult {
+
+            if ((searchResponse.size - 1) >= 9) {
+                return@doAsyncResult 8
+            } else {
+                return@doAsyncResult searchResponse.size - 1
+            }
+        }.get()
 
         for (i in 0..upperBound) {
+
             cardTexts[i].text = searchResponse[i][0]
             cardImgs[i].setImageDrawable(api.getImgDrawable(searchResponse[i][1]))
             cards[i].alpha = 1f
+
             cards[i].setOnClickListener {
-                createDetailIntent(searchResponse[i][2], cardImgs[i].drawable.toBitmap(300, 400))
+                createDetailIntent(
+                    searchResponse[i][2],
+                    cardImgs[i].drawable.toBitmap(300, 400)
+                )
+
             }
 
         }
+
+
     }
 
     //Opens Detailed View

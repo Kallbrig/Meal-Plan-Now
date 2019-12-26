@@ -50,8 +50,8 @@ class login_view : AppCompatActivity() {
             password = "1234567890"*/
 
 
-                if (auth.currentUser != null) {
-                    i(TAG, "Signing " + user?.displayName + " out.")
+                if (auth.currentUser?.email.toString() != email && auth.currentUser?.email.toString() != "null") {
+                    i(TAG, "Signing " + user?.email + " out.")
                     auth.signOut()
                 }
 
