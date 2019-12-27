@@ -35,8 +35,8 @@ class favs_view : AppCompatActivity() {
         //Back Button
         setBackBut()
         //data.idkwhatsup()
-        data.getDB()
-        i(TAG, "SUCK MY GIANT DICK")
+        //data.getDB()
+
 
         //Adding all Cards from Favs_View to the arraylist that will store them. This makes them iteratable
         favsCards.addAll(

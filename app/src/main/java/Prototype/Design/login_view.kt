@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
+import helpers.databaseManager
 import org.jetbrains.anko.doAsync
 
 
@@ -119,16 +120,23 @@ class login_view : AppCompatActivity() {
 
     }
 
-    /* override fun onStart() {
+    override fun onStart() {
            super.onStart()
            // Check if user is signed in (non-null) and update UI accordingly.
+
+
+        //REMOVE ME LATER. FOR TESTING ONLY.
+        var data = databaseManager()
+        data.addData()
+        data.addMoreData()
+        data.readData()
 
          if (user != null) {
                createMainIntent()
          } else {
              e(TAG, "Current User is null")
          }
-       }*/
+    }
 
 
     /*  fun emailSignUpBut(v: View) {
