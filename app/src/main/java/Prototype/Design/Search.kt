@@ -19,20 +19,10 @@ import org.jetbrains.anko.doAsyncResult
 class Search : AppCompatActivity() {
 
     private var TAG = "SEARCH"
-
-
+    private lateinit var searchTextBoxInSearchBar: EditText
     private lateinit var cards: ArrayList<CardView>
     private lateinit var cardTexts: ArrayList<TextView>
     private lateinit var cardImgs: ArrayList<ImageView>
-
-
-    private lateinit var searchButInSearchViewHeader: ImageButton
-    private lateinit var favsButInSearchViewHeader: ImageButton
-    private lateinit var sevenDayButInSearchViewHeader: ImageButton
-    private lateinit var backButInSearchViewHeader: ImageButton
-
-    private lateinit var searchButInSearchBar: ImageButton
-    private lateinit var searchTextBoxInSearchBar: EditText
     private var listOfSearchResponses = ArrayList<ArrayList<String>>(9)
     private lateinit var api: apiConnection
 
@@ -59,8 +49,8 @@ class Search : AppCompatActivity() {
     //Returns nothing
     private fun setViews() {
 
-        searchTextBoxInSearchBar = findViewById<EditText>(R.id.searchTextBox)
-        searchButInSearchBar = findViewById<ImageButton>(R.id.SearchButton)
+
+        var searchButInSearchBar: ImageButton = findViewById<ImageButton>(R.id.SearchButton)
 
         cardImgs = ArrayList(9)
         cardImgs.addAll(
@@ -107,16 +97,16 @@ class Search : AppCompatActivity() {
             )
         )
 
-        searchButInSearchViewHeader = findViewById(R.id.searchButSearch)
+        var searchButInSearchViewHeader: ImageButton = findViewById(R.id.searchButSearch)
         searchButInSearchViewHeader.alpha = 0f
 
 
-        favsButInSearchViewHeader = findViewById(R.id.favsButSearch)
+        var favsButInSearchViewHeader: ImageButton = findViewById(R.id.favsButSearch)
         favsButInSearchViewHeader.setOnClickListener {
             createFavsIntent()
         }
 
-        sevenDayButInSearchViewHeader = findViewById(R.id.sevenDayButSearch)
+        var sevenDayButInSearchViewHeader: ImageButton = findViewById(R.id.sevenDayButSearch)
         sevenDayButInSearchViewHeader.setOnClickListener {
             createSevenDayIntent()
         }
@@ -125,7 +115,7 @@ class Search : AppCompatActivity() {
             search()
         }
 
-        backButInSearchViewHeader = findViewById(R.id.backButton)
+        var backButInSearchViewHeader: ImageButton = findViewById(R.id.backButton)
         backButInSearchViewHeader.setOnClickListener {
             finish()
         }
@@ -138,6 +128,7 @@ class Search : AppCompatActivity() {
     //Takes a View as an Argument. Primarily the Search button.
     //Does not return anything
     private fun search() {
+        searchTextBoxInSearchBar = findViewById<EditText>(R.id.searchTextBox)
         i(TAG, "Search has Begun...")
         var searchKeyword = searchTextBoxInSearchBar.text.toString()
 
