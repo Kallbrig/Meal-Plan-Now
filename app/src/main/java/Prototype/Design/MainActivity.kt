@@ -73,6 +73,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
         //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats
         setMealCat()
 
@@ -120,6 +126,7 @@ class MainActivity : AppCompatActivity() {
         setContent()
 
     }
+
 
     //Determines the meals that will appear on the MainActivity
     //No Arguments needed
@@ -331,11 +338,6 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-
     }
 
 
