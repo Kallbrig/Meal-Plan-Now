@@ -6,6 +6,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class databaseManager {
 
+    lateinit var docId: String
+
 
     // Access a Cloud Firestore instance from your Activity
     private var db = FirebaseFirestore.getInstance()
@@ -33,10 +35,9 @@ class databaseManager {
     fun addData() {
         // Create a new user with a first and last name
         // Create a new user with a first and last name
+
         val user: MutableMap<String, Any> = HashMap()
-        user["first"] = "Ada"
-        user["last"] = "Lovelace"
-        user["born"] = 1815
+
 
 // Add a new document with a generated ID
         // Add a new document with a generated ID
@@ -51,26 +52,57 @@ class databaseManager {
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
     }
 
-    fun addMoreData() {
-        // Create a new user with a first, middle, and last name
-        // Create a new user with a first, middle, and last name
-        val user: MutableMap<String, Any> = HashMap()
-        user["first"] = "Alan"
-        user["middle"] = "Mathison"
-        user["last"] = "Turing"
-        user["born"] = 1912
+    fun addBlankUser() {
+        lateinit var docId: String
 
-// Add a new document with a generated ID
-        // Add a new document with a generated ID
+        val user: MutableMap<String, Any> = HashMap()
+
+        user["name"] = ""
+        user["id"] = ""
+        user["email"] = ""
+
+        user["prefCat1"] = ""
+        user["prefCat2"] = ""
+        user["prefCat3"] = ""
+
+        user["favs0"] = ""
+        user["favs1"] = ""
+        user["favs2"] = ""
+        user["favs3"] = ""
+        user["favs4"] = ""
+        user["favs5"] = ""
+        user["favs6"] = ""
+        user["favs7"] = ""
+        user["favs8"] = ""
+        user["favs9"] = ""
+        user["favs10"] = ""
+        user["favs11"] = ""
+        user["favs12"] = ""
+        user["favs13"] = ""
+        user["favs14"] = ""
+        user["favs15"] = ""
+        user["favs16"] = ""
+        user["favs17"] = ""
+        user["favs18"] = ""
+        user["favs19"] = ""
+
+        user["sevenDay0"] = ""
+        user["sevenDay1"] = ""
+        user["sevenDay2"] = ""
+        user["sevenDay3"] = ""
+        user["sevenDay4"] = ""
+        user["sevenDay5"] = ""
+        user["sevenDay6"] = ""
+
+        //Adds blank user to DB with self generated docID
         db.collection("users")
             .add(user)
             .addOnSuccessListener { documentReference ->
-                Log.d(
-                    TAG,
-                    "DocumentSnapshot added with ID: " + documentReference.id
-                )
+                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.id)
+                docId = documentReference.id
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
+
     }
 
     fun readData() {
@@ -90,19 +122,6 @@ class databaseManager {
 
     fun getUser() {
 
-
-
-
-
-            usersDb.get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }
 
     }
 }
