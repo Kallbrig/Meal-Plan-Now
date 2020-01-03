@@ -1,10 +1,7 @@
 package helpers
 
 
-import android.content.Context
-import android.util.Log
-import android.util.Log.i
-import android.widget.Toast
+import android.util.Log.d
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import org.jetbrains.anko.doAsync
@@ -22,10 +19,12 @@ class authManager {
 
     fun SignInUser(email: String, password: String) {
 
-        i(TAG, "Email and password is pulled: sign up")
+        d(TAG, "Email and password is pulled: sign up")
 
         //Verifying that no one is logged in
-        auth.signOut()
+        if (user != null) {
+            auth.signOut()
+        }
 
         //Logging in with Email and Password.
         auth.signInWithEmailAndPassword(email, password)
@@ -36,7 +35,7 @@ class authManager {
         doAsync {
             user?.sendEmailVerification()
         }
-        i(TAG, "Verification Email Sent")
+        d(TAG, "Verification Email Sent")
     }
 
 

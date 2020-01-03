@@ -5,19 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/drawablebg"
-    tools:context=".login_view">
+    tools:context="Prototype.Design.SignUp">
 
     <LinearLayout
-        android:id="@+id/titleBarLinLayLogin"
+        android:id="@+id/titleBarLinearLayoutSignUp"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:background="@drawable/drawablebgheader"
         android:orientation="horizontal"
+        android:gravity="center_horizontal"
         android:weightSum="4">
 
         <TextView
-            android:id="@+id/titleBarLogin"
-            android:layout_width="match_parent"
+            android:id="@+id/titleBarSignUp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="2sp"
             android:layout_weight="1"
@@ -53,7 +54,7 @@
             android:layout_marginBottom="12sp"
             android:alpha=".75"
             android:gravity="center"
-            android:text="Login"
+            android:text="Sign Up"
             android:textColor="@color/red"
             android:textSize="24sp" />
 
@@ -66,7 +67,23 @@
             android:background="@color/red" />
 
         <EditText
-            android:id="@+id/signInEmail"
+            android:id="@+id/signUpNickName"
+            android:layout_width="350sp"
+            android:layout_height="40sp"
+            android:background="@null"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="Nickname"
+            android:inputType="text"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/red"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/red"
+            android:textCursorDrawable="@color/red" />
+
+        <EditText
+            android:id="@+id/signUpEmail"
             android:layout_width="350sp"
             android:layout_height="40sp"
             android:background="@null"
@@ -81,8 +98,9 @@
             android:textColorLink="@color/red"
             android:textCursorDrawable="@color/red" />
 
+
         <EditText
-            android:id="@+id/signInPassword"
+            android:id="@+id/signUpPassword"
             android:layout_width="350sp"
             android:layout_height="40sp"
             android:background="@null"
@@ -97,40 +115,42 @@
             android:textColorLink="@color/red"
             android:textCursorDrawable="@color/red" />
 
+        <EditText
+            android:id="@+id/signUpReEnterPassword"
+            android:layout_width="350sp"
+            android:layout_height="40sp"
+            android:background="@null"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="Re-Enter Password"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/red"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/red"
+            android:textCursorDrawable="@color/red" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center|center_horizontal"
+            android:gravity="center_horizontal"
             android:orientation="horizontal"
-            android:weightSum="0">
+            android:weightSum="2">
+
 
             <Button
-                android:id="@+id/signUpBut"
-                android:layout_width="150sp"
+                android:id="@+id/signUpButSignUp"
+                android:layout_width="0dp"
                 android:layout_height="50sp"
                 android:layout_marginLeft="50sp"
                 android:layout_marginTop="15sp"
                 android:layout_marginRight="50sp"
                 android:layout_marginBottom="15sp"
-                android:layout_weight="0"
+                android:layout_weight="3"
                 android:alpha=".75"
                 android:background="@color/red"
                 android:text="Sign Up"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/loginBut"
-                android:layout_width="150sp"
-                android:layout_height="50sp"
-                android:layout_marginLeft="50sp"
-                android:layout_marginTop="15sp"
-                android:layout_marginRight="50sp"
-                android:layout_marginBottom="15sp"
-                android:layout_weight="0"
-                android:alpha=".75"
-                android:background="@color/red"
-                android:text="Login"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -138,28 +158,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="50sp"
-        android:foregroundGravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Powered By:"
-            android:textColor="@color/white" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="200sp"
-            android:layout_height="100sp"
-            app:srcCompat="@drawable/themealdblogo" />
-    </LinearLayout>
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

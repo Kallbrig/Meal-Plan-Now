@@ -1,15 +1,20 @@
 package helpers
-
 /*
+
+import Prototype.Design.Search
+import Prototype.Design.sevenDay
+import android.content.Context
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 
 
 class intentManager {
 
 
-*/
-/*    public fun createSearchIntent() {
 
-        startActivity(Intent(cont, Search::class.java))
+    public fun createSearchIntent(context:Context) {
+
+        startActivity(Intent(context, Search::class.java))
 
     }
 
@@ -17,6 +22,7 @@ class intentManager {
     public fun createSevenDayIntent() {
         val intent = Intent(this, sevenDay::class.java)
         startActivity(intent)
-    }*//*
+    }
 
-}*/
+}
+*/

@@ -75,50 +75,8 @@ class login_view : AppCompatActivity() {
         }
 
         signUpBut.setOnClickListener {
+            createSignUpIntent()
 
-            var email = findViewById<EditText>(R.id.signInEmail).text.toString()
-            var password = findViewById<EditText>(R.id.signInPassword).text.toString()
-
-
-            if (email == "" || password == "") {
-                makeText(this, "Please Input an Email & Password", LENGTH_SHORT).show()
-
-            } else {
-                d(TAG, "Email and password is pulled: sign up")
-
-                auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            d(TAG, "createUserWithEmail:success")
-                            data.addBlankUser()
-                            data.addData()
-
-
-                            makeText(
-                                baseContext,
-                                "Sign Up Success. Please Check Your Email!",
-                                LENGTH_LONG
-                            ).show()
-                            user = auth.currentUser
-                            sendVerificationEmail()
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            w(TAG, "createUserWithEmail:failure", task.exception)
-                            val e = task.exception as FirebaseAuthException?
-                            makeText(
-                                this,
-                                "Failed Registration: " + e!!.message,
-                                LENGTH_SHORT
-                            ).show()
-
-                            //UPDATE UI FAIL
-                        }
-                        email = ""
-                        password = ""
-                    }
-            }
         }
 
     }
@@ -131,7 +89,7 @@ class login_view : AppCompatActivity() {
             createMainIntent()
         } else {
             e(TAG, "Current User is null")
-            makeText(this, "Please Sign In!", LENGTH_SHORT)
+            makeText(this, "Please Sign In!", LENGTH_SHORT).show()
         }
     }
 
@@ -150,6 +108,10 @@ class login_view : AppCompatActivity() {
     }
 
     private fun createMainIntent() {
+        startActivity(Intent(this, MainActivity::class.java))
+    }
+
+    private fun createSignUpIntent() {
         startActivity(Intent(this, MainActivity::class.java))
     }
 
