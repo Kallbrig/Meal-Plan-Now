@@ -32,7 +32,7 @@ class databaseManager {
 
     }
 
-    fun addData() {
+    fun createUser(userID: String) {
         // Create a new user with a first and last name
         // Create a new user with a first and last name
 
@@ -41,25 +41,26 @@ class databaseManager {
 
 // Add a new document with a generated ID
         // Add a new document with a generated ID
-        db.collection("users")
-            .add(user)
+        db.collection("users").document(userID).set(user)
             .addOnSuccessListener { documentReference ->
                 Log.d(
                     TAG,
-                    "DocumentSnapshot added with ID: " + documentReference.id
+                    "DocumentSnapshot added with ID: $documentReference"
                 )
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
+
+
     }
 
-    fun addBlankUser() {
+    fun addNewUser(nickname: String, email: String, userID: String) {
         lateinit var docId: String
 
         val user: MutableMap<String, Any> = HashMap()
 
-        user["name"] = ""
-        user["id"] = ""
-        user["email"] = ""
+        user["name"] = nickname
+        user["id"] = userID
+        user["email"] = email
 
         user["prefCat1"] = ""
         user["prefCat2"] = ""
@@ -94,12 +95,10 @@ class databaseManager {
         user["sevenDay5"] = ""
         user["sevenDay6"] = ""
 
-        //Adds blank user to DB with self generated docID
-        db.collection("users")
-            .add(user)
+        //Adds new user to Db with nickname, email, and userID to a document with id = UserID
+        db.collection("users").document(userID).set(user)
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.id)
-                docId = documentReference.id
+                Log.d(TAG, "DocumentSnapshot added with ID: $documentReference")
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
 

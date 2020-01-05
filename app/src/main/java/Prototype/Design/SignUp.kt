@@ -3,6 +3,7 @@ package Prototype.Design
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.i
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -61,8 +62,9 @@ class SignUp : AppCompatActivity() {
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success")
-                            data.addBlankUser()
-                            data.addData()
+                            data.addNewUser(nickname, email, user!!.uid)
+                            i("AAAAAAAAAAAAAAAAAAAAA", "SUCKMYDICKNY - ${user!!.uid}")
+
 
 
                             makeText(
