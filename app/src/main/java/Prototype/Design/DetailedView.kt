@@ -9,24 +9,24 @@ import android.widget.*
 
 class DetailedView : AppCompatActivity() {
 
-    val TAG = "DETAILED VIEW"
-    var api = apiConnection()
+    private val TAG = "DETAILED VIEW"
+    private var api = apiConnection()
 
-    lateinit var bgImg: ImageView
-    lateinit var mealPreview: ImageView
-    lateinit var titleBar: TextView
-    lateinit var mealName: TextView
-    lateinit var mealCat: TextView
-    lateinit var ingList: ArrayList<TextView>
+    private lateinit var bgImg: ImageView
+    private lateinit var mealPreview: ImageView
+    private lateinit var titleBar: TextView
+    private lateinit var mealName: TextView
+    private lateinit var mealCat: TextView
+    private lateinit var ingList: ArrayList<TextView>
 
 
-    lateinit var mealInstructions: TextView
-    lateinit var downloadBut: LinearLayout
-    lateinit var meal: ArrayList<String>
+    private lateinit var mealInstructions: TextView
+    private lateinit var downloadBut: LinearLayout
+    private lateinit var meal: ArrayList<String>
 
-    lateinit var searchButDetail: ImageButton
-    lateinit var favsButDetail: ImageButton
-    lateinit var sevenDayButDetail: ImageButton
+    private lateinit var searchButDetail: ImageButton
+    private lateinit var favsButDetail: ImageButton
+    private lateinit var sevenDayButDetail: ImageButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -181,10 +181,8 @@ class DetailedView : AppCompatActivity() {
     }
 
     private fun setBackBut() {
-        var backBut = findViewById<ImageButton>(R.id.backButton)
-        backBut.setOnClickListener {
-            finish()
-        }
+        val backBut = findViewById<ImageButton>(R.id.backButton)
+        backBut.setOnClickListener { finish() }
 
     }
 

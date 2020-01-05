@@ -1,5 +1,6 @@
 package Prototype.Design
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,11 @@ import androidx.core.graphics.drawable.toBitmap
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.util.Log
+import android.util.Log.d
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import org.jetbrains.anko.*
 
 private val TAG = "MAINACTIVITY"
@@ -50,33 +55,47 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // TitleBar Text is Logout Button
-        var mainLogo = findViewById<TextView>(R.id.titleBar)
+        //TitleBar Text is Logout Button for testing
+        //
+        val mainLogo = findViewById<TextView>(R.id.titleBar)
+        val searchButMain = findViewById<ImageButton>(R.id.searchButMain)
+        val favsButMain = findViewById<ImageButton>(R.id.favsButMain)
+        val sevenDayButMain = findViewById<ImageButton>(R.id.sevenDayButMain)
+        val cont: Context = this.applicationContext
+        //Remember to remove this when a dedicated logout button is created
         mainLogo.setOnClickListener {
-            var fauth = FirebaseAuth.getInstance()
+            val fauth = FirebaseAuth.getInstance()
             fauth.signOut()
-            val intent = Intent(this, login_view::class.java)
-            startActivity(intent)
+            d(TAG, "Starting login activity from main")
+            Toast.makeText(this, "suck my cock", LENGTH_LONG)
+            startActivity(Intent(cont, login_view::class.java))
         }
 
-        var searchButMain = findViewById<ImageButton>(R.id.searchButMain)
-        searchButMain.setOnClickListener() {
-            createSearchIntent()
-        }
-        var favsButMain = findViewById<ImageButton>(R.id.favsButMain)
-        favsButMain.setOnClickListener() {
-            createFavsIntent()
-        }
-        var sevenDayButMain = findViewById<ImageButton>(R.id.sevenDayButMain)
-        sevenDayButMain.setOnClickListener() {
-            createSevenDayIntent()
-        }
 
+
+        doAsync {
+
+
+            searchButMain.setOnClickListener() {
+                createSearchIntent()
+            }
+            favsButMain.setOnClickListener() {
+                createFavsIntent()
+            }
+            sevenDayButMain.setOnClickListener() {
+                createSevenDayIntent()
+            }
+        }
 
     }
 
     override fun onStart() {
         super.onStart()
+        //Does not work
+        val user = FirebaseAuth.getInstance().currentUser!! as FirebaseUser
+        if (user.isEmailVerified.not()) {
+            user.sendEmailVerification()
+        }
 
 
         //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats
@@ -116,11 +135,6 @@ class MainActivity : AppCompatActivity() {
             fullMealCatList.remove(catToFetch)
             mealCatsOnMain.add(catToFetch)
         }
-
-
-        val start = System.currentTimeMillis()
-        val end = System.currentTimeMillis()
-        Log.i(TAG, "Time to Determine Categories  ---  " + (end - start).toString())
 
         //After Api Calls, this functions sets the content of each cards with the fetched information
         setContent()

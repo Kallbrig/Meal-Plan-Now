@@ -43,10 +43,10 @@ class SignUp : AppCompatActivity() {
         var email = findViewById<EditText>(R.id.signUpEmail).text.toString()
         var password = findViewById<EditText>(R.id.signUpPassword).text.toString()
         var nickname = findViewById<EditText>(R.id.signUpNickName).text.toString()
-        var reEnterEmail = findViewById<EditText>(R.id.signUpReEnterPassword).text.toString()
+        var reEnterPassword = findViewById<EditText>(R.id.signUpReEnterPassword).text.toString()
 
-        if ((email != reEnterEmail)) {
-            makeText(this, "Emails Do Not Match! Please Try Again!", LENGTH_SHORT).show()
+        if ((password != reEnterPassword)) {
+            makeText(this, "Passwords Do Not Match! Please Try Again!", LENGTH_SHORT).show()
         } else {
 
 
@@ -72,6 +72,7 @@ class SignUp : AppCompatActivity() {
                             ).show()
                             user = auth.currentUser
                             sendVerificationEmail()
+                            finish()
 
                         } else {
                             // If sign in fails, display a message to the user.

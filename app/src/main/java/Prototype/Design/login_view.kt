@@ -27,8 +27,10 @@ class login_view : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)
+
+        //createSignUpIntent()
         d(TAG, "Login Activity Started")
-        findViewById<TextView>(R.id.titleBarLogin).text = "MealPlanNow!"
+        findViewById<TextView>(R.id.titleBarLogin).text = getString(R.string.appName)
 
         var auth: FirebaseAuth = FirebaseAuth.getInstance()
         user = auth.currentUser
@@ -47,10 +49,10 @@ class login_view : AppCompatActivity() {
 
             } else {
                 i(TAG, "Sign In Initiated. Hang on!")
-/*            email = "chase.allbright@outlook.com"
-            password = "1234567890"*/
 
 
+                //Ensures that a different user is not logged in
+                //if another user is logged in, they are logged out before proceeding
                 if (auth.currentUser?.email.toString() != email && auth.currentUser?.email.toString() != "null") {
                     i(TAG, "Signing " + user?.email + " out.")
                     auth.signOut()
@@ -81,18 +83,6 @@ class login_view : AppCompatActivity() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-
-        if (user != null) {
-            createMainIntent()
-        } else {
-            e(TAG, "Current User is null")
-            makeText(this, "Please Sign In!", LENGTH_SHORT).show()
-        }
-    }
-
     private fun sendVerificationEmail() {
         doAsync {
             user?.sendEmailVerification()!!.addOnCompleteListener { task ->
@@ -112,7 +102,7 @@ class login_view : AppCompatActivity() {
     }
 
     private fun createSignUpIntent() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, SignUp::class.java))
     }
 
 }
