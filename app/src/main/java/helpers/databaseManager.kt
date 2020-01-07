@@ -1,7 +1,10 @@
 package helpers
 
 import android.util.Log
+import android.util.Log.i
+import android.util.Log.w
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlin.math.log
 
 
 class databaseManager {
@@ -104,16 +107,13 @@ class databaseManager {
 
     }
 
-    fun readData() {
-        db.collection("users")
-            .get()
+    fun readData(userID: String) {
+        var response = db.collection("users").document(userID).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        Log.d(TAG, document.id + " => " + document.data)
-                    }
+                    i(TAG, task.result.toString())
                 } else {
-                    Log.w(TAG, "Error getting documents.", task.exception)
+                    w(TAG, "Error getting documents.", task.exception)
                 }
             }
     }
