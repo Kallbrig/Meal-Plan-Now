@@ -1,10 +1,22 @@
 package Prototype.Design
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.util.Log.i
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast.LENGTH_LONG
+import android.widget.Toast.makeText
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firestore.v1.Document
+import helpers.databaseManager
 
 
 class DetailedView : AppCompatActivity() {
@@ -28,12 +40,19 @@ class DetailedView : AppCompatActivity() {
     private lateinit var favsButDetail: ImageButton
     private lateinit var sevenDayButDetail: ImageButton
 
+    private lateinit var user: FirebaseUser
+    private lateinit var data: databaseManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_view)
 
-        Log.i(TAG, "Detailed View Started")
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        user = auth.currentUser!!
+        data = databaseManager()
+
+        i(TAG, "Detailed View Started")
 
         bgImg = findViewById<ImageView>(R.id.bgImg)
         mealPreview = findViewById<ImageView>(R.id.mealPreview)
@@ -59,8 +78,11 @@ class DetailedView : AppCompatActivity() {
             createSevenDayIntent()
         }
 
-
-
+        //TAKE THIS OUT || TAKE THIS OUT
+        //TAKE THIS OUT || TAKE THIS OUT
+        setFavsBut()
+        //TAKE THIS OUT || TAKE THIS OUT
+        //TAKE THIS OUT || TAKE THIS OUT
 
 
         meal = api.getMealById(intent.getStringExtra("id")!!)
@@ -186,6 +208,13 @@ class DetailedView : AppCompatActivity() {
 
     }
 
+    private fun setFavsBut() =
+        findViewById<LinearLayout>(R.id.addToFavs)
+            .setOnClickListener {
+                var info = data.readData(user.uid)
+                i(TAG, info.toString())
+            }
+
     private fun createSearchIntent() {
         val intent = Intent(this, Search::class.java)
         startActivity(intent)
@@ -203,5 +232,7 @@ class DetailedView : AppCompatActivity() {
 
 
 }
+
+
 
 

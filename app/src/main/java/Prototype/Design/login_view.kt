@@ -32,7 +32,7 @@ class login_view : AppCompatActivity() {
         d(TAG, "Login Activity Started")
         findViewById<TextView>(R.id.titleBarLogin).text = getString(R.string.appName)
 
-        var auth: FirebaseAuth = FirebaseAuth.getInstance()
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
         user = auth.currentUser
         data = databaseManager()
 
@@ -93,6 +93,7 @@ class login_view : AppCompatActivity() {
                 }
             }
         }
+        makeText(this, "Please Verify Your Email!", LENGTH_SHORT).show()
 
 
     }

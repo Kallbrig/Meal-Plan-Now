@@ -1,10 +1,10 @@
 package helpers
 
 import android.util.Log
-import android.util.Log.i
-import android.util.Log.w
+import android.util.Log.*
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlin.math.log
 
 
 class databaseManager {
@@ -26,10 +26,10 @@ class databaseManager {
 
         usersDb.add(hashMapOf("Id" to "12345", "Name" to "Jack's Big PP"))
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+                w(TAG, "Error adding document", e)
             }
 
 
@@ -37,8 +37,6 @@ class databaseManager {
 
     fun createUser(userID: String) {
         // Create a new user with a first and last name
-        // Create a new user with a first and last name
-
         val user: MutableMap<String, Any> = HashMap()
 
 
@@ -46,12 +44,12 @@ class databaseManager {
         // Add a new document with a generated ID
         db.collection("users").document(userID).set(user)
             .addOnSuccessListener { documentReference ->
-                Log.d(
+                d(
                     TAG,
                     "DocumentSnapshot added with ID: $documentReference"
                 )
             }
-            .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
+            .addOnFailureListener { e -> w(TAG, "Error adding document", e) }
 
 
     }
@@ -69,6 +67,7 @@ class databaseManager {
         user["prefCat2"] = ""
         user["prefCat3"] = ""
 
+        user["favs"] = ""
         user["favs0"] = ""
         user["favs1"] = ""
         user["favs2"] = ""
@@ -101,13 +100,23 @@ class databaseManager {
         //Adds new user to Db with nickname, email, and userID to a document with id = UserID
         db.collection("users").document(userID).set(user)
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: $documentReference")
+                d(
+                    TAG,
+                    "DocumentSnapshot added with ID: $documentReference"
+                )
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
 
     }
 
-    fun readData(userID: String) {
+    fun addToFavs(userID: String, mealIDToAddToFavs: String) {
+        db.collection("users").document(userID).update(
+            "favs",
+            ",$mealIDToAddToFavs"
+        )
+    }
+
+    fun readData(userID: String): Task<DocumentSnapshot> {
         var response = db.collection("users").document(userID).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -116,6 +125,7 @@ class databaseManager {
                     w(TAG, "Error getting documents.", task.exception)
                 }
             }
+        return response
     }
 
 

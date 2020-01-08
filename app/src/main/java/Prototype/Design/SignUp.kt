@@ -65,8 +65,6 @@ class SignUp : AppCompatActivity() {
                             data.addNewUser(nickname, email, user!!.uid)
                             data.readData(userID = user!!.uid)
 
-
-
                             makeText(
                                 baseContext,
                                 "Sign Up Success. Please Check Your Email!",
