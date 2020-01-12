@@ -15,12 +15,15 @@ import android.util.Log
 import android.util.Log.d
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
+import android.widget.Toast.makeText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import helpers.databaseManager
 import org.jetbrains.anko.*
 
 private val TAG = "MAINACTIVITY"
 private val api = apiConnection()
+private val data = databaseManager()
 // Meal categories to display on the main page. just an array of categories that will be passed to parseCat()
 private var mealCatsOnMain = ArrayList<String>(4)
 //Row1 Meals. Goes inside of mainMealCats
@@ -66,8 +69,6 @@ class MainActivity : AppCompatActivity() {
         mainLogo.setOnClickListener {
             val fauth = FirebaseAuth.getInstance()
             fauth.signOut()
-            d(TAG, "Starting login activity from main")
-            Toast.makeText(this, "suck my cock", LENGTH_LONG)
             startActivity(Intent(cont, login_view::class.java))
         }
 
@@ -95,6 +96,7 @@ class MainActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser!! as FirebaseUser
         if (user.isEmailVerified.not()) {
             user.sendEmailVerification()
+            makeText(this, "Please Verify Your Email!", LENGTH_LONG).show()
         }
 
 
@@ -124,9 +126,22 @@ class MainActivity : AppCompatActivity() {
             "Goat"
         )
 
+        var userInfoFromDatabase = data.readData(user.uid!!)
+
+
+        //
+        //
+        //
+        //Remove Later
+        userInfoFromDatabase.result!!.getString("prefCat1")?.let { fullMealCatList.add(it) }
+        d(TAG, "???????????????????????????????????")
+        d(TAG, fullMealCatList.toString())
+
 
         //These Categories don't have enough meals to fill out a row on Main. Fix and then Reinstate these Categories.
         fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))
+
+
 
 
 
