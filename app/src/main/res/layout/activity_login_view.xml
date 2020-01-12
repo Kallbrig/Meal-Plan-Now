@@ -10,15 +10,18 @@
     <LinearLayout
         android:id="@+id/titleBarLinLayLogin"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="wrap_content"
         android:background="@drawable/drawablebgheader"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/titleBarLogin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="2sp"
             android:layout_weight="1"
             android:bufferType="normal"

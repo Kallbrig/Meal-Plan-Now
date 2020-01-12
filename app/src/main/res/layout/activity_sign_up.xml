@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:background="@drawable/drawablebgheader"
-        android:orientation="horizontal"
         android:gravity="center_horizontal"
-        android:weightSum="4">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/titleBarSignUp"
