@@ -88,17 +88,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-        //Does not work
-        val user = FirebaseAuth.getInstance().currentUser!! as FirebaseUser
-        if (user.isEmailVerified.not()) {
-            user.sendEmailVerification()
-            makeText(this, "Please Verify Your Email!", LENGTH_LONG).show()
-        }
-
 
         //Determines the meals that will appear on the MainActivity by setting mainMealCats and rowCats
         setMealCat()
@@ -126,17 +115,17 @@ class MainActivity : AppCompatActivity() {
             "Goat"
         )
 
-        var userInfoFromDatabase = data.readData(user.uid!!)
+        //var userInfoFromDatabase = data.readData(user.uid!!)
 
 
         //
         //
         //
         //Remove Later
-        userInfoFromDatabase.result!!.getString("prefCat1")?.let { fullMealCatList.add(it) }
-        d(TAG, "???????????????????????????????????")
-        d(TAG, fullMealCatList.toString())
-
+        /* userInfoFromDatabase.result!!.getString("prefCat1")?.let { fullMealCatList.add(it) }
+         d(TAG, "???????????????????????????????????")
+         d(TAG, fullMealCatList.toString())
+ */
 
         //These Categories don't have enough meals to fill out a row on Main. Fix and then Reinstate these Categories.
         fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))
@@ -153,6 +142,19 @@ class MainActivity : AppCompatActivity() {
 
         //After Api Calls, this functions sets the content of each cards with the fetched information
         setContent()
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //Does not work
+        val user = FirebaseAuth.getInstance().currentUser!! as FirebaseUser
+        if (user.isEmailVerified.not()) {
+            user.sendEmailVerification()
+            makeText(this, "Please Verify Your Email!", LENGTH_LONG).show()
+        }
+
 
     }
 
