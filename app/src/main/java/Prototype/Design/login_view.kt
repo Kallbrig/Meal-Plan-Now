@@ -14,6 +14,7 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
+import helpers.authManager
 import helpers.databaseManager
 import org.jetbrains.anko.doAsync
 
@@ -35,6 +36,7 @@ class login_view : AppCompatActivity() {
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         user = auth.currentUser
         data = databaseManager()
+
 
         val loginBut = findViewById<Button>(R.id.loginBut)
         val signUpBut = findViewById<Button>(R.id.signUpBut)

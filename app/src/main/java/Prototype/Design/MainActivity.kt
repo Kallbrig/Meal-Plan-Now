@@ -18,6 +18,7 @@ import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.makeText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import helpers.authManager
 import helpers.databaseManager
 import org.jetbrains.anko.*
 
@@ -57,6 +58,9 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var authtest = authManager()
+
 
         //TitleBar Text is Logout Button for testing
         //

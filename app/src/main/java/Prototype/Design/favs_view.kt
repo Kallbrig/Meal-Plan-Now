@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.d
 import android.util.Log.i
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -13,14 +14,17 @@ import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import helpers.authManager
 import helpers.databaseManager
+import kotlinx.android.synthetic.main.activity_login_view.*
 
 
 lateinit var searchButFavs: ImageButton
 lateinit var favsButFavs: ImageButton
 lateinit var sevenDayButFavs: ImageButton
-private val TAG: String = "FAVORITES VIEW"
+private const val TAG: String = "FAVORITES VIEW"
 private var data = databaseManager()
+private val auth = authManager()
 
 
 class favs_view : AppCompatActivity() {
@@ -34,8 +38,12 @@ class favs_view : AppCompatActivity() {
 
         //Back Button
         setBackBut()
-        //data.idkwhatsup()
-        //data.getDB()
+
+        //var user = auth.currentUser
+
+        //var theInformation = data.readData(user!!.uid).result as Map<String, Object>
+
+        //d(TAG, theInformation.keys.toString())
 
 
         //Adding all Cards from Favs_View to the arraylist that will store them. This makes them iteratable
