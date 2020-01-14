@@ -26,17 +26,19 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
         user = auth.currentUser
-        val data = databaseManager()
 
+
+        //Sign Up Button onClickListener
         findViewById<Button>(R.id.signUpButSignUp).setOnClickListener {
-
             signUp()
-
         }
     }
 
+
+    //Creates new user with email,password, nickname
+    //Creates firestore entry with the email, nickname, and userID
+    //Shows toast with success or failure
     private fun signUp() {
 
         val data = databaseManager()
@@ -50,20 +52,23 @@ class SignUp : AppCompatActivity() {
             makeText(this, "Passwords Do Not Match! Please Try Again!", LENGTH_SHORT).show()
         } else {
 
-
+            //Checks if either editText is blank and shows a toast to the user if they are.
             if (email == "" || password == "") {
                 makeText(this, "Please Input an Email & Password", LENGTH_SHORT).show()
+            }
 
-            } else {
+            //If email and password are not blank, proceed and log a message
+            else {
                 Log.d(TAG, "Email and password is pulled: sign up")
 
+                //Actual sign up happens here
+                //Calls auth which is a Firebase Instance global variable
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign in success, update with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success")
                             data.addNewUser(nickname, email, user!!.uid)
-                            data.readData(userID = user!!.uid)
 
                             makeText(
                                 baseContext,
@@ -75,7 +80,7 @@ class SignUp : AppCompatActivity() {
                             finish()
 
                         } else {
-                            // If sign in fails, display a message to the user.
+                            //If sign in fails, log message and toast with error message
                             Log.w(
                                 TAG,
                                 "createUserWithEmail:failure",
@@ -87,8 +92,6 @@ class SignUp : AppCompatActivity() {
                                 "Failed Registration: " + e!!.message,
                                 LENGTH_SHORT
                             ).show()
-
-                            //UPDATE UI FAIL
                         }
                         email = ""
                         password = ""
@@ -97,6 +100,8 @@ class SignUp : AppCompatActivity() {
         }
     }
 
+
+    //Sends Verification email to the current user
     private fun sendVerificationEmail() {
         doAsync {
             user?.sendEmailVerification()!!.addOnCompleteListener { task ->
