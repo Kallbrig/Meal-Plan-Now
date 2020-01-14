@@ -18,6 +18,7 @@ import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.makeText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentSnapshot
 import helpers.authManager
 import helpers.databaseManager
 import org.jetbrains.anko.*
@@ -125,11 +126,21 @@ class MainActivity : AppCompatActivity() {
         //Something is working here. Keep working with it. almost there yo.
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        var info = doAsyncResult {
-            return@doAsyncResult data.readData(userID = auth.currentUser!!.uid)
-        }.get()
-        makeText(this, info.toString(), LENGTH_LONG)
+        /* var info = doAsyncResult {
+             return@doAsyncResult data.readData(userID = auth.currentUser!!.uid)
+                 .addOnFailureListener{
+                 e -> d(TAG, "SuckMyDick - - - - - ${e.toString()}" )
+             }.addOnSuccessListener {
+                 it -> return@addOnSuccessListener
+             }.getResult()
+         }*/
+        //makeText(this, info.result.toString(), LENGTH_LONG).show()
 
+        /* var info = data.readData(auth.currentUser!!.uid)
+         d(TAG,"BIG DICK BANDIT - - - - - - - - - -  ${info.toString()}")
+ */
+
+        data.readData(auth.currentUser!!.uid)
 
         //These Categories don't have enough meals to fill out a row on Main. Fix and then Reinstate these Categories.
         fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))

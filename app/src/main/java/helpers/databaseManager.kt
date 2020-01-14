@@ -1,10 +1,12 @@
 package helpers
 
 import android.util.Log
-import android.util.Log.*
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentSnapshot
+import android.util.Log.d
+import android.util.Log.w
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
 
 
 class databaseManager {
@@ -116,16 +118,29 @@ class databaseManager {
         )
     }
 
-    fun readData(userID: String): Task<DocumentSnapshot> {
-        var response = db.collection("users").document(userID).get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    i(TAG, task.result.toString())
+
+    //This function successfully gets user data from Firestore and logs it and the userID
+    //Don't mess this up. Copy is below
+    fun readData(userID: String) {
+        val auth = FirebaseAuth.getInstance()
+        doAsync {
+            var finalInfo: MutableMap<String, String>
+            var info = db.collection("users").document(auth.currentUser!!.uid)
+            d(TAG, auth.currentUser!!.uid)
+            info.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        d(TAG, "DocumentSnapshot data: ${document.data}")
                 } else {
-                    w(TAG, "Error getting documents.", task.exception)
+                        d(TAG, "No such document")
                 }
             }
-        return response
+                .addOnFailureListener { exception ->
+                    d(TAG, "get failed with ", exception)
+                }
+
+    }
+
     }
 
 
