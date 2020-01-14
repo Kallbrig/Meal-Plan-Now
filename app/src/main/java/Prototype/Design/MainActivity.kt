@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var authtest = authManager()
+        //var auth = authManager()
 
 
         //TitleBar Text is Logout Button for testing
@@ -120,16 +120,16 @@ class MainActivity : AppCompatActivity() {
         )
 
         //var userInfoFromDatabase = data.readData(user.uid!!)
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
+        //Something is working here. Keep working with it. almost there yo.
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        var info = doAsyncResult {
+            return@doAsyncResult data.readData(userID = auth.currentUser!!.uid)
+        }.get()
+        makeText(this, info.toString(), LENGTH_LONG)
 
-        //
-        //
-        //
-        //Remove Later
-        /* userInfoFromDatabase.result!!.getString("prefCat1")?.let { fullMealCatList.add(it) }
-         d(TAG, "???????????????????????????????????")
-         d(TAG, fullMealCatList.toString())
- */
 
         //These Categories don't have enough meals to fill out a row on Main. Fix and then Reinstate these Categories.
         fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))
