@@ -29,13 +29,24 @@ class login_view : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_view)
 
-        //createSignUpIntent()
-        d(TAG, "Login Activity Started")
-        findViewById<TextView>(R.id.titleBarLogin).text = getString(R.string.appName)
 
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         user = auth.currentUser
         data = databaseManager()
+
+
+        //createSignUpIntent()
+        d(TAG, "Login Activity Started")
+        findViewById<TextView>(R.id.titleBarLogin).text = getString(R.string.appName)
+        findViewById<TextView>(R.id.titleBarLogin).text = user?.email
+
+
+
+        if (user != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
+
 
 
         val loginBut = findViewById<Button>(R.id.loginBut)

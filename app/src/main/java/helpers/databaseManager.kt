@@ -17,7 +17,7 @@ class databaseManager {
     // Access a Cloud Firestore instance from your Activity
     private var db = FirebaseFirestore.getInstance()
     private val usersDb = db.collection("users")
-    private val favsList = db.document("/users/93FjtHSr5XGj5Ba27ayH/Favs/nec0R50QBFUbWbtAzjNH")
+    //private val favsList = db.document("/users/")
 
 
     private val TAG = "DB MANAGER"
@@ -107,7 +107,7 @@ class databaseManager {
                     "DocumentSnapshot added with ID: $documentReference"
                 )
             }
-            .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
+            .addOnFailureListener { e -> w(TAG, "Error adding document", e) }
 
     }
 

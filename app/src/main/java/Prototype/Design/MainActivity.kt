@@ -77,6 +77,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(cont, login_view::class.java))
         }
 
+        val fauth = FirebaseAuth.getInstance()
+
+        mainLogo.text = fauth.currentUser?.email
+        //mainLogo.text = fauth.currentUser?.displayName
+
 
 
         doAsync {

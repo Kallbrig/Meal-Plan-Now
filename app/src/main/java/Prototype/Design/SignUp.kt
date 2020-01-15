@@ -1,14 +1,13 @@
 package Prototype.Design
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.i
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -53,8 +52,8 @@ class SignUp : AppCompatActivity() {
         } else {
 
             //Checks if either editText is blank and shows a toast to the user if they are.
-            if (email == "" || password == "") {
-                makeText(this, "Please Input an Email & Password", LENGTH_SHORT).show()
+            if (email == "" || password == "" || nickname == "") {
+                makeText(this, "Please Input an Email, Password, and Nickname", LENGTH_SHORT).show()
             }
 
             //If email and password are not blank, proceed and log a message
