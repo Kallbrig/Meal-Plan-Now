@@ -3,7 +3,7 @@ package helpers
 
 import android.util.Log.d
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import org.jetbrains.anko.doAsync
 
 class authManager {
@@ -26,9 +26,11 @@ class authManager {
     }
 
     fun signUpUser(email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-        sendVerificationEmail()
+        val db = FirebaseFirestore.getInstance()
 
+        auth.createUserWithEmailAndPassword(email, password)
+        db.collection("users").document(auth.currentUser!!.uid).set("name" to "name")
+        sendVerificationEmail()
     }
 
     fun SignInUser(email: String, password: String) {

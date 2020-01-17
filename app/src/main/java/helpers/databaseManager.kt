@@ -1,12 +1,10 @@
 package helpers
 
-import android.util.Log
 import android.util.Log.d
 import android.util.Log.w
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
 
 
 class databaseManager {
@@ -38,12 +36,11 @@ class databaseManager {
     }
 
     fun createUser(userID: String) {
-        // Create a new user with a first and last name
-        val user: MutableMap<String, Any> = HashMap()
+        // Create a new user with a name
+        val user = hashMapOf("name" to "name")
 
 
-// Add a new document with a generated ID
-        // Add a new document with a generated ID
+        // Add a new document with the User's UserID provided by Google
         db.collection("users").document(userID).set(user)
             .addOnSuccessListener { documentReference ->
                 d(
@@ -131,15 +128,15 @@ class databaseManager {
                 .addOnSuccessListener { document ->
                     if (document != null) {
                         d(TAG, "DocumentSnapshot data: ${document.data}")
-                } else {
+                    } else {
                         d(TAG, "No such document")
+                    }
                 }
-            }
                 .addOnFailureListener { exception ->
                     d(TAG, "get failed with ", exception)
                 }
 
-    }
+        }
 
     }
 

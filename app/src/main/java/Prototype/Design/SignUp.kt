@@ -2,9 +2,8 @@ package Prototype.Design
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.util.Log.d
+import android.widget.*
 import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
@@ -12,26 +11,90 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import helpers.authManager
 import helpers.databaseManager
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.jetbrains.anko.doAsync
 
 class SignUp : AppCompatActivity() {
 
     val TAG = "LOGIN VIEW"
     private var user: FirebaseUser? = null
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val fauth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val auth = authManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        user = auth.currentUser
+        user = fauth.currentUser
+        val titleBar = findViewById<TextView>(R.id.titleBarSignUp)
+        titleBar.text = getString(R.string.appName)
+
+
+        val email = findViewById<EditText>(R.id.signUpEmail)
+        val password = findViewById<EditText>(R.id.signUpPassword)
+
+        intent.hasExtra("email")
+        if (intent.hasExtra("email")) {
+            email.setText(intent.extras?.getString("email"))
+        }
+        if (intent.hasExtra("password")) {
+            password.setText(intent.extras?.getString("password"))
+        }
 
 
         //Sign Up Button onClickListener
         findViewById<Button>(R.id.signUpButSignUp).setOnClickListener {
-            signUp()
+            signUpUser()
         }
+
+        val backBut = findViewById<ImageButton>(R.id.backButtonSignUp)
+        backBut.setOnClickListener {
+            email.text.clear()
+            password.text.clear()
+            signUpNickName.text.clear()
+            signUpReEnterPassword.text.clear()
+            finish()
+        }
+    }
+
+    fun signUpUser() {
+
+        d(TAG, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+        var email = findViewById<EditText>(R.id.signUpEmail).text.toString()
+        var password = findViewById<EditText>(R.id.signUpPassword).text.toString()
+        var nickname = findViewById<EditText>(R.id.signUpNickName).text.toString()
+        var reEnterPassword = findViewById<EditText>(R.id.signUpReEnterPassword).text.toString()
+
+
+        if ((password != reEnterPassword)) {
+            makeText(this, "Passwords Do Not Match! Please Try Again!", LENGTH_SHORT).show()
+        } else {
+
+            //Checks if either editText is blank and shows a toast to the user if they are.
+            if (email == "" || password == "" || nickname == "") {
+                makeText(this, "Please Input an Email, Password, and Nickname", LENGTH_SHORT).show()
+            }
+
+            //If email and password are not blank, proceed and log a message
+            else {
+                d(TAG, "Email and password is pulled: sign up")
+                val data = databaseManager()
+                val db = FirebaseFirestore.getInstance()
+
+                fauth.createUserWithEmailAndPassword(email, password)
+                user = fauth.currentUser
+
+                db.collection("users").document(user!!.uid).set("name" to "name")
+                data.addNewUser(nickname, email, user!!.uid)
+                sendVerificationEmail()
+                //makeText(this, "Check your Email", LENGTH_SHORT).show()
+            }
+        }
+        d(TAG, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     }
 
 
@@ -58,15 +121,15 @@ class SignUp : AppCompatActivity() {
 
             //If email and password are not blank, proceed and log a message
             else {
-                Log.d(TAG, "Email and password is pulled: sign up")
+                d(TAG, "Email and password is pulled: sign up")
 
                 //Actual sign up happens here
                 //Calls auth which is a Firebase Instance global variable
-                auth.createUserWithEmailAndPassword(email, password)
+                fauth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // Sign in success, update with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success")
+                            d(TAG, "createUserWithEmail:success")
                             data.addNewUser(nickname, email, user!!.uid)
 
                             makeText(
@@ -74,7 +137,7 @@ class SignUp : AppCompatActivity() {
                                 "Sign Up Success. Please Check Your Email!",
                                 Toast.LENGTH_LONG
                             ).show()
-                            user = auth.currentUser
+                            user = fauth.currentUser
                             sendVerificationEmail()
                             finish()
 
@@ -105,7 +168,7 @@ class SignUp : AppCompatActivity() {
         doAsync {
             user?.sendEmailVerification()!!.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "Verification Email Sent - " + user?.email)
+                    d(TAG, "Verification Email Sent - " + user?.email)
                 } else {
                     Log.e(TAG, (task.exception as FirebaseException).message.toString())
                 }

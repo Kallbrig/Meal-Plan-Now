@@ -14,19 +14,30 @@
         android:background="@drawable/drawablebgheader"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="10">
+
+        <ImageButton
+            android:id="@+id/backButtonSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:padding="15sp"
+            android:layout_gravity="top"
+            app:srcCompat="@drawable/backarrow" />
 
         <TextView
             android:id="@+id/titleBarSignUp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="2sp"
-            android:layout_weight="1"
+            android:layout_weight="9"
             android:bufferType="normal"
             android:fitsSystemWindows="true"
             android:gravity="center_horizontal|center_vertical"
             android:maxLines="1"
             android:paddingTop="5sp"
+            android:paddingRight="15sp"
             android:text="TitleBar"
             android:textColor="@color/red"
             android:textSize="25sp"

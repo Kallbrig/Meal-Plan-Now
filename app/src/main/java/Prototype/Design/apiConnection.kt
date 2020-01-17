@@ -2,7 +2,6 @@ package Prototype.Design
 
 import android.graphics.drawable.Drawable
 import android.util.Log.e
-import android.util.Log.i
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject

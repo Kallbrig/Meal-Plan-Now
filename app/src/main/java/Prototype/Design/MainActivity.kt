@@ -3,25 +3,22 @@ package Prototype.Design
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
-import androidx.cardview.widget.CardView
-import androidx.core.graphics.drawable.toBitmap
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
-import android.util.Log
-import android.util.Log.d
-import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.makeText
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.core.graphics.drawable.toBitmap
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.DocumentSnapshot
-import helpers.authManager
 import helpers.databaseManager
-import org.jetbrains.anko.*
+import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.image
 
 private val TAG = "MAINACTIVITY"
 private val api = apiConnection()
@@ -81,7 +78,6 @@ class MainActivity : AppCompatActivity() {
 
         mainLogo.text = fauth.currentUser?.email
         //mainLogo.text = fauth.currentUser?.displayName
-
 
 
         doAsync {

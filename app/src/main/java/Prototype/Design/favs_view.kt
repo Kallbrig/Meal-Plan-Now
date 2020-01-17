@@ -2,21 +2,18 @@ package Prototype.Design
 
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.d
 import android.util.Log.i
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import helpers.authManager
 import helpers.databaseManager
-import kotlinx.android.synthetic.main.activity_login_view.*
 
 
 lateinit var searchButFavs: ImageButton
@@ -78,9 +75,6 @@ class favs_view : AppCompatActivity() {
         sevenDayButFavs.setOnClickListener {
             createSevenDayIntent()
         }
-
-
-
 
 
     }

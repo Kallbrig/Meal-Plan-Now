@@ -4,17 +4,16 @@ package Prototype.Design
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log.*
-
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast.*
+import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
-import helpers.authManager
 import helpers.databaseManager
 import org.jetbrains.anko.doAsync
 
@@ -47,10 +46,9 @@ class login_view : AppCompatActivity() {
         }
 
 
-
-
         val loginBut = findViewById<Button>(R.id.loginBut)
         val signUpBut = findViewById<Button>(R.id.signUpBut)
+
 
         loginBut.setOnClickListener {
 
@@ -90,10 +88,28 @@ class login_view : AppCompatActivity() {
         }
 
         signUpBut.setOnClickListener {
+
             createSignUpIntent()
 
         }
 
+    }
+
+    override fun onStart() {
+
+        findViewById<EditText>(R.id.signInEmail).text.clear()
+        findViewById<EditText>(R.id.signInPassword).text.clear()
+
+        super.onStart()
+    }
+
+    override fun onResume() {
+
+
+        findViewById<EditText>(R.id.signInEmail).text.clear()
+        findViewById<EditText>(R.id.signInPassword).text.clear()
+
+        super.onResume()
     }
 
     private fun sendVerificationEmail() {
@@ -116,7 +132,21 @@ class login_view : AppCompatActivity() {
     }
 
     private fun createSignUpIntent() {
-        startActivity(Intent(this, SignUp::class.java))
+        val email = findViewById<EditText>(R.id.signInEmail)
+        val password = findViewById<EditText>(R.id.signInPassword)
+
+        val i = Intent(this, SignUp::class.java)
+
+        if (email.text.toString() != "") {
+            i.putExtra("email", email.text.toString())
+
+        }
+        if (password.text.toString() != "") {
+            i.putExtra("password", password.text.toString())
+
+        }
+
+        startActivity(i)
     }
 
 }
