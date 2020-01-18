@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
          d(TAG,"BIG DICK BANDIT - - - - - - - - - -  ${info.toString()}")
  */
 
-        data.readData(fauth.currentUser!!.uid)
+        data.readData()
 
         //These Categories don't have enough meals to fill out a row on Main. Fix and then Reinstate these Categories.
         fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))
@@ -167,7 +167,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         //Does not work
-        val user = FirebaseAuth.getInstance().currentUser!! as FirebaseUser
+        val user = FirebaseAuth.getInstance().currentUser!!
         if (user.isEmailVerified.not()) {
             user.sendEmailVerification()
             makeText(this, "Please Verify Your Email!", LENGTH_LONG).show()

@@ -46,7 +46,11 @@ class SignUp : AppCompatActivity() {
 
         //Sign Up Button onClickListener
         findViewById<Button>(R.id.signUpButSignUp).setOnClickListener {
-            auth.signUpUser(email.text.toString(),password.text.toString())
+            auth.signUpUser(
+                email.text.toString(),
+                password.text.toString(),
+                signUpNickName.text.toString()
+            )
         }
 
         val backBut = findViewById<ImageButton>(R.id.backButtonSignUp)
@@ -127,7 +131,8 @@ class SignUp : AppCompatActivity() {
 
             //If email and password are not blank, proceed and log a message
             else {
-                d(TAG, "Email and password is pulled: sign up")
+                d(TAG, "Email and password have been pulled: sign up")
+
 
                 //Actual sign up happens here
                 //Calls auth which is a Firebase Instance global variable

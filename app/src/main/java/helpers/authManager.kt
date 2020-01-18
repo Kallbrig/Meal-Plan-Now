@@ -2,6 +2,7 @@ package helpers
 
 
 import android.util.Log.d
+import android.util.Log.w
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import org.jetbrains.anko.doAsync
@@ -25,46 +26,32 @@ class authManager {
 
     }
 
-    fun signUpUser(email: String, password: String) {
-        val db = FirebaseFirestore.getInstance()
-        var fauth = FirebaseAuth.getInstance()
+    fun signUpUser(email: String, password: String, userName: String) {
+        val db: databaseManager = databaseManager()
+        val fauth: FirebaseAuth = FirebaseAuth.getInstance()
+        var userAuth: FirebaseAuth
 
-        var userID: String = ""
-
-        fauth.addAuthStateListener { it ->
-
+        fauth.addAuthStateListener {
+            d(TAG, "Auth State Has Changed!")
         }
 
         fauth.createUserWithEmailAndPassword(email, password)
-            .addOnFailureListener(){
-            e -> d(TAG, "User Creation Failed - - - $e")
-        }
-            .addOnCompleteListener{
-                t -> d(TAG, "User Creation Done - - - ${t}")
-            }
-
-        d(TAG, "!!!!!!!!!!!!!!!!$userID")
-
-
-/*
-        auth = FirebaseAuth.getInstance()
-
-
-        d(TAG, auth.currentUser!!.uid)
-
-
-            db
-              .collection("users")
-                  .document(auth.currentUser!!.uid)
-                      .set("name" to "name")
-
-            .addOnFailureListener { e ->
-                d(TAG, e.toString())
-            }
-
             .addOnCompleteListener { t ->
-                d(TAG, t.toString())
-            }*/
+                if (t.isSuccessful) {
+                    userAuth = auth
+
+                    //TESTING USE ONLY. REMOVE PERSONAL INFORMATION BEFORE RELEASE
+                    d(TAG, "create User With Email: Success! - - - ${userAuth.currentUser!!.email}")
+                    d(TAG, "UID - - - ${userAuth.currentUser!!.uid}")
+                    db.createUser(userAuth.currentUser!!.uid, userName)
+
+
+                } else {
+                    w(TAG, "create User With Email: Failure!", t.exception)
+
+                }
+            }
+
         sendVerificationEmail()
 
     }
@@ -81,13 +68,13 @@ class authManager {
 
     fun SignInUser(email: String, password: String) {
 
-        d(TAG, "Email and password is pulled: sign up")
+        d(TAG, "Sign in Has Begun")
 
         //Verifying that no one is logged in
-        if (auth.currentUser != null) {
-            auth.signOut()
-        }
-
+        /* if (auth.currentUser != null) {
+             auth.signOut()
+         }
+ */
         //Logging in with Email and Password.
         auth.signInWithEmailAndPassword(email, password)
     }

@@ -35,10 +35,10 @@ class databaseManager {
 
     }
 
-    fun createUser(userID: String) {
-        // Create a new user with a name
-        val user = hashMapOf("name" to "name")
+    fun createUser(userID: String, userName: String) {
 
+        // Create a new user with a name
+        val user = hashMapOf("name" to userName, "id" to userID)
 
         // Add a new document with the User's UserID provided by Google
         db.collection("users").document(userID).set(user)
@@ -54,7 +54,7 @@ class databaseManager {
     }
 
     fun addNewUser(nickname: String, email: String, userID: String) {
-        lateinit var docId: String
+        // lateinit var docId: String
 
         val user: MutableMap<String, Any> = HashMap()
 
@@ -118,10 +118,10 @@ class databaseManager {
 
     //This function successfully gets user data from Firestore and logs it and the userID
     //Don't mess this up. Copy is below
-    fun readData(userID: String) {
+    fun readData() {
         val auth = FirebaseAuth.getInstance()
         doAsync {
-            var finalInfo: MutableMap<String, String>
+            //var finalInfo: MutableMap<String, String>
             var info = db.collection("users").document(auth.currentUser!!.uid)
             d(TAG, auth.currentUser!!.uid)
             info.get()

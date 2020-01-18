@@ -211,7 +211,7 @@ class DetailedView : AppCompatActivity() {
     private fun setFavsBut() =
         findViewById<LinearLayout>(R.id.addToFavs)
             .setOnClickListener {
-                var info = data.readData(user.uid)
+                var info = data.readData()
                 i(TAG, info.toString())
             }
 
