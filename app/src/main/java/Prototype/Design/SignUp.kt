@@ -44,10 +44,9 @@ class SignUp : AppCompatActivity() {
             password.setText(intent.extras?.getString("password"))
         }
 
-
         //Sign Up Button onClickListener
         findViewById<Button>(R.id.signUpButSignUp).setOnClickListener {
-            signUpUser()
+            auth.signUpUser(email.text.toString(),password.text.toString())
         }
 
         val backBut = findViewById<ImageButton>(R.id.backButtonSignUp)
@@ -58,10 +57,17 @@ class SignUp : AppCompatActivity() {
             signUpReEnterPassword.text.clear()
             finish()
         }
+
+        //FOR TESTING ONLY
+        //REMOVE THIS BECAUSE IT'S FOR TESTING ONLY
+        signUpNickName.setText("Chase")
+        signUpEmail.setText("chase.allbright@gmail.com")
+        signUpPassword.setText("Kca24987")
+        signUpReEnterPassword.setText("Kca24987")
+
     }
 
     fun signUpUser() {
-
         d(TAG, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
         var email = findViewById<EditText>(R.id.signUpEmail).text.toString()

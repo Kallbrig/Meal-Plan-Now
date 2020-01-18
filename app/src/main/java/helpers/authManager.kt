@@ -8,7 +8,7 @@ import org.jetbrains.anko.doAsync
 
 class authManager {
     private val TAG = "AUTH MANAGER"
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     var data = databaseManager()
 
@@ -27,11 +27,57 @@ class authManager {
 
     fun signUpUser(email: String, password: String) {
         val db = FirebaseFirestore.getInstance()
+        var fauth = FirebaseAuth.getInstance()
 
-        auth.createUserWithEmailAndPassword(email, password)
-        db.collection("users").document(auth.currentUser!!.uid).set("name" to "name")
+        var userID: String = ""
+
+        fauth.addAuthStateListener { it ->
+
+        }
+
+        fauth.createUserWithEmailAndPassword(email, password)
+            .addOnFailureListener(){
+            e -> d(TAG, "User Creation Failed - - - $e")
+        }
+            .addOnCompleteListener{
+                t -> d(TAG, "User Creation Done - - - ${t}")
+            }
+
+        d(TAG, "!!!!!!!!!!!!!!!!$userID")
+
+
+/*
+        auth = FirebaseAuth.getInstance()
+
+
+        d(TAG, auth.currentUser!!.uid)
+
+
+            db
+              .collection("users")
+                  .document(auth.currentUser!!.uid)
+                      .set("name" to "name")
+
+            .addOnFailureListener { e ->
+                d(TAG, e.toString())
+            }
+
+            .addOnCompleteListener { t ->
+                d(TAG, t.toString())
+            }*/
         sendVerificationEmail()
+
     }
+
+    fun getUserData() {
+        val db = FirebaseFirestore.getInstance()
+        doAsync {
+            var suck = db.collection("users").document(auth.currentUser!!.uid)
+            suck.get()
+            d(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@$suck")
+        }
+    }
+
 
     fun SignInUser(email: String, password: String) {
 

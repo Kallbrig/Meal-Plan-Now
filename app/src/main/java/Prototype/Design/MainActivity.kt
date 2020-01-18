@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
@@ -78,6 +79,8 @@ class MainActivity : AppCompatActivity() {
 
         mainLogo.text = fauth.currentUser?.email
         //mainLogo.text = fauth.currentUser?.displayName
+        val auth = authManager()
+        auth.getUserData()
 
 
         doAsync {
@@ -122,7 +125,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         //var userInfoFromDatabase = data.readData(user.uid!!)
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
         //Something is working here. Keep working with it. almost there yo.
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -141,7 +143,7 @@ class MainActivity : AppCompatActivity() {
          d(TAG,"BIG DICK BANDIT - - - - - - - - - -  ${info.toString()}")
  */
 
-        data.readData(auth.currentUser!!.uid)
+        data.readData(fauth.currentUser!!.uid)
 
         //These Categories don't have enough meals to fill out a row on Main. Fix and then Reinstate these Categories.
         fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))
