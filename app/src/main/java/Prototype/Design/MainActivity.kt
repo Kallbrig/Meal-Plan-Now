@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.d
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -124,26 +125,6 @@ class MainActivity : AppCompatActivity() {
             "Goat"
         )
 
-        //var userInfoFromDatabase = data.readData(user.uid!!)
-
-        //Something is working here. Keep working with it. almost there yo.
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        /* var info = doAsyncResult {
-             return@doAsyncResult data.readData(userID = auth.currentUser!!.uid)
-                 .addOnFailureListener{
-                 e -> d(TAG, "SuckMyDick - - - - - ${e.toString()}" )
-             }.addOnSuccessListener {
-                 it -> return@addOnSuccessListener
-             }.getResult()
-         }*/
-        //makeText(this, info.result.toString(), LENGTH_LONG).show()
-
-        /* var info = data.readData(auth.currentUser!!.uid)
-         d(TAG,"BIG DICK BANDIT - - - - - - - - - -  ${info.toString()}")
- */
-
-        data.readData()
 
         //These Categories don't have enough meals to fill out a row on Main. Fix and then Reinstate these Categories.
         fullMealCatList.removeAll(listOf("Vegan", "Starter", "Goat"))
@@ -166,6 +147,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
         //Does not work
         val user = FirebaseAuth.getInstance().currentUser!!
         if (user.isEmailVerified.not()) {
@@ -173,6 +155,13 @@ class MainActivity : AppCompatActivity() {
             makeText(this, "Please Verify Your Email!", LENGTH_LONG).show()
         }
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //logs full map but doesn't return it. returns null map.
+        var datab = data.readData()
 
     }
 

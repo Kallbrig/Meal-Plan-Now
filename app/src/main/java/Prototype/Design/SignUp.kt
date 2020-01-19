@@ -36,7 +36,6 @@ class SignUp : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.signUpEmail)
         val password = findViewById<EditText>(R.id.signUpPassword)
 
-        intent.hasExtra("email")
         if (intent.hasExtra("email")) {
             email.setText(intent.extras?.getString("email"))
         }
@@ -45,6 +44,7 @@ class SignUp : AppCompatActivity() {
         }
 
         //Sign Up Button onClickListener
+        //Uses authManager helper class method signUpUser(email,password,nickname) to create new user
         findViewById<Button>(R.id.signUpButSignUp).setOnClickListener {
             auth.signUpUser(
                 email.text.toString(),
@@ -70,124 +70,5 @@ class SignUp : AppCompatActivity() {
         signUpReEnterPassword.setText("Kca24987")
 
     }
-
-    fun signUpUser() {
-        d(TAG, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-        var email = findViewById<EditText>(R.id.signUpEmail).text.toString()
-        var password = findViewById<EditText>(R.id.signUpPassword).text.toString()
-        var nickname = findViewById<EditText>(R.id.signUpNickName).text.toString()
-        var reEnterPassword = findViewById<EditText>(R.id.signUpReEnterPassword).text.toString()
-
-
-        if ((password != reEnterPassword)) {
-            makeText(this, "Passwords Do Not Match! Please Try Again!", LENGTH_SHORT).show()
-        } else {
-
-            //Checks if either editText is blank and shows a toast to the user if they are.
-            if (email == "" || password == "" || nickname == "") {
-                makeText(this, "Please Input an Email, Password, and Nickname", LENGTH_SHORT).show()
-            }
-
-            //If email and password are not blank, proceed and log a message
-            else {
-                d(TAG, "Email and password is pulled: sign up")
-                val data = databaseManager()
-                val db = FirebaseFirestore.getInstance()
-
-                fauth.createUserWithEmailAndPassword(email, password)
-                user = fauth.currentUser
-
-                db.collection("users").document(user!!.uid).set("name" to "name")
-                data.addNewUser(nickname, email, user!!.uid)
-                sendVerificationEmail()
-                //makeText(this, "Check your Email", LENGTH_SHORT).show()
-            }
-        }
-        d(TAG, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    }
-
-
-    //Creates new user with email,password, nickname
-    //Creates firestore entry with the email, nickname, and userID
-    //Shows toast with success or failure
-    private fun signUp() {
-
-        val data = databaseManager()
-
-        var email = findViewById<EditText>(R.id.signUpEmail).text.toString()
-        var password = findViewById<EditText>(R.id.signUpPassword).text.toString()
-        var nickname = findViewById<EditText>(R.id.signUpNickName).text.toString()
-        var reEnterPassword = findViewById<EditText>(R.id.signUpReEnterPassword).text.toString()
-
-        if ((password != reEnterPassword)) {
-            makeText(this, "Passwords Do Not Match! Please Try Again!", LENGTH_SHORT).show()
-        } else {
-
-            //Checks if either editText is blank and shows a toast to the user if they are.
-            if (email == "" || password == "" || nickname == "") {
-                makeText(this, "Please Input an Email, Password, and Nickname", LENGTH_SHORT).show()
-            }
-
-            //If email and password are not blank, proceed and log a message
-            else {
-                d(TAG, "Email and password have been pulled: sign up")
-
-
-                //Actual sign up happens here
-                //Calls auth which is a Firebase Instance global variable
-                fauth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update with the signed-in user's information
-                            d(TAG, "createUserWithEmail:success")
-                            data.addNewUser(nickname, email, user!!.uid)
-
-                            makeText(
-                                baseContext,
-                                "Sign Up Success. Please Check Your Email!",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            user = fauth.currentUser
-                            sendVerificationEmail()
-                            finish()
-
-                        } else {
-                            //If sign in fails, log message and toast with error message
-                            Log.w(
-                                TAG,
-                                "createUserWithEmail:failure",
-                                task.exception
-                            )
-                            val e = task.exception as FirebaseAuthException?
-                            makeText(
-                                this,
-                                "Failed Registration: " + e!!.message,
-                                LENGTH_SHORT
-                            ).show()
-                        }
-                        email = ""
-                        password = ""
-                    }
-            }
-        }
-    }
-
-
-    //Sends Verification email to the current user
-    private fun sendVerificationEmail() {
-        doAsync {
-            user?.sendEmailVerification()!!.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    d(TAG, "Verification Email Sent - " + user?.email)
-                } else {
-                    Log.e(TAG, (task.exception as FirebaseException).message.toString())
-                }
-            }
-        }
-
-
-    }
-
 
 }

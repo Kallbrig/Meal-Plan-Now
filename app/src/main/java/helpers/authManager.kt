@@ -60,8 +60,8 @@ class authManager {
         val db = FirebaseFirestore.getInstance()
         doAsync {
             var suck = db.collection("users").document(auth.currentUser!!.uid)
-            suck.get()
-            d(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@$suck")
+            var j = suck.get().result
+            d(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@$j")
         }
     }
 

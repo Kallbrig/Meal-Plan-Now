@@ -7,10 +7,12 @@ import android.util.Log
 import android.util.Log.i
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import helpers.authManager
 import helpers.databaseManager
@@ -35,13 +37,9 @@ class favs_view : AppCompatActivity() {
 
         //Back Button
         setBackBut()
-
-        //var user = auth.currentUser
-
-        //var theInformation = data.readData(user!!.uid).result as Map<String, Object>
-
-        //d(TAG, theInformation.keys.toString())
-
+        var fauth = FirebaseAuth.getInstance()
+        var auth = authManager()
+        var db = databaseManager()
 
         //Adding all Cards from Favs_View to the arraylist that will store them. This makes them iteratable
         favsCards.addAll(
@@ -54,6 +52,8 @@ class favs_view : AppCompatActivity() {
                 findViewById(R.id.Card6)
             )
         )
+
+
 
 
 
