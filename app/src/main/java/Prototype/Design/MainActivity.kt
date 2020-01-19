@@ -161,7 +161,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         //logs full map but doesn't return it. returns null map.
-        var datab = data.readData()
+        data.getAllUsers()
+
+
 
     }
 

@@ -4,8 +4,6 @@ import android.util.Log.d
 import android.util.Log.w
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
 
 
 class databaseManager {
@@ -57,42 +55,42 @@ class databaseManager {
 
     //This function successfully gets user data from Firestore and logs it and the userID
     //Don't mess this up. Copy is below
-    fun readData(): MutableMap<String, Any> {
+    fun readData() {
+        val auth = FirebaseAuth.getInstance()
+        var userInfo = UserInfo()
+        db.collection("users").document(auth.currentUser!!.uid)
+            .get()
+            .addOnCompleteListener { task ->
 
-        return doAsyncResult {
-            //var finalInfo: MutableMap<String, String>
-            val auth = FirebaseAuth.getInstance()
-            val info = db.collection("users").document(auth.currentUser!!.uid)
-            var infoStorage: MutableMap<String, Any> = mutableMapOf()
-            d(TAG, auth.currentUser!!.uid)
+            }
 
-            info.get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        //This returns data correctly
-                        d(TAG, "DocumentSnapshot data: ${document.data}")
+    }
 
-                        //for some reason this assignment doesn't work
-                        //it's returning a null map
-                        infoStorage = document.data!!
+    fun getAllUsers() { // [START get_all_users]
+        db.collection("users")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        d(TAG, document.id + " => " + document.data)
                     }
+                } else {
+                    w(TAG, "Error getting documents.", task.exception)
                 }
-                .addOnFailureListener { exception ->
-                    d(TAG, "get failed with ", exception)
-                    infoStorage = mutableMapOf("name" to "none")
-                }
-
-
-            return@doAsyncResult infoStorage
-        }.get()
-
-
-
-        }
+            }
+        // [END get_all_users]
+    }
 
 
     fun getUser() {
 
 
+    }
+
+    data class UserInfo(
+        var name: String? = "",
+        var email: String? = ""
+    ) {
+        constructor() : this("", "")
     }
 }
