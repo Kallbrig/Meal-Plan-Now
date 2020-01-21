@@ -8,20 +8,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class databaseManager {
 
-    lateinit var docId: String
-
-
-    // Access a Cloud Firestore instance from your Activity
     private var db = FirebaseFirestore.getInstance()
-    private val usersDb = db.collection("users")
-    //private val favsList = db.document("/users/")
-
-
+    private val auth = FirebaseAuth.getInstance()
     private val TAG = "DB MANAGER"
 
 
     fun createUser(userID: String, userName: String) {
-        val auth = FirebaseAuth.getInstance()
+
 
         // Create a new user with a name, email and UID
         val user = hashMapOf(
@@ -54,7 +47,6 @@ class databaseManager {
 
 
     //This function successfully gets user data from Firestore and logs it and the userID
-    //Don't mess this up. Copy is below
     fun readData() {
         val auth = FirebaseAuth.getInstance()
         var userInfo = UserInfo()
