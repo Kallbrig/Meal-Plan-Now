@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.d
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -162,8 +160,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         //logs full map but doesn't return it. Returns??
         //crashes currently. check further after workng in databaseManager()
-        //data.readData()
-
+        data.readData()
 
 
     }
