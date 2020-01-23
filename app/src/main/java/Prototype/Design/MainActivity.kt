@@ -160,8 +160,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        //logs full map but doesn't return it. returns null map.
-        data.getAllUsers()
+        //logs full map but doesn't return it. Returns??
+        //crashes currently. check further after workng in databaseManager()
+        //data.readData()
 
 
 

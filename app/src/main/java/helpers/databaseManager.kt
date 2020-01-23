@@ -3,6 +3,7 @@ package helpers
 import android.util.Log.d
 import android.util.Log.w
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -47,14 +48,29 @@ class databaseManager {
 
 
     //This function successfully gets user data from Firestore and logs it and the userID
+
+    //Check this further. This is a bookmark
     fun readData() {
         val auth = FirebaseAuth.getInstance()
-        var userInfo = UserInfo()
-        db.collection("users").document(auth.currentUser!!.uid)
-            .get()
-            .addOnCompleteListener { task ->
+        var user = UserInfo()
+        val data: DocumentSnapshot? =
+            db.collection("users").document(auth.currentUser!!.uid)
+                .get()
+                .addOnCompleteListener { task ->
+                    val data: MutableMap<String, Any?>? = task.result?.data
+                    if (data.isNullOrEmpty()) {
+                        d(TAG, "Document Result is Null or Empty")
+                    }
+                }.result
+        //don't know if this works.
+        //check!!
+        if (data!!.exists()) {
+            user.name = data["name"].toString()
+            user.email = data["email"].toString()
+            user.uid = data["uid"].toString()
+            d(TAG, "user - = - = - = - = - = - = " + user.name)
+        }
 
-            }
 
     }
 
@@ -81,8 +97,13 @@ class databaseManager {
 
     data class UserInfo(
         var name: String? = "",
-        var email: String? = ""
+        var email: String? = "",
+        var uid: String? = "",
+        var Favs1: String? = "",
+        var SevenDay1: String? = ""
+
     ) {
-        constructor() : this("", "")
+        constructor() : this("", "", "")
+
     }
 }

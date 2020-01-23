@@ -212,7 +212,8 @@ class DetailedView : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.addToFavs)
             .setOnClickListener {
                 var info = data.readData()
-                i(TAG, info.toString())
+
+                //i(TAG, info.toString())
             }
 
     private fun createSearchIntent() {
