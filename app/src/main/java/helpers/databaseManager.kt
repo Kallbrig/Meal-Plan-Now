@@ -1,7 +1,6 @@
 package helpers
 
-import android.util.Log.d
-import android.util.Log.w
+import android.util.Log.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -52,22 +51,31 @@ class databaseManager {
     //Check this further. This is a bookmark
     fun readData(): UserInfo {
         val auth = FirebaseAuth.getInstance()
-        val user = UserInfo()
+        var user: UserInfo
         db.collection("users").document(auth.currentUser!!.uid)
             .get()
             .addOnCompleteListener { task ->
                 val data: MutableMap<String, Any?>? = task.result?.data
                 if (data.isNullOrEmpty()) {
                     d(TAG, "Document Result is Null or Empty")
+                    user = UserInfo("name", "email", "id")
                 } else {
-                    user.name = data["name"].toString()
+                    d(TAG, "Document is not Empty. Adding to user data class.")
+                    user = UserInfo(
+                        data["name"].toString(),
+                        data["email"].toString(),
+                        data["id"].toString()
+                    )
+/*                    user.name = data["name"].toString()
                     user.email = data["email"].toString()
-                    user.id = data["id"].toString()
+                    user.id = data["id"].toString()*/
+                    i(TAG, user.name!!)
                 }
             }
-
+        //Without this kotlin thinks it's not initialized??
+        //Work more with initializing data classes
+        user = UserInfo()
         return user
-
 
     }
 

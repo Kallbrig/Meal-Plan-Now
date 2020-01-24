@@ -56,15 +56,6 @@ class authManager {
 
     }
 
-    fun getUserData() {
-        val db = FirebaseFirestore.getInstance()
-        doAsync {
-            var suck = db.collection("users").document(auth.currentUser!!.uid)
-            var j = suck.get().result
-            d(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@$j")
-        }
-    }
-
 
     fun SignInUser(email: String, password: String) {
 

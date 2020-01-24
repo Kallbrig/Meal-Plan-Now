@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.d
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         mainLogo.text = fauth.currentUser?.email
         //mainLogo.text = fauth.currentUser?.displayName
         val auth = authManager()
-        auth.getUserData()
+
 
 
         doAsync {
@@ -145,13 +146,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+/*
 
         //Does not work
         val user = FirebaseAuth.getInstance().currentUser!!
-        if (user.isEmailVerified.not()) {
+        if (!user.isEmailVerified) {
             user.sendEmailVerification()
             makeText(this, "Please Verify Your Email!", LENGTH_LONG).show()
         }
+*/
 
 
     }
@@ -160,8 +163,10 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         //logs full map but doesn't return it. Returns??
         //crashes currently. check further after workng in databaseManager()
-        data.readData()
+        var j = data.readData()
 
+        //Return is Blank
+        makeText(this, "Welcome Back " + j.name, LENGTH_LONG).show()
 
     }
 
