@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         //j = data.readData()
-        j?.copy(data.readData().toString())
+        //j?.copy(data.readData().toString())
         //d(TAG,j?.toString()!!)
 
 /*
@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPostResume() {
         super.onPostResume()
         //Return is Blank
-        makeText(this, "Welcome Back ${j?.name}", LENGTH_SHORT).show()
+        //makeText(this, "Welcome Back ${j?.name}", LENGTH_SHORT).show()
     }
 
 
