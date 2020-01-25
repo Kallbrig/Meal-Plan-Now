@@ -49,9 +49,9 @@ class databaseManager {
     //This function successfully gets user data from Firestore and logs it and the userID
 
     //Check this further. This is a bookmark
-    fun readData(): UserInfo {
+    fun readData(): UserInfo? {
         val auth = FirebaseAuth.getInstance()
-        var user: UserInfo
+        var user: UserInfo? = UserInfo()
         db.collection("users").document(auth.currentUser!!.uid)
             .get()
             .addOnCompleteListener { task ->
@@ -62,19 +62,19 @@ class databaseManager {
                 } else {
                     d(TAG, "Document is not Empty. Adding to user data class.")
                     user = UserInfo(
-                        data["name"].toString(),
-                        data["email"].toString(),
-                        data["id"].toString()
+                        name = data["name"].toString(),
+                        email = data["email"].toString(),
+                        id = data["id"].toString()
                     )
 /*                    user.name = data["name"].toString()
                     user.email = data["email"].toString()
                     user.id = data["id"].toString()*/
-                    i(TAG, user.name!!)
+
                 }
             }
         //Without this kotlin thinks it's not initialized??
         //Work more with initializing data classes
-        user = UserInfo()
+
         return user
 
     }
@@ -101,14 +101,14 @@ class databaseManager {
     }
 
     data class UserInfo(
-        var name: String? = "",
-        var email: String? = "",
+        var name: String? = "name",
+        var email: String? = "name@name.name",
         var id: String? = "",
         var Favs1: String? = "",
         var SevenDay1: String? = ""
 
     ) {
-        constructor() : this("", "", "")
+        constructor() : this("")
 
     }
 }

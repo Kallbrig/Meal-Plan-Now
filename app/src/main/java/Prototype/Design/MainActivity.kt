@@ -9,7 +9,7 @@ import android.util.Log.d
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast.LENGTH_LONG
+import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -48,6 +48,7 @@ private var cardRow3Id = ArrayList<String>(6)
 private lateinit var row1Name: TextView
 private lateinit var row2Name: TextView
 private lateinit var row3Name: TextView
+private var j: databaseManager.UserInfo? = null
 
 
 class MainActivity : AppCompatActivity() {
@@ -146,8 +147,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-/*
+        //j = data.readData()
+        j?.copy(data.readData().toString())
+        //d(TAG,j?.toString()!!)
 
+/*
         //Does not work
         val user = FirebaseAuth.getInstance().currentUser!!
         if (!user.isEmailVerified) {
@@ -163,11 +167,14 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         //logs full map but doesn't return it. Returns??
         //crashes currently. check further after workng in databaseManager()
-        var j = data.readData()
 
+
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
         //Return is Blank
-        makeText(this, "Welcome Back " + j.name, LENGTH_LONG).show()
-
+        makeText(this, "Welcome Back ${j?.name}", LENGTH_SHORT).show()
     }
 
 
