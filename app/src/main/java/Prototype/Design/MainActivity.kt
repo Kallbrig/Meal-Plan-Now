@@ -147,9 +147,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //j = data.readData()
+        j = data.readData()
         //j?.copy(data.readData().toString())
-        //d(TAG,j?.toString()!!)
+        d(TAG, "LOGGING")
+        d(TAG, j?.toString()!!)
+        //d(TAG, j?.name!!)
 
 /*
         //Does not work

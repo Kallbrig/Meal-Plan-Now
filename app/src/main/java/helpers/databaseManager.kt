@@ -1,6 +1,7 @@
 package helpers
 
-import android.util.Log.*
+import android.util.Log.d
+import android.util.Log.w
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -10,6 +11,7 @@ class databaseManager {
     private var db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
     private val TAG = "DB MANAGER"
+    private lateinit var user: UserInfo
 
 
     fun createUser(userID: String, userName: String) {
@@ -50,30 +52,41 @@ class databaseManager {
 
     //Check this further. This is a bookmark
     fun readData(): UserInfo? {
+        var name: String = "name"
+        var email: String = "email"
+        var id: String = "idNum"
         val auth = FirebaseAuth.getInstance()
-        var user: UserInfo? = UserInfo()
+        user = UserInfo()
         db.collection("users").document(auth.currentUser!!.uid)
             .get()
             .addOnCompleteListener { task ->
-                val data: MutableMap<String, Any?>? = task.result?.data
+                val data: MutableMap<String, Any?> = task.result?.data!!
                 if (data.isNullOrEmpty()) {
                     d(TAG, "Document Result is Null or Empty")
-                    user = UserInfo("name", "email", "id")
+
                 } else {
                     d(TAG, "Document is not Empty. Adding to user data class.")
-                    user = UserInfo(
-                        name = data["name"].toString(),
-                        email = data["email"].toString(),
-                        id = data["id"].toString()
-                    )
-/*                    user.name = data["name"].toString()
+
+                    name = data["name"].toString()
+                    email = data["email"].toString()
+                    id = data["id"].toString()
+
+                    //returns correct information
+                    //
+                    d(TAG, data.toString())
+
+
+                    //????????????
+                    //This is new. alternate this and the top assignments.
+                    user.name = data["name"].toString()
                     user.email = data["email"].toString()
-                    user.id = data["id"].toString()*/
+                    user.id = data["id"].toString()
 
                 }
             }
-        //Without this kotlin thinks it's not initialized??
-        //Work more with initializing data classes
+
+        //wrong for some damn reason
+        d(TAG, name + email + id)
 
         return user
 
