@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -147,10 +148,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        j = data.readData()
+
+
         //j?.copy(data.readData().toString())
-        d(TAG, "LOGGING")
-        d(TAG, j?.toString()!!)
+
         //d(TAG, j?.name!!)
 
 /*
@@ -167,8 +168,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        //logs full map but doesn't return it. Returns??
-        //crashes currently. check further after workng in databaseManager()
+
+        doAsync { j = readData() }
+
+        d(TAG, "LOGGING")
+        d(TAG, " suck my FAT BALLS " + j.toString())
+
+        doAsync { j = data.readData() }
+        d(TAG, "LOGGING11111")
+        d(TAG, " 111111111suck my FAT BALLS " + j.toString())
+        d(TAG, "I HAVE A BIG ASS DICK " + j?.name)
+
+
+
 
 
     }
@@ -431,6 +443,44 @@ class MainActivity : AppCompatActivity() {
     private fun createSevenDayIntent() {
         val intent = Intent(this, sevenDay::class.java)
         startActivity(intent)
+    }
+
+
+    //remove this later
+    fun readData(): databaseManager.UserInfo {
+
+        val auth = FirebaseAuth.getInstance()
+        var user1 = databaseManager.UserInfo()
+
+        var db = FirebaseFirestore.getInstance()
+
+        //this path is correct and works in other functions.
+        db.collection("users").document(auth.currentUser!!.uid)
+            .get()
+            .addOnCompleteListener { task ->
+
+                val data: MutableMap<String, Any?> = task.result?.data!!
+
+                if (data.isNullOrEmpty()) {
+                    d(TAG, "Document Result is Null or Empty")
+
+                } else {
+                    d(TAG, "Document is not Empty. Adding to user data class.")
+
+                    //This seems to set name and ID, but not email
+                    user1.name = data["name"].toString()
+                    user1.email = data["email"].toString()
+                    user1.id = data["id"].toString()
+
+                    //This logs correct response
+                    //d(TAG, user1.name!!)
+
+                    //This logs correct response
+                    //d(TAG, data.toString())
+
+                }
+            }
+        return user1
     }
 
 }

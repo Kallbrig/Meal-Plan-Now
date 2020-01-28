@@ -51,45 +51,38 @@ class databaseManager {
     //This function successfully gets user data from Firestore and logs it and the userID
 
     //Check this further. This is a bookmark
-    fun readData(): UserInfo? {
-        var name: String = "name"
-        var email: String = "email"
-        var id: String = "idNum"
+    fun readData(): UserInfo {
+
         val auth = FirebaseAuth.getInstance()
         user = UserInfo()
+
+        //this path is correct and works in other functions.
         db.collection("users").document(auth.currentUser!!.uid)
             .get()
             .addOnCompleteListener { task ->
+
                 val data: MutableMap<String, Any?> = task.result?.data!!
+
                 if (data.isNullOrEmpty()) {
                     d(TAG, "Document Result is Null or Empty")
 
                 } else {
                     d(TAG, "Document is not Empty. Adding to user data class.")
 
-                    name = data["name"].toString()
-                    email = data["email"].toString()
-                    id = data["id"].toString()
-
-                    //returns correct information
-                    //
-                    d(TAG, data.toString())
-
-
-                    //????????????
-                    //This is new. alternate this and the top assignments.
+                    //This seems to set name and ID, but not email
                     user.name = data["name"].toString()
                     user.email = data["email"].toString()
                     user.id = data["id"].toString()
 
+                    //This logs correct response
+                    d(TAG, user.name!!)
+
+                    //This logs correct response
+                    d(TAG, data.toString())
+
                 }
             }
-
-        //wrong for some damn reason
-        d(TAG, name + email + id)
-
         return user
-
     }
 
     fun getAllUsers() { // [START get_all_users]

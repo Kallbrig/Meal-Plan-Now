@@ -70,16 +70,20 @@ class apiConnection {
 
     fun getImgDrawable(imgUrl: String): Drawable {
         return doAsyncResult {
-            var inputStream = URL(imgUrl).openStream()
-            var draw = Drawable.createFromStream(inputStream, null)
+
+            val inputStream = URL(imgUrl).openStream()
+
+            val draw = Drawable.createFromStream(inputStream, null)
+
             inputStream.close()
+
             return@doAsyncResult draw
         }.get()
     }
 
 
     private fun parseCatIndMeal(jsonO: JSONObject): ArrayList<String> {
-        var mealInfo: ArrayList<String> = ArrayList(5)
+        val mealInfo: ArrayList<String> = ArrayList(5)
 
         if (jsonO.has("strMeal")) {
             mealInfo.add(jsonO.getString("strMeal"))
