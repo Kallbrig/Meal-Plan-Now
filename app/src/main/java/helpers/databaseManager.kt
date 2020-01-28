@@ -54,6 +54,7 @@ class databaseManager {
     fun readData(): UserInfo {
 
         val auth = FirebaseAuth.getInstance()
+
         user = UserInfo()
 
         //this path is correct and works in other functions.
@@ -109,12 +110,9 @@ class databaseManager {
     data class UserInfo(
         var name: String? = "name",
         var email: String? = "name@name.name",
-        var id: String? = "",
-        var Favs1: String? = "",
-        var SevenDay1: String? = ""
+        var id: String? = "id",
+        var Favs1: String? = "favs",
+        var SevenDay1: String? = "sevenday"
 
-    ) {
-        constructor() : this("")
-
-    }
+    ) 
 }

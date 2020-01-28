@@ -1,6 +1,7 @@
 package Prototype.Design
 
 import android.graphics.drawable.Drawable
+import android.util.Log.d
 import android.util.Log.e
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
@@ -71,6 +72,7 @@ class apiConnection {
     fun getImgDrawable(imgUrl: String): Drawable {
         return doAsyncResult {
 
+            d(TAG, "URL =  $imgUrl")
             val inputStream = URL(imgUrl).openStream()
 
             val draw = Drawable.createFromStream(inputStream, null)

@@ -9,17 +9,15 @@ import android.util.Log.d
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast.LENGTH_SHORT
-import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
 import org.jetbrains.anko.image
 
 private val TAG = "MAINACTIVITY"
@@ -148,40 +146,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
-
-        //j?.copy(data.readData().toString())
-
-        //d(TAG, j?.name!!)
-
-/*
-        //Does not work
-        val user = FirebaseAuth.getInstance().currentUser!!
-        if (!user.isEmailVerified) {
-            user.sendEmailVerification()
-            makeText(this, "Please Verify Your Email!", LENGTH_LONG).show()
-        }
-*/
+        var auth = FirebaseAuth.getInstance()
 
 
     }
 
     override fun onResume() {
         super.onResume()
-
+/*
         doAsync { j = readData() }
-
         d(TAG, "LOGGING")
         d(TAG, " suck my FAT BALLS " + j.toString())
+*/
+        val j: databaseManager.UserInfo =
+            doAsyncResult { return@doAsyncResult data.readData() }.get()
 
-        doAsync { j = data.readData() }
-        d(TAG, "LOGGING11111")
-        d(TAG, " 111111111suck my FAT BALLS " + j.toString())
-        d(TAG, "I HAVE A BIG ASS DICK " + j?.name)
-
-
-
-
+        d(TAG, "Full User Class" + j.toString())
+        d(TAG, "user name - " + j.name)
 
     }
 
@@ -445,43 +426,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-
-    //remove this later
-    fun readData(): databaseManager.UserInfo {
-
-        val auth = FirebaseAuth.getInstance()
-        var user1 = databaseManager.UserInfo()
-
-        var db = FirebaseFirestore.getInstance()
-
-        //this path is correct and works in other functions.
-        db.collection("users").document(auth.currentUser!!.uid)
-            .get()
-            .addOnCompleteListener { task ->
-
-                val data: MutableMap<String, Any?> = task.result?.data!!
-
-                if (data.isNullOrEmpty()) {
-                    d(TAG, "Document Result is Null or Empty")
-
-                } else {
-                    d(TAG, "Document is not Empty. Adding to user data class.")
-
-                    //This seems to set name and ID, but not email
-                    user1.name = data["name"].toString()
-                    user1.email = data["email"].toString()
-                    user1.id = data["id"].toString()
-
-                    //This logs correct response
-                    //d(TAG, user1.name!!)
-
-                    //This logs correct response
-                    //d(TAG, data.toString())
-
-                }
-            }
-        return user1
-    }
 
 }
 
