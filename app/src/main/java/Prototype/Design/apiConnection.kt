@@ -75,11 +75,11 @@ class apiConnection {
             d(TAG, "URL =  $imgUrl")
             val inputStream = URL(imgUrl).openStream()
 
-            val draw = Drawable.createFromStream(inputStream, null)
+            val drawableResponse = Drawable.createFromStream(inputStream, null)
 
             inputStream.close()
 
-            return@doAsyncResult draw
+            return@doAsyncResult drawableResponse
         }.get()
     }
 

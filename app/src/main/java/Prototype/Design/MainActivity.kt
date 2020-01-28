@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -159,7 +160,7 @@ class MainActivity : AppCompatActivity() {
         d(TAG, " suck my FAT BALLS " + j.toString())
 */
         val j: databaseManager.UserInfo =
-            doAsyncResult { return@doAsyncResult data.readData() }.get()
+            doAsyncResult { return@doAsyncResult readData() }.get()
 
         d(TAG, "Full User Class" + j.toString())
         d(TAG, "user name - " + j.name)
@@ -424,6 +425,44 @@ class MainActivity : AppCompatActivity() {
     private fun createSevenDayIntent() {
         val intent = Intent(this, sevenDay::class.java)
         startActivity(intent)
+    }
+
+    fun readData(): databaseManager.UserInfo {
+
+        val auth = FirebaseAuth.getInstance()
+
+        var db = FirebaseFirestore.getInstance()
+
+        var user = databaseManager.UserInfo()
+
+        //this path is correct and works in other functions.
+        db.collection("users").document(auth.currentUser!!.uid)
+            .get()
+            .addOnCompleteListener { task ->
+
+                val data: MutableMap<String, Any?> = task.result?.data!!
+
+                if (data.isNullOrEmpty()) {
+                    d(TAG, "Document Result is Null or Empty")
+
+                } else {
+                    d(TAG, "Document is not Empty. Adding to user data class.")
+
+                    //This seems to set name and ID, but not email
+                    user.name = data["name"].toString()
+                    user.email = data["email"].toString()
+                    user.id = data["id"].toString()
+
+                    //This logs correct response
+                    d(TAG, "TJOS OS OSJADFONAE")
+                    d(TAG, user.name!!)
+
+                    //This logs correct response
+                    d(TAG, data.toString())
+
+                }
+            }
+        return user
     }
 
 
