@@ -154,16 +154,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-/*
-        doAsync { j = readData() }
-        d(TAG, "LOGGING")
-        d(TAG, " suck my FAT BALLS " + j.toString())
-*/
-        val j: databaseManager.UserInfo =
-            doAsyncResult { return@doAsyncResult readData() }.get()
+        val j: databaseManager.UserInfo = doAsyncResult { return@doAsyncResult readData() }.get()
 
-        d(TAG, "Full User Class" + j.toString())
-        d(TAG, "user name - " + j.name)
+        while (j.name == "name") {
+            Thread.sleep(5_000)
+        }
+
 
     }
 

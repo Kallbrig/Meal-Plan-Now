@@ -76,7 +76,6 @@ class databaseManager {
                     user.id = data["id"].toString()
 
                     //This logs correct response
-                    d(TAG, "TJOS OS OSJADFONAE")
                     d(TAG, user.name!!)
 
                     //This logs correct response
