@@ -111,8 +111,8 @@ class databaseManager {
         var name: String? = "name",
         var email: String? = "name@name.name",
         var id: String? = "id",
-        var Favs1: String? = "favs",
-        var SevenDay1: String? = "sevenday"
+        var Favs: String? = "favs",
+        var SevenDay: String? = "sevenday"
 
     )
 }

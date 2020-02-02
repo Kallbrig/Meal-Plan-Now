@@ -154,11 +154,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val j: databaseManager.UserInfo = doAsyncResult { return@doAsyncResult readData() }.get()
+        j = doAsyncResult { return@doAsyncResult readData() }.get().copy(readData().name)
 
-        while (j.name == "name") {
-            Thread.sleep(5_000)
-        }
+
+        d(TAG, "aaaa " + j?.name)
 
 
     }
@@ -426,9 +425,7 @@ class MainActivity : AppCompatActivity() {
     fun readData(): databaseManager.UserInfo {
 
         val auth = FirebaseAuth.getInstance()
-
         var db = FirebaseFirestore.getInstance()
-
         var user = databaseManager.UserInfo()
 
         //this path is correct and works in other functions.
@@ -448,16 +445,14 @@ class MainActivity : AppCompatActivity() {
                     user.name = data["name"].toString()
                     user.email = data["email"].toString()
                     user.id = data["id"].toString()
+                    user.SevenDay = data["sevenDay"].toString()
+                    user.Favs = data["favs"].toString()
 
-                    //This logs correct response
-                    d(TAG, "TJOS OS OSJADFONAE")
-                    d(TAG, user.name!!)
-
-                    //This logs correct response
-                    d(TAG, data.toString())
+                    d(TAG, user.toString())
 
                 }
             }
+        j = user.copy()
         return user
     }
 
