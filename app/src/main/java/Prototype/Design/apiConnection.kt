@@ -3,6 +3,8 @@ package Prototype.Design
 import android.graphics.drawable.Drawable
 import android.util.Log.d
 import android.util.Log.e
+import androidx.annotation.DrawableRes
+import androidx.core.graphics.drawable.toDrawable
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
@@ -72,14 +74,25 @@ class apiConnection {
     fun getImgDrawable(imgUrl: String): Drawable {
         return doAsyncResult {
 
+
+            // App will no longer crash due to null URL, but will display the beef wellington image.
+            //Fix this later
             d(TAG, "URL =  $imgUrl")
-            val inputStream = URL(imgUrl).openStream()
+            if (imgUrl != "null") {
+                val inputStream = URL(imgUrl).openStream()
+                val drawableResponse = Drawable.createFromStream(inputStream, null)
 
-            val drawableResponse = Drawable.createFromStream(inputStream, null)
+                inputStream.close()
+                return@doAsyncResult drawableResponse
+            } else {
+                e(TAG, "Error getting image. Null URL")
+                return@doAsyncResult R.drawable.beefwellington.toDrawable()
+            }
 
-            inputStream.close()
 
-            return@doAsyncResult drawableResponse
+
+
+
         }.get()
     }
 
