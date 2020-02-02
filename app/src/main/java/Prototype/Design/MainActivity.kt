@@ -17,9 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
-import org.jetbrains.anko.image
+import org.jetbrains.anko.*
 
 private val TAG = "MAINACTIVITY"
 private val api = apiConnection()
@@ -154,11 +152,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        j = doAsyncResult { return@doAsyncResult readData() }.get().copy(readData().name)
+        var futureResult = doAsyncResult {
+            return@doAsyncResult readData()
+        }
 
+        while (!futureResult.isDone) {
+            d(TAG, "not done")
+        }
 
-        d(TAG, "aaaa " + j?.name)
-
+        d(TAG, "done! : ${futureResult.get().name}")
 
     }
 
@@ -441,7 +443,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     d(TAG, "Document is not Empty. Adding to user data class.")
 
-                    //This seems to set name and ID, but not email
+                    //This seems to set name and ID, but not emailata
                     user.name = data["name"].toString()
                     user.email = data["email"].toString()
                     user.id = data["id"].toString()
