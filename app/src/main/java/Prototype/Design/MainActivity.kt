@@ -6,22 +6,18 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.d
-import android.util.Log.e
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.WorkerThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserInfo
 import com.google.firebase.firestore.FirebaseFirestore
 import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.tasks.await
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.image
 
@@ -52,10 +48,46 @@ private var cardRow3Id = ArrayList<String>(6)
 private lateinit var row1Name: TextView
 private lateinit var row2Name: TextView
 private lateinit var row3Name: TextView
-private var j: databaseManager.UserInfo? = null
+private var j: MutableMap<String, Any>? = null
 
 
 class MainActivity : AppCompatActivity() {
+
+    fun readData() {
+
+        val auth = FirebaseAuth.getInstance()
+        var db = FirebaseFirestore.getInstance()
+        var user = databaseManager.UserInfo()
+        var data1: MutableMap<String, Any>
+
+        //this path is correct and works in other functions.
+        db.collection("users").document(auth.currentUser!!.uid)
+            .get()
+            .addOnCompleteListener { task ->
+
+                data1 = task.result?.data!!
+                j = data1
+
+                if (data1.isNullOrEmpty()) {
+                    d(TAG, "Document Result is Null or Empty")
+
+                } else {
+                    d(TAG, "Document is not Empty. Adding to user data class.")
+
+/*                    //This seems to set name and ID, but not emailata
+                    user.name = (data1 as MutableMap<String, Any>)["name"].toString()
+                    user.email = data1["email"].toString()
+                    user.id = data1["id"].toString()
+                    user.SevenDay = data1["sevenDay"].toString()
+                    user.Favs = data1["favs"].toString()
+
+                    d(TAG, user.toString())*/
+
+                }
+            }
+        //j = data1
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,9 +126,9 @@ class MainActivity : AppCompatActivity() {
             searchButMain.setOnClickListener() {
                 createSearchIntent()
             }
-            favsButMain.setOnClickListener() {
+/*            favsButMain.setOnClickListener() {
                 createFavsIntent()
-            }
+            }*/
             sevenDayButMain.setOnClickListener() {
                 createSevenDayIntent()
             }
@@ -158,7 +190,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        var mealData = readData()
+        //this is necessary for the Create Favs intent in onPostResume
+        readData()
+
 
     }
 
@@ -167,6 +201,13 @@ class MainActivity : AppCompatActivity() {
         super.onPostResume()
         //Return is Blank
         //makeText(this, "Welcome Back ${j?.name}", LENGTH_SHORT).show()
+
+        //This goes in onCreate if possible
+        doAsync {
+            favsButMain.setOnClickListener() {
+                createFavsIntent(j)
+            }
+        }
     }
 
 
@@ -404,8 +445,11 @@ class MainActivity : AppCompatActivity() {
     // Creates and starts an intent that takes you to favsView.
     // Takes No arguments.
     //
-    private fun createFavsIntent() {
+    private fun createFavsIntent(userInfo: MutableMap<String, Any>?) {
         val intent = Intent(this, favs_view::class.java)
+        //var t :MutableMap<String,Any>
+
+        intent.putExtra("userName", userInfo!!.get("name").toString())
         startActivity(intent)
     }
 
@@ -423,39 +467,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun readData(): databaseManager.UserInfo {
 
-        val auth = FirebaseAuth.getInstance()
-        var db = FirebaseFirestore.getInstance()
-        var user = databaseManager.UserInfo()
-
-        //this path is correct and works in other functions.
-        db.collection("users").document(auth.currentUser!!.uid)
-            .get()
-            .addOnCompleteListener { task ->
-
-                val data: MutableMap<String, Any?> = task.result?.data!!
-
-                if (data.isNullOrEmpty()) {
-                    d(TAG, "Document Result is Null or Empty")
-
-                } else {
-                    d(TAG, "Document is not Empty. Adding to user data class.")
-
-                    //This seems to set name and ID, but not emailata
-                    user.name = data["name"].toString()
-                    user.email = data["email"].toString()
-                    user.id = data["id"].toString()
-                    user.SevenDay = data["sevenDay"].toString()
-                    user.Favs = data["favs"].toString()
-
-                    d(TAG, user.toString())
-
-                }
-            }
-
-        return user
-    }
 
 
 }
