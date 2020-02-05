@@ -6,9 +6,11 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.d
+import android.util.Log.e
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.WorkerThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
@@ -17,7 +19,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.*
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.image
 
 private val TAG = "MAINACTIVITY"
 private val api = apiConnection()
@@ -152,17 +158,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        var futureResult = doAsyncResult {
-            return@doAsyncResult readData()
-        }
-
-        while (!futureResult.isDone) {
-            d(TAG, "not done")
-        }
-
-        d(TAG, "done! : ${futureResult.get().name}")
+        var mealData = readData()
 
     }
+
 
     override fun onPostResume() {
         super.onPostResume()
@@ -454,7 +453,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
-        j = user.copy()
+
         return user
     }
 
