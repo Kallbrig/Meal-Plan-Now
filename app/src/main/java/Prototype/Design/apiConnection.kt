@@ -86,7 +86,7 @@ class apiConnection {
                 return@doAsyncResult drawableResponse
             } else {
                 e(TAG, "Error getting image. Null URL")
-                return@doAsyncResult R.drawable.beefwellington.toDrawable()
+                return@doAsyncResult R.drawable.beefwellington as Drawable
             }
 
 

@@ -18,6 +18,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import helpers.authManager
 import helpers.databaseManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.image
 
@@ -53,39 +60,24 @@ private var j: MutableMap<String, Any>? = null
 
 class MainActivity : AppCompatActivity() {
 
-    fun readData() {
+    fun readData(){
+        var data: MutableMap<String, Any>
+        CoroutineScope(IO).launch {
 
-        val auth = FirebaseAuth.getInstance()
-        var db = FirebaseFirestore.getInstance()
-        var user = databaseManager.UserInfo()
-        var data1: MutableMap<String, Any>
+            val auth = FirebaseAuth.getInstance()
+            val db = FirebaseFirestore.getInstance()
 
-        //this path is correct and works in other functions.
-        db.collection("users").document(auth.currentUser!!.uid)
-            .get()
-            .addOnCompleteListener { task ->
 
-                data1 = task.result?.data!!
-                j = data1
+            //this path is correct and works in other functions.
+            val d = db.collection("users").document(auth.currentUser!!.uid).get().await()
 
-                if (data1.isNullOrEmpty()) {
-                    d(TAG, "Document Result is Null or Empty")
-
-                } else {
-                    d(TAG, "Document is not Empty. Adding to user data class.")
-
-/*                    //This seems to set name and ID, but not emailata
-                    user.name = (data1 as MutableMap<String, Any>)["name"].toString()
-                    user.email = data1["email"].toString()
-                    user.id = data1["id"].toString()
-                    user.SevenDay = data1["sevenDay"].toString()
-                    user.Favs = data1["favs"].toString()
-
-                    d(TAG, user.toString())*/
-
-                }
+            withContext(Main){
+                data = d.data!!
+                println("hhhhhhhhhhhhhhhhhhhhhhh  " +data.values)
             }
-        //j = data1
+
+        }
+
 
     }
 
