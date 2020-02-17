@@ -5,6 +5,9 @@ import android.util.Log.d
 import android.util.Log.e
 import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.toDrawable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
@@ -94,6 +97,18 @@ class apiConnection {
 
 
         }.get()
+    }
+
+    public fun getMealByID(id: String) {
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val jsonO =
+                JSONObject(URL("https://www.themealdb.com/api/json/v2/9973533/lookup.php?i=$id").readText()).getJSONArray(
+                    "meals"
+                ).getJSONObject(0)
+            var mealThumbURL: String = jsonO["strMealThumb"] as String
+            d(TAG, "llllllllgfdfssdfsdfsd    -    $mealThumbURL")
+        }
     }
 
 

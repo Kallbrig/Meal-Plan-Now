@@ -35,6 +35,11 @@ class favs_view : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favs_view)
 
+        if (!intent.hasExtra("img")){
+            var api = apiConnection()
+            api.getMealByID(intent.getStringExtra("id")!!)
+        }
+
         //Back Button
         setBackBut()
         var fauth = FirebaseAuth.getInstance()

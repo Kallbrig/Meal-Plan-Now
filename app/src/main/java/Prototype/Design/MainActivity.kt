@@ -6,12 +6,14 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.d
+import android.util.Log.w
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserInfo
 import com.google.firebase.firestore.FirebaseFirestore
@@ -73,7 +75,10 @@ class MainActivity : AppCompatActivity() {
 
             withContext(Main){
                 data = d.data!!
-                println("hhhhhhhhhhhhhhhhhhhhhhh  " +data.values)
+                var favs = data["favs"].toString().replace(",","")
+
+                w(TAG, favs)
+                createFavsIntent(favs)
             }
 
         }
@@ -89,12 +94,16 @@ class MainActivity : AppCompatActivity() {
 
         //var auth = authManager()
 
+        var api = apiConnection()
+
+            api.getMealByID("52772")
+
 
         //TitleBar Text is Logout Button for testing
         //
         val mainLogo = findViewById<TextView>(R.id.titleBar)
         val searchButMain = findViewById<ImageButton>(R.id.searchButMain)
-        val favsButMain = findViewById<ImageButton>(R.id.favsButMain)
+        //val favsButMain = findViewById<ImageButton>(R.id.favsButMain)
         val sevenDayButMain = findViewById<ImageButton>(R.id.sevenDayButMain)
         val cont: Context = this.applicationContext
         //Remember to remove this when a dedicated logout button is created
@@ -108,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
         mainLogo.text = fauth.currentUser?.email
         //mainLogo.text = fauth.currentUser?.displayName
-        val auth = authManager()
+        //val auth = authManager()
 
 
 
@@ -175,7 +184,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        var auth = FirebaseAuth.getInstance()
+        //var auth = FirebaseAuth.getInstance()
 
 
     }
@@ -456,6 +465,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun createSevenDayIntent() {
         val intent = Intent(this, sevenDay::class.java)
+        startActivity(intent)
+    }
+
+    private fun createFavsIntent(id: String){
+        val intent = Intent(this, favs_view::class.java)
+        intent.putExtra("id", id)
         startActivity(intent)
     }
 
