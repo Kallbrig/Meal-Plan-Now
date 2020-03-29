@@ -9,6 +9,7 @@ This was a 4 person group project that I did entirely on my own.
 
 * This project was my introduction to Kotlin, which the entire project is written in.
 * Developed a user interface within a xml file using android UI components such as ScrollView, ListView, EditText, Button, etc.
+* learned to parse and work with Json using gson as well as the built-in Json parser in Android.
 * Introduction to Threads and Threading on Android. This was my largest hurdle. 
  This was my first contact with AsyncTasks, & Coroutines for network calls and background work.
 * The Anko library was used for AsyncTasks. This was later partially replaced by coroutines.
