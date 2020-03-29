@@ -1,6 +1,8 @@
 # Meal-Plan-Now
 Android meal viewer application built for my CS-3332 - Software Engineering course.
+
 Google Firebase, Firestore, the Anko library, and TheMealDB API were all used heavily.
+
 This was a 4 person group project that I did entirely on my own.
 
 # What I Learned
